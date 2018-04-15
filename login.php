@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+include_once("configs/global.php");
 ?>
 
 <!doctype html>
@@ -67,8 +68,10 @@ if(isset($_POST['user']) && $_POST['password'])
         $r = mysqli_fetch_array($Us);
         $_SESSION['idUser'] = $r['id'];
 		$_SESSION['User'] = $r['UserName'];
-		header('location:http://localhost/webmusica/admin');
-        echo "Đăng nhập thành công!";
+		$url=BASE_URL."/admin";
+	
+		header('location:'.$url);
+      
     }// else //$message = "Đăng nhập ko thành công!";
     
 }

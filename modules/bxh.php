@@ -13,7 +13,8 @@
                 <div class="col-md-12" style="margin-right:0px;"> 
                    
                    <?php 
-                       $getcs = new MyConnect();
+                        include_once("controllers/baihat.php");
+                       $getcs = new BaiHat();
                        $i=1;
                        $ds = $getcs->DanhSachBH();
                        while($r = $ds->fetch_object())
@@ -38,7 +39,7 @@
                     <div class="col-md-12" style="margin-right:0px;"> 
                        
                        <?php 
-                           $getcs = new MyConnect();
+                           $getcs = new BaiHat();
                            $i=1;
                            $ds = $getcs->DanhSachBH();
                            while($r = $ds->fetch_object())
@@ -63,7 +64,7 @@
                     <div class="col-md-12" style="margin-right:0px;"> 
                        
                        <?php 
-                           $getcs = new MyConnect();
+                           $getcs = new BaiHat();
                            $i=1;
                            $ds = $getcs->DanhSachBH();
                            while($r = $ds->fetch_object())

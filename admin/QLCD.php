@@ -1,4 +1,4 @@
-
+<?php include_once("../controllers/chude.php");?>
 <h3>QUẢN LÝ CHỦ ĐỀ</h3>
 <div class="col-sm-offset-11 col-sm-1">
 <a class="btn btn-small btn-default" href ="?option=insertcd">Thêm </a>
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     <?php
-    $t = new MyConnect();
+    $t = new ChuDe();
     $i=1;
     $dscd = $t->DanhSachCD();
     while($r = $dscd->fetch_object())
@@ -29,7 +29,7 @@
         <td id="chude_<?php echo $r->id; ?>"><?php echo $r->TenChuDe?></td>
         
        <td> <a class="btn btn-small btn-default cd" href="?option=updatecd&id=<?php echo $r->id; ?>">Sửa </a></td>
-       <td> <a class="btn btn-small btn-danger delete-chude"  href ="proccessQLCD.php?id=<?php echo $r->id; ?>" > Xóa</a></td>
+       <td> <a class="btn btn-small btn-danger delete-chude"  href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_chu_de&id=<?php echo $r->id; ?>" > Xóa</a></td>
        
 
     </tr>

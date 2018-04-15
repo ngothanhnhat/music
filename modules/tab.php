@@ -10,35 +10,35 @@
 
     </div>
     <br>
-    <div class="tab-content">
+    <!-- <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="Album">
             <?php 
-                $getAlbum = new MyConnect();
-                $i=1;
-                $ds = $getAlbum->DanhSachAlbum();
-                while($r = $ds->fetch_object())
-                {
-                   if($i ==1)
-                   echo "<div class='row'>";
+                // $getAlbum = new MyConnect();
+                // $i=1;
+                // $ds = $getAlbum->DanhSachAlbum();
+                // while($r = $ds->fetch_object())
+                // {
+                //    if($i ==1)
+                //    echo "<div class='row'>";
             ?>
                     <div class="col-md-3">
                     
-                    <img style=" width: 100%;height:140px;" src="img/album/<?php echo $r->imgalbum;?>">
+                    <img style=" width: 100%;height:140px;" src="img/album/<?php //echo //$r->imgalbum;?>">
                         <p class="TenBH"><a href="index.php?option=nghealbum" <a href="index.php?option=nghealbum" style="color:#000;text-decoration:none;">  <?php echo $r->TenAlbum;?> </a> </p>
                         <h6 class="TenCS"> <a href="index.php?option=thongtincs" style="color:#000;text-decoration:none;"> <?php echo $r->TenCaSi;?></h6> 
                         
                     </div>
                   
             <?php 
-                if($i ==4)
-                {
-                    echo "</div>";
-                    $i =0;
-                }
-                $i++;
-            }?>
+                // if($i ==4)
+                // {
+                //     echo "</div>";
+                //     $i =0;
+                // }
+                // $i++;
+            // }?>
           
-        </div>
+        </div> -->
 
 
 
@@ -280,17 +280,18 @@
      <div class="col-md-12" style="margin-right:0px;"> 
         
         <?php 
-            $getcs = new MyConnect();
+            include_once("controllers/baihat.php");
+            $getbh = new BaiHat();
             $i=1;
-            $ds = $getcs->DanhSachBH();
-            while($r = $ds->fetch_object())
+            $dsbh = $getbh->DanhSachBH();
+            while($r = $dsbh->fetch_object())
             {
                 
                 if($i ==1)
                 echo "<div class='row'>";
         ?>
            <div class="col-md-6">
-                <p class ="TenBH"> <a href= "index.php?option=nghe1bh"<a href="index.php?option=nghealbum" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
+                <p class ="TenBH"> <a href= "index.php?option=nghe1bh" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
                     <hr>
            </div>
         <?php 
@@ -313,14 +314,15 @@
 
 
 
-    <h3>CA SỸ MỚI</h3>
+    <!-- <h3>CA SỸ MỚI</h3>
     <div class="row">
         <?php 
-            $getcs = new MyConnect();
-            $i=1;
-            $ds = $getcs->DanhSachCS();
-            while($r = $ds->fetch_object())
-            {
+            // include_once("controllers/casi.php")
+            // $getcs = new CaSi();
+            // $i=1;
+            // $ds = $getcs->DanhSachCS();
+            // while($r = $ds->fetch_object())
+            // {
         ?>
                 <div class="col-md-3">
                 <img style=" width: 100%;height:150px;" src="img/casi/<?php echo $r->img;?>">
@@ -331,9 +333,9 @@
 
         <?php 
            
-            $i++;
-        }?>
+            // $i++;
+        // }?>
       
     </div>
-   
+    -->
     

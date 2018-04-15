@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php include_once("modules/head.php");?>
+<?php include_once("configs/global.php");?>
+<?php include_once("modules/head.php");?>
 <body>
 
 

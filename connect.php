@@ -20,23 +20,8 @@ class MyConnect
         
     }
 
-    public function DanhSachCS()
-    {
-        $sql="SELECT * FROM casi ORDER BY id ASC limit 8";
-        return mysqli_query($this->con,$sql);
-    }
-    public function DanhSachCD()
-    {
-        $sql="SELECT * FROM chude WHERE 1";
-        return mysqli_query($this->con,$sql);
-    }
-    
-    public function DanhSachTL()
-    {
-        $sql="SELECT * FROM theloai WHERE 1";
-        return mysqli_query($this->con,$sql);
-    }
-    
+   
+   
     function DanhSachAlbum()
     {
         $sql="SELECT * FROM `album`, casi WHERE album.idCS = casi.id  limit 8";
@@ -51,12 +36,7 @@ class MyConnect
     }
 
 
-    public function DanhSachPL()
-    {
-        $sql="SELECT * FROM `playlist`, `theloai` WHERE playlist.id = theloai.id";
-        return mysqli_query($this->con,$sql);
-    }
-  
+    
 
     public function DanhSachND()
     {
@@ -80,24 +60,8 @@ class MyConnect
         //echo $sql;
         return mysqli_query($this->con,$sql);
     }
-    public function LayPLID($id)
-    {
-        $sql="SELECT * FROM `playlist`WHERE id like '$id'";
-        //echo $sql;
-        return mysqli_query($this->con,$sql);
-    }
-    public function LayTLID($id)
-    {
-        $sql="SELECT * FROM `theloai`WHERE id like '$id'";
-        //echo $sql;
-        return mysqli_query($this->con,$sql);
-    }
-    public function LayCDID($id)
-    {
-        $sql="SELECT * FROM `chude`WHERE id like '$id'";
-        //echo $sql;
-        return mysqli_query($this->con,$sql);
-    }
+    
+
     public function LayCSID($id)
     {
         $sql="SELECT * FROM `casi`WHERE id like '$id'";
@@ -125,36 +89,8 @@ class MyConnect
         mysqli_query($this->con,$sql);
       
     }
-    public function ThemTL($tentheloai)
-    {
-        $sql= "INSERT INTO `theloai`(`TenTheLoai`) VALUES ('$tentheloai')";
-      // echo $sql;
-        return mysqli_query($this->con,$sql);
-      
-    }
-    public function ThemCD($tenchude)
-    {
-        $sql= "INSERT INTO `chude`(`TenChuDe`) VALUES ('$tenchude')";
-      //  echo $sql;
-        mysqli_query($this->con,$sql);
-       
-    }
-    
-    public function ThemCS($TenCS, $ns, $quequan,$img, $tieusu)
-    {
-        $sql= "INSERT INTO `casi` (`TenCaSi`, `NgaySinh`, `QueQuan`, `img`, `TieuSu`) VALUES ('$TenCS', '$ns', '$quequan', '$img','$tieusu')";
-        //echo $sql;
-        mysqli_query($this->con,$sql);
-      
-    }
-
-    public function ThemPL($TenPL, $img,$ngtao,$duongdan,$tl)
-    {
-        $sql= "INSERT INTO `playlist` (`TenPlayList`, `img`, `NguoiTao`,`DuongDan` , `TheLoai`) VALUES ('$TenPL', '$img', '$ngtao', '$duongdan', '$tl')";
-        //echo $sql;
-        mysqli_query($this->con,$sql);
-      
-    }
+   
+  
     public function ThemAB($TenAB, $tloai,$nam,$hinh)
     {
         $sql= "INSERT INTO `playlist` (`TenAlbum`, `TheLoai`, `NamPhatHanh`,`imgalbum` ) VALUES ('$TenAB', '$tloai', '$nam', '$hinh')";
@@ -177,27 +113,8 @@ class MyConnect
     }
  
 
-    
-    public function XoaCS($id)
-    {
-        $sql="DELETE FROM casi WHERE id=$id";
-        return mysqli_query($this->con,$sql);
-    }
-    public function XoaCD($id)
-    {
-        $sql="DELETE FROM chude WHERE id=$id";
-        return mysqli_query($this->con,$sql);
-    }
-    public function XoaTL($id)
-    {
-        $sql="DELETE FROM theloai WHERE id=$id";
-        return mysqli_query($this->con,$sql);
-    }
-    public function XoaPL($id)
-    {
-        $sql="DELETE FROM playlist WHERE id=$id";
-        return mysqli_query($this->con,$sql);
-    }
+ 
+  
     public function XoaND($id)
     {
         $sql="DELETE FROM user WHERE id=$id";
@@ -222,14 +139,7 @@ class MyConnect
         mysqli_query($this->con,$sql);
       
     }
-    
-    public function SuaCD($id, $tencd)
-    {
-        $sql= "UPDATE `chude` SET `TenChuDe` = '$tencd' WHERE `chude`.`id` = $id";
-       // echo $sql;
-        mysqli_query($this->con,$sql);
-      
-    }
+ 
     public function SuaTL($id, $tentl)
     {
         $sql= "UPDATE `theloai` SET `TenTheLoai` = '$tentl' WHERE `theloai`.`id` = $id";
@@ -246,22 +156,8 @@ class MyConnect
       
     }
     
-    public function SuaCS($id, $tencs, $img, $ns, $quequan)
-    {
-        $sql= "UPDATE `casi` SET `TenCaSi` = '$tencs',`NgaySinh`='$ns', `img`='$img' ,`quequan`='$quequan'  WHERE `casi`.`id` = $id";
-       echo $sql;
-        mysqli_query($this->con,$sql);
       
-    }
-
-      
-    public function SuaPL($id, $tenpl,$img,$ngtao ,$duongdan,$theloai)
-    {
-        $sql= "UPDATE `playlist` SET `TenPlayList` = '$tenpl', `img`='$img' ,`NguoiTao`='$ngtao', `DuongDan`='$duongdan' ,  `TheLoai`='$theloai'  WHERE `playlist`.`id` = $id";
-      // echo $sql;
-        mysqli_query($this->con,$sql);
-      
-    }
+    
     
     public function SuaUS($id, $ten,$pass, $email)
     {
@@ -285,23 +181,13 @@ class MyConnect
         $sql="SELECT QueQuan FROM casi";
         return mysqli_query($this->con,$sql);
     }
-    public function DSCaSi()
-    {
-        $sql="SELECT id,TenCaSi FROM casi";
-        return mysqli_query($this->con,$sql);
-    }
-
+   
     public function DSNhacSi()
     {
         $sql="SELECT id,TenNhacSi FROM nhacsi";
         return mysqli_query($this->con,$sql);
     }
-    public function TenChuDe()
-    {
-        $sql="SELECT TenChuDe FROM chude";
-        return mysqli_query($this->con,$sql);
-    }
-    
+   
     public function DSTheLoai()
     {
         $sql="SELECT TenTheLoai,id FROM theloai";
@@ -344,27 +230,3 @@ class MyConnect
    
 ?>
 
-<?php 
-
-function convert($str) {
-    $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
-    $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
-    $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
-    $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
-    $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
-    $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
-    $str = preg_replace("/(đ)/", 'd', $str);
-    $str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
-    $str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
-    $str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
-    $str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
-    $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
-    $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
-    $str = preg_replace("/(Đ)/", 'D', $str);
-  
-    $str = str_replace(" ", "-", str_replace("&*#39;","",$str));
-    return $str;
-  }
-  ?>
-  
-  

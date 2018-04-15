@@ -1,5 +1,5 @@
 
-<div class="row" style="margin:5px;">
+<!-- <div class="row" style="margin:5px;">
                     
                     <div class="col-md-9">
                         <div class="row" >
@@ -37,4 +37,26 @@
                 </div>
             </div>
             
-            
+             -->
+
+<link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">
+<div id="aplayer"></div>
+<div id="audio_src" hidden url="<?php echo BASE_URL;?>/music/I-Do.mp3"></div>
+<script src="vendors/APlayer/APlayer.min.js"></script>
+<script>
+$(function(){
+    var source= $("#audio_src").attr('url');
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'),
+        lrcType: 3,
+        audio: [{
+            name: 'name',
+            artist: 'artist',
+            url: source,
+            cover: '',
+            lrc: 'http://localhost/music/music/test.lrc'
+        }]
+    });
+})
+    
+</script>

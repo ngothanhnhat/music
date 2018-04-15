@@ -1,3 +1,4 @@
+<?php include_once '../controllers/casi.php'?>
 <h3>THÊM BÀI HÁT</h3>
 <div class="sss" style="width: 800px; height: 600px; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
 <form action="<?php echo BASE_URL?>/controllers/xuly.php?task=them_bai_hat" method="POST"  class="form-horizontal" role="form" >
@@ -17,7 +18,7 @@
     <option value="0">[Vui lòng chọn Ca Sĩ] </option>
 
     <?php
-        $t = new MyConnect();
+        $t = new CaSi();
         $ds = $t->DSCaSi();
         while($r = $ds->fetch_object())
         {

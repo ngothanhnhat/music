@@ -1,4 +1,5 @@
 
+<?php include_once("../controllers/playlist.php");?>
 
 <h3>QUẢN LÝ PLAYLIST</h3>
 <!-- <a class="btn btn-small btn-default" href ="?option=insert">Thêm </a> -->
@@ -23,7 +24,7 @@
     </thead>
     <tbody>
     <?php
-        $t = new MyConnect();
+        $t = new PlayList();
         $i=1;
         $dspl = $t->DanhSachPL();
         while($r = $dspl->fetch_object())
@@ -42,7 +43,7 @@
             <td> <?php echo $r->TenTheLoai ?></td>
             
            <td> <a class="btn btn-small btn-default"href="?option=updatepl&id=<?php echo $r->id; ?>" >Sửa </a></td>
-           <td> <a class="btn btn-small btn-danger delete-playlist"  href ="proccessQLPL.php?id=<?php echo $r->id; ?>" > Xóa</a></td>
+           <td> <a class="btn btn-small btn-danger delete-playlist"  href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_playlist&id=<?php echo $r->id; ?>" > Xóa</a></td>
            
 
         </tr>

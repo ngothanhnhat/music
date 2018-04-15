@@ -1,9 +1,8 @@
 
 <h3>THÊM CA SĨ</h3>
 <div class="sss" style="width:800px; height: 500px; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
- <!-- có hình thì làm sao -->
-<form action="xuly.php"  method="POST"  class="form-horizontal" role="form" enctype="multipart/form-data">
-<!-- cần chỉnh sửa -->
+<form action="<?php echo BASE_URL?>/controllers/xuly.php?task=them_ca_si"  method="POST"  class="form-horizontal" role="form" enctype="multipart/form-data">
+
   <div class="form-group">
     <label for="input" class="col-sm-3 control-label" >Tên Ca Sĩ</label>
     <div class="col-sm-7">

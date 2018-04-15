@@ -1,5 +1,4 @@
-
-
+<?php include_once("../controllers/theloai.php");?>
 <h3>QUẢN LÝ THỂ LOẠI</h3>
 <div class="col-sm-offset-11 col-sm-1">
 <a class="btn btn-small btn-default" href ="?option=inserttl">Thêm </a>
@@ -17,7 +16,7 @@
     </thead>
     <tbody>
     <?php
-    $t = new MyConnect();
+    $t = new TheLoai();
     $i=1;
     $dstl = $t->DanhSachTL();
     while($r = $dstl->fetch_object())
@@ -30,7 +29,7 @@
         <td id="theloai_<?php echo $r->id; ?>"><?php echo $r->TenTheLoai?></td>
         
        <td> <a class="btn btn-small btn-default tl" href="?option=updatetl&id=<?php echo $r->id; ?>">Sửa </a></td>
-       <td> <a class="btn btn-small btn-danger delete-theloai"  href ="proccessQLTL.php?id=<?php echo $r->id; ?>" > Xóa</a></td>
+       <td> <a class="btn btn-small btn-danger delete-theloai"  href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_the_loai&id=<?php echo $r->id; ?>" > Xóa</a></td>
        
 
     </tr>

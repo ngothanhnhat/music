@@ -22,8 +22,8 @@ if($tmp == 'qlbh')
     include("QLVD.php");
 
     else
-    if($tmp=='insert')
-    include("insert.php");
+    if($tmp=='insert_bh')
+    include("insert_bh.php");
 
     else
     if($tmp=='insertcs')

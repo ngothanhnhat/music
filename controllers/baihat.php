@@ -1,5 +1,5 @@
 <?php
-include_once ('../DatabaseProvider.php');
+include_once ('./DatabaseProvider.php');
 
 class BaiHat{
 	public function __construct() {
