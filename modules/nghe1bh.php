@@ -38,24 +38,64 @@
             </div>
             
              -->
-
+<?php 
+include_once("controllers/baihat.php");
+if(isset($_GET['id'])){
+    $id= $_GET['id'];
+    $baihat= new BaiHat();
+    $bh = $baihat->LayBH($id);
+    $tenbaihat ="";
+}
+?>
 <link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">
-<div id="aplayer"></div>
-<div id="audio_src" hidden url="<?php echo BASE_URL;?>/music/I-Do.mp3"></div>
+
+<?php
+while($r = $bh->fetch_object()){
+    $tenbaihat=$r->TenBaiHat; 
+   
+?>
+<h3> <?php echo $r->TenBaiHat;?> </h3>
+    <div id="_src" hidden 
+    audio-url="<?php echo BASE_URL;?>/music/audio/<?php echo $r->audio;?>.mp3" 
+    lyric-url="<?php echo BASE_URL;?>/music/lyrics/<?php echo $r->lyrics;?>.lrc"
+    casi="<?php echo $r->TenCaSi;?>">
+    </div>
+<?php } ?>
+
+<div class="col-md-7" style="padding-left:0px;">
+    <div id="aplayer"></div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <h3> BÀI HÁT </h3>
+        <?php 
+            $bhgiongten= $baihat->LayBHGiongTen($tenbaihat);
+            while($row = $bhgiongten->fetch_object()){?>
+            <h5> <a href= "index.php?option=nghe1bh&id=<?php echo $row->id ;?>" style="color:#000;text-decoration:none;"><?php echo $row->TenBaiHat; ?> </a>  <hr> </h5>
+        <?php } ?>
+    </div>
+</div>
 <script src="vendors/APlayer/APlayer.min.js"></script>
 <script>
 $(function(){
-    var source= $("#audio_src").attr('url');
+    var audio= $("#_src").attr('audio-url');
+    var lyric= $("#_src").attr('lyric-url');
+    var tencasi= $("#_src").attr('casi');
     const ap = new APlayer({
         container: document.getElementById('aplayer'),
         lrcType: 3,
+        loop: 'one',
         audio: [{
-            name: 'name',
-            artist: 'artist',
-            url: source,
+            name: 'Ca Si ',
+            artist: tencasi,
+            url: audio,
             cover: '',
-            lrc: 'http://localhost/music/music/test.lrc'
-        }]
+            lrc: lyric
+        },
+        ]
     });
 })
     

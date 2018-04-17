@@ -1,6 +1,7 @@
 <?php
   // include("../configs/db.php");
-   include_once("../connect.php");
+   include_once("../DatabaseProvider.php");
+
 ?>
 <?php
 // ob_start();

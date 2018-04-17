@@ -42,12 +42,8 @@ class DatabaseProvider {
 	public static function execQuery($query){
 		$instance = self::getInstance();
 		$mysqli = $instance->getConnection();
+		return $mysqli->query($query);
 		
-		if ($mysqli->query($query) == TRUE) {
-			return $mysqli->query($query);
-		} else {
-			return null;
-		}
 	}
 	
 	public function __destruct() {

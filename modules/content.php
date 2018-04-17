@@ -8,10 +8,10 @@ if($tmp == 'nghealbum')
 else if($tmp == 'nghe1bh')
     include("nghe1bh.php");
 
-if($tmp == 'playvideo')
+else if($tmp == 'playvideo')
     include("playvideo.php");
 
-if($tmp == 'thongtincs')
+else if($tmp == 'thongtincs')
     include("ThongTinCS.php");
 else
    include("home.php");

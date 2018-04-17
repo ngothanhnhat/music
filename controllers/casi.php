@@ -1,5 +1,4 @@
 <?php
-include_once ('./DatabaseProvider.php');
 
 class CaSi{
 	public function __construct() {
@@ -28,7 +27,7 @@ class CaSi{
 	}
     public function DanhSachCS()
     {
-        $sql="SELECT * FROM casi ORDER BY id ASC ";
+        $sql="SELECT * FROM casi ORDER BY id DESC ";
         return DatabaseProvider::execQuery($sql);
     }
     public function ThemCS($TenCS, $ns, $quequan,$img, $tieusu)

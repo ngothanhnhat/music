@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php include_once('DatabaseProvider.php');?>
 <?php include_once("configs/global.php");?>
 <?php include_once("modules/head.php");?>
+<?php include_once("controllers/album.php");?>
 <body>
 
 
-    <?php include_once("connect.php");?>
 
     <?php include_once("modules/header.php");?>
   

@@ -15,7 +15,7 @@ class ChuDe{
 		
 		return DatabaseProvider::execQuery($sql);
 	}
-	
+
 	
 	public function DanhSachCD()
     {

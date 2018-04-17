@@ -10,35 +10,33 @@
 
     </div>
     <br>
-    <!-- <div class="tab-content">
+    <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="Album">
             <?php 
-                // $getAlbum = new MyConnect();
-                // $i=1;
-                // $ds = $getAlbum->DanhSachAlbum();
-                // while($r = $ds->fetch_object())
-                // {
-                //    if($i ==1)
-                //    echo "<div class='row'>";
+                $i=1;
+                $ds = Album::DanhSachAlbum(10);
+                while($r = $ds->fetch_object())
+                {
+                   if($i ==1)
+                   echo "<div class='row'>";
             ?>
                     <div class="col-md-3">
                     
                     <img style=" width: 100%;height:140px;" src="img/album/<?php //echo //$r->imgalbum;?>">
-                        <p class="TenBH"><a href="index.php?option=nghealbum" <a href="index.php?option=nghealbum" style="color:#000;text-decoration:none;">  <?php echo $r->TenAlbum;?> </a> </p>
-                        <h6 class="TenCS"> <a href="index.php?option=thongtincs" style="color:#000;text-decoration:none;"> <?php echo $r->TenCaSi;?></h6> 
+                        <p class="TenBH"> <a href="index.php?option=nghealbum&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenAlbum;?> </a> </p>
                         
                     </div>
                   
             <?php 
-                // if($i ==4)
-                // {
-                //     echo "</div>";
-                //     $i =0;
-                // }
-                // $i++;
-            // }?>
+                if($i ==4)
+                {
+                    echo "</div>";
+                    $i =0;
+                }
+                $i++;
+            }?>
           
-        </div> -->
+        </div>
 
 
 
@@ -291,7 +289,7 @@
                 echo "<div class='row'>";
         ?>
            <div class="col-md-6">
-                <p class ="TenBH"> <a href= "index.php?option=nghe1bh" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
+                <p class ="TenBH"> <a href= "index.php?option=nghe1bh&id=<?php echo $r->id;?>" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
                     <hr>
            </div>
         <?php 

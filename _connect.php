@@ -22,12 +22,7 @@ class MyConnect
 
    
    
-    function DanhSachAlbum()
-    {
-        $sql="SELECT * FROM `album`, casi WHERE album.idCS = casi.id  limit 8";
-        
-        return mysqli_query($this->con,$sql);
-    }
+   
     function DanhSachVideo()
     {
         $sql="SELECT * FROM `video`, casi WHERE video.idCS = casi.id ";
@@ -68,13 +63,7 @@ class MyConnect
         //echo $sql;
         return mysqli_query($this->con,$sql);
     }
-    public function LayBHID($id)
-    {
-        $sql="SELECT * FROM `baihat`WHERE id like '$id'";
-        //echo $sql;
-        return mysqli_query($this->con,$sql);
-    }
-
+ 
     public function LayThongTin($user)
     {
         $sql="SELECT * FROM `user`WHERE UserName='".$user."' " ;
@@ -91,13 +80,7 @@ class MyConnect
     }
    
   
-    public function ThemAB($TenAB, $tloai,$nam,$hinh)
-    {
-        $sql= "INSERT INTO `playlist` (`TenAlbum`, `TheLoai`, `NamPhatHanh`,`imgalbum` ) VALUES ('$TenAB', '$tloai', '$nam', '$hinh')";
-        //echo $sql;
-        mysqli_query($this->con,$sql);
-      
-    }
+   
     public function ThemVD($TenVD, $tlvd)
     {
         $sql= "INSERT INTO `video` (`TenVideo`, `TheLoai`) VALUES ('$TenVD', '$tlvd')";
@@ -120,11 +103,7 @@ class MyConnect
         $sql="DELETE FROM user WHERE id=$id";
         return mysqli_query($this->con,$sql);
     }
-    public function XoaAB($id)
-    {
-        $sql="DELETE FROM album WHERE id=$id";
-        return mysqli_query($this->con,$sql);
-    }
+    
     public function XoaVD($id)
     {
         $sql="DELETE FROM video WHERE id=$id";
@@ -182,11 +161,7 @@ class MyConnect
         return mysqli_query($this->con,$sql);
     }
    
-    public function DSNhacSi()
-    {
-        $sql="SELECT id,TenNhacSi FROM nhacsi";
-        return mysqli_query($this->con,$sql);
-    }
+   
    
     public function DSTheLoai()
     {

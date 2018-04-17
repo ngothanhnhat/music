@@ -20,8 +20,15 @@ switch ($task){
 			$cs=$_POST['casiid'];
 			$ns=$_POST['nhacsiid'];
 			$tl=$_POST['tlid'];
-			$loi = $_POST['loi'];
-			$th = $bai_hat->ThemBH( $ten, $cs, $ns, $tl ,$loi);
+			$src= strval(time());
+
+			$th = $bai_hat->ThemBH( $ten, $cs, $ns, $tl, $src, $src);
+			//upload audio 
+			// var_dump($_FILES); die;
+			move_uploaded_file($_FILES["source"]["tmp_name"],"../music/audio/". $src. ".mp3");
+			//upload lyrics 
+			move_uploaded_file($_FILES["lyric"]["tmp_name"],"../music/lyrics/". $src.".lrc");
+
 			$url .='/admin/?option=qlbh';
 			
 		}
@@ -70,11 +77,10 @@ switch ($task){
 		$ns=$_POST['ns'];
 		$qq=$_POST['quequan'];
 		$ts = $_POST['tieusu'];
-		$hih = convert($tcs);
+		$hih = convert($tcs) . "_" . strval(time());
 		$url.='/admin/?option=qlcs';
 		$thcs = $themcs->ThemCS( $tcs, $ns, $qq, $hih ,$ts);
-		$x= $_FILES["hinh"]["size"];
-		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/".$tcs."'");
+		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/".$hih."'");
 		
 }
 		

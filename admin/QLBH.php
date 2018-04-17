@@ -14,8 +14,8 @@
             <th>Tên Nhạc Sĩ</th>
             <th>Tên Thể Loại</th>
        
-            <th>Đường Dẫn</th>  
-            <th>Lời Bài Hát</th>         
+            <th>Audio</th>         
+            <th>Lyrics</th>         
                
             <th></th>
             <th></th>
@@ -41,8 +41,8 @@
             <td> <?php echo $r->TenNhacSi ?> </td>
             <td > <?php echo $r->TheLoai ?> </td>
          
-            <td> <?php echo $r->DuongDan ?> </td>
-            <td> <?php echo $r->Loi ?> </td>
+            <td> <?php echo $r->audio ?> </td>
+            <td> <?php echo $r->lyrics ?> </td>
            <td> <a class="btn btn-small btn-default"href="?option=updatebh&id=<?php echo $r->id; ?>">Sửa </a></td>
            <td> <a class="btn btn-small btn-danger delete-baihat" href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_bai_hat&id=<?php echo $r->id; ?>" > Xóa</a></td>
            
