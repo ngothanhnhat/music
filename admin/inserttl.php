@@ -1,15 +1,11 @@
 
-
+<?php include_once('../controllers/casi.php');?>
 
 <h3>THÊM THỂ LOẠI</h3>
 <div class="sss" style="width: 500px; height: 200px; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
 
-<form action="" method="POST"  class="form-horizontal" role="form">
-
+<form action="<?php echo BASE_URL?>/controllers/xuly.php?task=them_the_loai" method="POST"   role="form">
  
-
-  
-
   <div class="form-group">
     <label for="tentheloai" class="col-sm-3 control-label" >Tên Thể Loại</label>
     <div class="col-sm-6">
@@ -67,6 +63,4 @@ if(isset ($_POST['tentheloai'] ))
         });    
     });
   });
-
-
 </script>

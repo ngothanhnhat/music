@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Title</a>
+        <a class="navbar-brand" href="<?php echo BASE_URL;?>">Website</a>
     </div>
 
 

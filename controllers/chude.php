@@ -1,5 +1,5 @@
 <?php
-include_once ('../DatabaseProvider.php');
+include_once('../DatabaseProvider.php');
 
 class ChuDe{
 	public function __construct() {
@@ -19,7 +19,7 @@ class ChuDe{
 	
 	public function DanhSachCD()
     {
-        $sql="SELECT * FROM chude WHERE 1";
+        $sql="SELECT * FROM chude WHERE 1 ORDER BY id DESC";
         return DatabaseProvider::execQuery($sql);
     }
     public function TenChuDe()

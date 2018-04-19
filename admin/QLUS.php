@@ -1,4 +1,5 @@
 
+<?php include_once("../controllers/nguoidung.php");?>
 
 <h3>QUẢN LÝ NGƯỜI DÙNG</h3>
 <!-- <a class="btn btn-small btn-default" href ="?option=insert">Thêm </a> -->
@@ -23,7 +24,7 @@
     </thead>
     <tbody>
     <?php
-        $t = new MyConnect();
+        $t = new NguoiDung();
         $i=1;
         $dsnd = $t->DanhSachND();
         while($r = $dsnd->fetch_object())

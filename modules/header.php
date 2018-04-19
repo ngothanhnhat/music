@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">WMS</a>
+        <a class="navbar-brand" href="">WMS</a>
     </div>
 
 
@@ -31,8 +31,15 @@
 
        
         <ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
-            <li><a href="login.php">Đăng nhập</a></li>
-            <li><a href="signup.html">Đăng ký</a></li>
+            <?php if(!isset($_SESSION['idUser'])){ ?>
+                <li><a href="login.php">Đăng nhập</a></li>
+                <li><a href="signup.html">Đăng ký</a></li>
+
+            <?php } else{ ?>
+                <li><a id="taikhoan" base-url="<?php echo BASE_URL;?>" href="<?php echo BASE_URL;?>/acount.php?id=<?php echo $_SESSION['idUser'];?>">Tài Khoản</a></li>
+                <li><a href="<?php echo BASE_URL;?>/admin/index.php">Admin</a></li>
+                <li><a href="<?php echo BASE_URL;?>/controllers/xuly.php?task=logout">Đăng Xuất</a></li>
+            <?php }?>
             
         </ul>
     </div><!-- /.navbar-collapse -->

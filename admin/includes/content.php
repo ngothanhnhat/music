@@ -22,7 +22,7 @@ if($tmp == 'qlbh')
     include("QLVD.php");
 
     else
-    if($tmp=='insert_bh')
+    if($tmp=='insert_bh' || $tmp=='updatebh')
     include("insert_bh.php");
 
     else
@@ -33,8 +33,10 @@ if($tmp == 'qlbh')
     if($tmp=='insertcd')
     include("insertcd.php");
     else
-    if($tmp=='inserttl')
-    include("inserttl.php");
+    if($tmp=='inserttl'){
+        include("inserttl.php");
+    }
+   
     else
     if($tmp=='insertab')
     include("insertab.php");
@@ -73,9 +75,7 @@ if($tmp == 'qlbh')
     else
     if($tmp=='updatecs')
     include("editcs.php");
-    else
-    if($tmp=='updatebh')
-    include("editbh.php");
+   
     
     else
     if($tmp=='updatecd')

@@ -1,23 +1,18 @@
 <?php
   // include("../configs/db.php");
    include_once("../DatabaseProvider.php");
-
+   
 ?>
 <?php
-// ob_start();
-// session_start();
-// if(!isset($_SESSION['idUser']))
-// {
-//     header("location: http://localhost/webmusic/");
-// }
-// ?> <?php
-// if(isset($_POST["btnLogout"]))
-// {
-//     unset($_SESSION['idUser']);
-//     unset($_SESSION['User']);
-//     header("location:index.php");
-// }
-// ?>
+include_once("../configs/global.php");
+ ob_start();
+ session_start();
+if(!isset($_SESSION['idUser']))
+{
+    header("location: ".BASE_URL);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once("includes/head.php");?>

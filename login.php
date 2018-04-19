@@ -58,17 +58,18 @@ include_once("configs/global.php");
 //   });
 </script>
 <?php
-include_once("connect.php");
+include_once("DatabaseProvider.php");
+include_once("controllers/nguoidung.php");
 if(isset($_POST['user']) && $_POST['password'])
 {
-	$kq = new MyConnect();
+	$kq = new NguoiDung();
 	$Us = $kq->layND($_POST['user'],md5($_POST['password']));
 	if(mysqli_num_rows($Us)==1)
     {
         $r = mysqli_fetch_array($Us);
         $_SESSION['idUser'] = $r['id'];
 		$_SESSION['User'] = $r['UserName'];
-		$url=BASE_URL."/admin";
+		$url=BASE_URL;
 	
 		header('location:'.$url);
       

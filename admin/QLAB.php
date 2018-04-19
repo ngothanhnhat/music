@@ -1,5 +1,4 @@
-
-
+<?php include_once("../controllers/album.php");?>
 <h3>QUẢN LÝ ALBUM</h3>
 <!-- <a class="btn btn-small btn-default" href ="?option=insert">Thêm </a> -->
 <div class="col-sm-offset-11 col-sm-1">
@@ -14,6 +13,7 @@
            
             <th>Thể Loại</th>
             <th>Năm Phát Hành</th>
+            <th>Người Tạo</th>
             <th>imgalbum</th>         
             <th>Ca Sĩ</th>
             <th></th>
@@ -23,9 +23,9 @@
     </thead>
     <tbody>
     <?php
-        $t = new MyConnect();
+       
         $i=1;
-        $dspl = $t->DanhSachAlbum();
+        $dspl = Album::DanhSachAlbum(200);
         while($r = $dspl->fetch_object())
         {
            
@@ -38,6 +38,7 @@
             <td id="album_<?php echo $r->id; ?>"><?php echo $r->TenAlbum?></td>
             <td> <?php echo $r->TheLoai ?> </td>
             <td> <?php echo $r->NamPhatHanh ?> </td>
+            <td> <?php echo $r->NguoiTao ?> </td>
             <td> <?php echo $r->imgalbum ?> </td>
             <td> <?php echo $r->TenCaSi ?></td>
             

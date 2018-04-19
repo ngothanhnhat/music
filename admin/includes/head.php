@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/awesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/bootstrap/bootstrap-theme.css">
     <!-- <link rel="stylesheet" href="<?php echo BASE_URL;?>css/menu/styles.css"> -->
     <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/menu/styles1.css">

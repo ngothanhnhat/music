@@ -1,36 +1,49 @@
 <?php
 
-
 class BaiHat{
 	public function __construct() {
 	}
 	
-	public function DanhSachBH()
-	{
+	public function DanhSachBH($limit){
 		$sql="SELECT b.*, theloai.TenTheLoai as TheLoai, casi.TenCaSi, nhacsi.TenNhacSi FROM BaiHat b
         left join theloai on b.TheLoaiId=theloai.id
         left join casi on casi.id = b.CaSiId
         left join nhacsi on nhacsi.id = b.NhacSiId
-        ORDER BY id DESC ";
+        ORDER BY id DESC limit $limit ";
 		
 		return DatabaseProvider::execQuery($sql);
 	}
-	public function ThemBH($TenBH, $CSId,$NSId, $TLId, $audio, $lyric)
-	{
+	public function ThemBH($TenBH, $CSId,$NSId, $TLId, $audio, $lyric){
 		$sql= "INSERT INTO `baihat` (`TenBaiHat`, `CaSiId`, `NhacSiId`, `TheLoaiId`,  `Audio`,`Lyrics`) VALUES ('$TenBH', '$CSId', '$NSId', '$TLId', '$audio', '$lyric') ";
 		//echo $sql;
 		return DatabaseProvider::execQuery($sql);
 	}
-	public function XoaBH( $id)
-	{
+	  
+    public function SuaBH($id,$TenBH, $CSId,$NSId, $TLId, $audio, $lyric){
+        $sql= "UPDATE `baihat` SET `TenBaiHat` = '$TenBH', `CaSiId`='$CSId', `NhacSiId`='$NSId', `TheLoaiId`='$TLId' ,`Audio`='$audio' , `Lyrics`='$lyric' WHERE `baihat`.`id` = $id";
+		return DatabaseProvider::execQuery($sql);
+      
+    }
+    
+	public function XoaBH( $id){
 		$sql="DELETE FROM BaiHat WHERE id=$id";
 		return DatabaseProvider::execQuery($sql);
 	}
-	public static function LayBH($id)
-    {
+	public static function LayBH($id){
+		$baihat=new \stdClass();
         $sql="SELECT b.*, c.TenCaSi FROM `baihat` b left join `casi` c on b.CaSiId=c.id WHERE b.id = $id limit 1";
-        //echo $sql;
-		return DatabaseProvider::execQuery($sql);
+		$result=DatabaseProvider::execQuery($sql);
+        while($r = $result->fetch_object()){
+			$baihat->id=$r->id;
+			$baihat->BaiHat=$r->TenBaiHat;
+			$baihat->CaSi=$r->CaSiId;
+			$baihat->NhacSi=$r->NhacSiId;
+			$baihat->TheLoai=$r->TheLoaiId;
+			$baihat->Audio=$r->audio;
+			$baihat->Lyric=$r->lyrics;
+
+		}
+		return $baihat;
     }
 	public function LayBHGiongTen($tenbh){
 		$arr=explode(" ", $tenbh);
@@ -41,8 +54,6 @@ class BaiHat{
 		}else{
 			$result = $arr;
 		}
-		
-
 		// var_dump($arr); die;
 
 		$str= "%".implode("%",$result)."%";

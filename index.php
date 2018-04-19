@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+ob_start();
+session_start();
+?>
 <?php include_once('DatabaseProvider.php');?>
 <?php include_once("configs/global.php");?>
 <?php include_once("modules/head.php");?>
 <?php include_once("controllers/album.php");?>
 <body>
-
-
-
     <?php include_once("modules/header.php");?>
-  
-  
-
     <div class="container">
         <div class="row" >
         <?php include_once("modules/menungang.php");?> 

@@ -1,4 +1,4 @@
-<?php include_once '../controllers/baihat.php'?>
+<?php include_once('../controllers/baihat.php')?>
 <h3>QUẢN LÝ BÀI HÁT</h3>
 <!-- <a class="btn btn-small btn-default" href ="?option=insert">Thêm </a> -->
 <div class="col-sm-offset-11 col-sm-1">
@@ -26,7 +26,7 @@
     <?php
         $t = new BaiHat();
         $i=1;
-        $ds = $t->DanhSachBH();
+        $ds = $t->DanhSachBH(10);
         while($r = $ds->fetch_object())
         {
            
@@ -44,7 +44,7 @@
             <td> <?php echo $r->audio ?> </td>
             <td> <?php echo $r->lyrics ?> </td>
            <td> <a class="btn btn-small btn-default"href="?option=updatebh&id=<?php echo $r->id; ?>">Sửa </a></td>
-           <td> <a class="btn btn-small btn-danger delete-baihat" href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_bai_hat&id=<?php echo $r->id; ?>" > Xóa</a></td>
+           <td> <a class="btn btn-small btn-danger delete-baihat" href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_bai_hat&id=<?php echo $r->id; ?>" > Xóa</a></td>
            
 
         </tr>

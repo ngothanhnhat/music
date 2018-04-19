@@ -1,3 +1,4 @@
+<?php include_once("../controllers/video.php");?>
 
 
 <h3>QUẢN LÝ VIDEO</h3>
@@ -22,7 +23,7 @@
     </thead>
     <tbody>
     <?php
-        $t = new MyConnect();
+        $t = new Video();
         $i=1;
         $dspl = $t->DanhSachVideo();
         while($r = $dspl->fetch_object())

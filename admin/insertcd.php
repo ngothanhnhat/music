@@ -1,15 +1,8 @@
-
-
-
+<?php include_once '../controllers/chude.php'?>
 <h3>THÊM CHỦ ĐỀ</h3>
 <div class="sss" style="width: 500px; height: 200px; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
 
-<form action="" method="POST"  class="form-horizontal" role="form">
-
- 
-
-  
-
+<form action="<?php echo BASE_URL?>/controllers/xuly.php?task=them_chu_de" method="POST"  class="form-horizontal" role="form">
   <div class="form-group">
     <label for="tenchude" class="col-sm-3 control-label" >Tên Chủ Đề</label>
     <div class="col-sm-6">
@@ -28,14 +21,3 @@
   
 </div>
 
-<?php
-if(isset ($_POST['tenchude'] ))
-{
-	$kq = new MyConnect();
-  $Us = $kq->ThemCD($_POST['tenchude']);
- // echo $_POST['user'].md5($_POST['password']).$_POST['email'];
- header('location:http://localhost/webmusica/admin/?option=qlcd');
-
-}
-
-?>

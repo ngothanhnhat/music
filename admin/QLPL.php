@@ -12,10 +12,8 @@
         <tr>
             <th>STT</th>
             <th>Tên PlayList</th>
-           
             <th>img</th>
-            <th>Người Tạo</th>
-            <th>Đường Dẫn</th>         
+            <th>Người Tạo</th>  
             <th>Thể Loại</th>
             <th></th>
             <th></th>
@@ -28,9 +26,7 @@
         $i=1;
         $dspl = $t->DanhSachPL();
         while($r = $dspl->fetch_object())
-        {
-           
-        
+        {  
     ?>
         <tr>
        
@@ -38,8 +34,8 @@
             <td style="text-align: center;"><?php echo $i."."; ?> </td>
             <td id="playlist_<?php echo $r->id; ?>"><?php echo $r->TenPlayList?></td>
             <td> <?php echo $r->img ?> </td>
-            <td> <?php echo $r->NguoiTao ?> </td>
-            <td> <?php echo $r->DuongDan ?> </td>
+            <td> <?php echo $r->TenNguoiTao ?> </td>
+           
             <td> <?php echo $r->TenTheLoai ?></td>
             
            <td> <a class="btn btn-small btn-default"href="?option=updatepl&id=<?php echo $r->id; ?>" >Sửa </a></td>

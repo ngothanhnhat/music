@@ -1,4 +1,4 @@
-<?php include_once("../controllers/theloai.php");?>
+<?php include_once("../controllers/theloai.php")?>
 <h3>QUẢN LÝ THỂ LOẠI</h3>
 <div class="col-sm-offset-11 col-sm-1">
 <a class="btn btn-small btn-default" href ="?option=inserttl">Thêm </a>
@@ -18,7 +18,7 @@
     <?php
     $t = new TheLoai();
     $i=1;
-    $dstl = $t->DanhSachTL();
+    $dstl = $t->DanhSachTheLoai();
     while($r = $dstl->fetch_object())
     {
        

@@ -1,6 +1,4 @@
 <?php
-
-
 class Album{
     private $__TenAlbum;
     private $__id;
@@ -21,22 +19,25 @@ class Album{
         while($r = $result->fetch_object()){
             // var_dump($r); die;
             $this->__id = $r->id;
-            
             $this->__TenAlbum = $r->TenAlbum;
-
         }
+        
 	}
     
     public static function DanhSachAlbum($limit)
     {
-        $sql="SELECT * FROM `album` limit $limit ";
-        
+        $sql="SELECT a.*, t.TenTheLoai as TheLoai, c.TenCaSi,n.UserName FROM `album` a
+        LEFT JOIN `theloai` t ON a.TheLoaiId=t.id
+        LEFT JOIN `casi` c ON c.id =a.idCS
+        LEFT JOIN `user` n ON a.NguoiTao=n.id order by id DESC limit $limit ";
+        // var_dump($sql); die;
         return DatabaseProvider::execQuery($sql);
     }
-    public function ThemAlbum($TenAB, $tloai,$nam,$hinh)
+    public static function ThemAlbum($tenab,$casi,$img,$ngtao,$tlab,$nam)
     {
-        $sql= "INSERT INTO `playlist` (`TenAlbum`, `TheLoai`, `NamPhatHanh`,`imgalbum` ) VALUES ('$TenAB', '$tloai', '$nam', '$hinh')";
+        $sql= "INSERT INTO `album` (`TenAlbum`,`idCS`,`imgalbum`,`NguoiTao`,`TheLoaiId`,`NamPhatHanh`) VALUES ('$tenab',$casi,'$img',$ngtao,$tlab,'$nam')";
         //echo $sql;
+        //var_dump($sql); die;
         return DatabaseProvider::execQuery($sql);
       
     }

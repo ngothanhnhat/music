@@ -2,7 +2,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL;?>/css/istyle.css">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.css">
     <link rel="stylesheet" href="css/menu/styles.css">
@@ -20,6 +21,7 @@
     <script src="js/menu/script.js"></script>
     <script src="js/menu/script1.js"></script>
     <script src="js/menu/script2.js"></script>
+    <script src="js/main.js"></script>
     
 
     <title>Document</title>

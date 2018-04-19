@@ -14,7 +14,7 @@
         <div role="tabpanel" class="tab-pane active" id="Album">
             <?php 
                 $i=1;
-                $ds = Album::DanhSachAlbum(10);
+                $ds = Album::DanhSachAlbum(8);
                 while($r = $ds->fetch_object())
                 {
                    if($i ==1)
@@ -22,7 +22,7 @@
             ?>
                     <div class="col-md-3">
                     
-                    <img style=" width: 100%;height:140px;" src="img/album/<?php //echo //$r->imgalbum;?>">
+                    <img style=" width: 100%;height:140px;" src="img/album/<?php echo $r->imgalbum;?>">
                         <p class="TenBH"> <a href="index.php?option=nghealbum&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenAlbum;?> </a> </p>
                         
                     </div>
@@ -281,7 +281,7 @@
             include_once("controllers/baihat.php");
             $getbh = new BaiHat();
             $i=1;
-            $dsbh = $getbh->DanhSachBH();
+            $dsbh = $getbh->DanhSachBH(16);
             while($r = $dsbh->fetch_object())
             {
                 

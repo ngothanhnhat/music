@@ -16,7 +16,7 @@
                         include_once("controllers/baihat.php");
                        $getcs = new BaiHat();
                        $i=1;
-                       $ds = $getcs->DanhSachBH();
+                       $ds = $getcs->DanhSachBH(10);
                        while($r = $ds->fetch_object())
                        {
                       

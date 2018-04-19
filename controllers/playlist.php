@@ -29,11 +29,11 @@ class PlayList{
       
     }
     
-    public function ThemPL($TenPL, $img,$ngtao,$duongdan,$tl)
+    public function ThemPL($TenPL, $img,$ngtao,$tl)
     {
-        $sql= "INSERT INTO `playlist` (`TenPlayList`, `img`, `NguoiTao`,`DuongDan` , `TheLoai`) VALUES ('$TenPL', '$img', '$ngtao', '$duongdan', '$tl')";
+        $sql= "INSERT INTO `playlist` (`TenPlayList`, `img`, `NguoiTao` , `TheLoaiId`) VALUES ('$TenPL', '$img', '$ngtao', '$tl')";
         //echo $sql;
-        return DatabaseProvider::execQuery($sql);
+       return DatabaseProvider::execQuery($sql);
       
     }
     public function LayPLID($id)
@@ -44,9 +44,13 @@ class PlayList{
     }
     public function DanhSachPL()
     {
-        $sql="SELECT * FROM `playlist`, `theloai` WHERE playlist.id = theloai.id";
+        $sql="SELECT p.*,l.TenTheLoai, n.UserName as TenNguoiTao FROM `playlist` p
+         LEFT JOIN `theloai` l ON p.TheLoaiId = l.id
+         LEFT JOIN `user` n ON p.NguoiTao=n.id";
+       
         return DatabaseProvider::execQuery($sql);
     }
+
   
 }
 
