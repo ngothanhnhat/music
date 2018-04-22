@@ -38,7 +38,7 @@ class MyConnect
         
         mysqli_query($this->con,$sql);
     }
-
+   
 
     public function QueQuan($id)
     {

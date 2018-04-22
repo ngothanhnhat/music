@@ -39,7 +39,7 @@
             <td> <?php echo $r->TenTheLoai ?></td>
             
            <td> <a class="btn btn-small btn-default"href="?option=updatepl&id=<?php echo $r->id; ?>" >Sửa </a></td>
-           <td> <a class="btn btn-small btn-danger delete-playlist"  href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_playlist&id=<?php echo $r->id; ?>" > Xóa</a></td>
+           <td> <a class="btn btn-small btn-danger delete-playlist"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_playlist&id=<?php echo $r->id; ?>" > Xóa</a></td>
            
 
         </tr>

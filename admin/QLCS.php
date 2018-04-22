@@ -36,7 +36,7 @@
         <td> <?php echo $r->QueQuan?> </td>
         <td> <?php echo $r->img?> </td>
        <td> <a class="btn btn-small btn-default cs" href="?option=updatecs&id=<?php echo $r->id; ?>">Sửa </a></td>
-       <td> <a class="btn btn-small btn-danger delete-casi"  href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_ca_si&id=<?php echo $r->id; ?>" > Xóa</a></td>
+       <td> <a class="btn btn-small btn-danger delete-casi"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_ca_si&id=<?php echo $r->id; ?>" > Xóa</a></td>
        
 
     </tr>

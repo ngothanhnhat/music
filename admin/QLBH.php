@@ -26,7 +26,7 @@
     <?php
         $t = new BaiHat();
         $i=1;
-        $ds = $t->DanhSachBH(10);
+        $ds = $t->DanhSachBH(1000);
         while($r = $ds->fetch_object())
         {
            
@@ -51,14 +51,6 @@
 
     <?php $i++;}?>
    
-    </tbody>
-    
-
-</td>
-            
-            
-            
-        </tr>
-  
+    </tbody>  
 </table> 
 

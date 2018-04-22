@@ -37,16 +37,18 @@
                 </div>
             </div>
             
-             -->
+            -->
+           
 <?php 
 include_once("controllers/baihat.php");
 if(isset($_GET['id'])){
     $id= $_GET['id'];
     $baihat= new BaiHat();
-    $bh = $baihat->LayBH($id);
+    $bh = $baihat->LayBaiHat($id);
     $tenbaihat ="";
 }
 ?>
+
 <link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">
 
 <?php
@@ -60,6 +62,7 @@ while($r = $bh->fetch_object()){
     lyric-url="<?php echo BASE_URL;?>/music/lyrics/<?php echo $r->lyrics;?>.lrc"
     casi="<?php echo $r->TenCaSi;?>">
     </div>
+   
 <?php } ?>
 
 <div class="col-md-7" style="padding-left:0px;">
@@ -70,11 +73,13 @@ while($r = $bh->fetch_object()){
 <div class="row">
 
     <div class="col-md-6">
+   
         <h3> BÀI HÁT </h3>
+      
         <?php 
             $bhgiongten= $baihat->LayBHGiongTen($tenbaihat);
             while($row = $bhgiongten->fetch_object()){?>
-            <h5> <a href= "index.php?option=nghe1bh&id=<?php echo $row->id ;?>" style="color:#000;text-decoration:none;"><?php echo $row->TenBaiHat; ?> </a>  <hr> </h5>
+            <h5> <a href= "index.php?option=nghe1bh&id=<?php echo $row->id ;?>"  style="color:#000;text-decoration:none;"><?php echo $row->TenBaiHat; ?> </a>  <hr> </h5>
         <?php } ?>
     </div>
 </div>

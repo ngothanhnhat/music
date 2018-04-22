@@ -1,4 +1,11 @@
-
+<?php 
+include_once("controllers/album.php");
+include_once("controllers/baihat.php");
+if(isset($_GET['id'])){
+    $id= $_GET['id'];
+    $baihat= new BaiHat($id);
+}
+?>
 <img style=" width: 100%;height:300px;" src="img/casi/mytam.jpg">
     <div id="cssmenu1">
             <ul class="nav nav-tabs" role="tablist">
@@ -13,11 +20,11 @@
     <br>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="BaiHat">
-        <h3>BÀI HÁT CỦA</h3>
+        
         <?php 
-            $getcs = new MyConnect();
+            $getcs = new BaiHat();
             $i=1;
-            $ds = $getcs->DanhSachBH();
+            $ds = $getcs->LayBaiHat(2);
             while($r = $ds->fetch_object())
             {
                 
@@ -25,6 +32,7 @@
                 echo "<div class='row'>";
         ?>
            <div class="col-md-6">
+           <h3>BÀI HÁT CỦA <?php echo $r->TenCaSi;?></h3>
                 <p class ="TenBH"> <a href= "index.php?option=nghe1bh"<a href="index.php?option=nghealbum" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
                     <hr>
            </div>

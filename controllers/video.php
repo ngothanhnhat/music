@@ -8,7 +8,7 @@ class Video{
 	
 	function DanhSachVideo()
     {
-        $sql="SELECT * FROM `video`, casi WHERE video.idCS = casi.id ";
+        $sql="SELECT casi.TenCaSi,video.* FROM `video` left join `casi` on casi.id = video.idCS";
         
         return DatabaseProvider::execQuery($sql);
 

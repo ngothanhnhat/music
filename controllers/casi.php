@@ -43,10 +43,10 @@ class CaSi{
         return DatabaseProvider::execQuery($sql);
     }
     
-    public function SuaCS($id, $tencs, $img, $ns, $quequan)
+    public function SuaCS($id, $tencs, $img, $ns, $quequan,$tieusu)
     {
-        $sql= "UPDATE `casi` SET `TenCaSi` = '$tencs',`NgaySinh`='$ns', `img`='$img' ,`quequan`='$quequan'  WHERE `casi`.`id` = $id";
-       return DatabaseProvider::execQuery($sql);
+        $sql= "UPDATE `casi` SET `TenCaSi` = '$tencs',`NgaySinh`='$ns', `img`='$img' ,`QueQuan`='$quequan' , `TieuSu`='$tieusu'  WHERE `casi`.`id` = $id";
+        return DatabaseProvider::execQuery($sql);
       
     }
     public function DSCaSi()
@@ -54,7 +54,20 @@ class CaSi{
         $sql="SELECT id,TenCaSi FROM casi";
         return DatabaseProvider::execQuery($sql);
     }
-
+    public static function LayCS($id){
+		$casi=new \stdClass();
+        $sql="SELECT * FROM `casi` WHERE id = $id";
+		$result=DatabaseProvider::execQuery($sql);
+        while($r = $result->fetch_object()){
+			$casi->id=$r->id;
+			$casi->CaSi=$r->TenCaSi;
+			$casi->NgaySinh=$r->NgaySinh;
+			$casi->QueQuan=$r->QueQuan;
+			$casi->TieuSu=$r->TieuSu;
+			$casi->img=$r->img;
+		}
+		return $casi;
+    }
 
 }
 

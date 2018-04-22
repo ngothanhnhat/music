@@ -1,4 +1,6 @@
-<div id='cssmenu'>
+<div id='cssmenu' sytle="    position: fixed;
+    z-index: 999;
+    width: 100%;">
         <ul>
            <li><a href='#'>Trang chủ</a></li>
            <li class='active has-sub'><a href='#'>Bài Hát</a>

@@ -30,10 +30,8 @@ class ChuDe{
        
     public function SuaCD($id, $tencd)
     {
-        $sql= "UPDATE `chude` SET `TenChuDe` = '$tencd' WHERE `chude`.`id` = $id";
+        $sql= "UPDATE `chude` SET `TenChuDe` = '$tencd' WHERE `chude`.id = $id";
         return DatabaseProvider::execQuery($sql);
-
-      
     }
     
     public function XoaCD($id)
@@ -55,6 +53,17 @@ class ChuDe{
         return DatabaseProvider::execQuery($sql);
     }
    
+    public static function LayCD($id){
+		$chude=new \stdClass();
+        $sql="SELECT * FROM `chude` WHERE id = $id";
+		$result=DatabaseProvider::execQuery($sql);
+        while($r = $result->fetch_object()){
+			$chude->id=$r->id;
+			$chude->TenChuDe=$r->TenChuDe;
+			
+		}
+		return $chude;
+    }
 }
 
 

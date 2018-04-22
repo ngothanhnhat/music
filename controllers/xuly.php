@@ -18,6 +18,8 @@ $task = $_GET["task"];
 $url = BASE_URL;
 $isRedirect = true;
 
+var_dump($task);die;
+
 
 switch ($task){
 	case 'them_bai_hat':
@@ -86,6 +88,7 @@ switch ($task){
 		
 		break;
 	case 'them_ca_si':
+		
 		if(isset ($_POST['themcs'] ))
 		{
 		$themcs= new CaSi();
@@ -93,11 +96,33 @@ switch ($task){
 		$ns=$_POST['ns'];
 		$qq=$_POST['quequan'];
 		$ts = $_POST['tieusu'];
+		$hih='';
+		if(!empty($_FILES["hinh"]["tmp_name"])){
 		$hih = convert($tcs) . "_" . strval(time());
-		$url.='/admin/?option=qlcs';
+		}
 		$thcs = $themcs->ThemCS( $tcs, $ns, $qq, $hih ,$ts);
-		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/".$hih."'");
-		
+		if(!empty($_FILES["hinh"]["tmp_name"]))
+		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/".$hih);
+		$url .='/admin/?option=qlcs';
+		}
+		break;
+	case 'sua_ca_si':
+		if(isset ($_POST['suacs'] ))
+		{
+			$id=$_GET['id'];
+			$suacs= new CaSi();
+			$tcs = $_POST['tencs'];
+			$ns=$_POST['ns'];
+			$qq=$_POST['quequan'];
+			$ts = $_POST['tieusu'];
+			$hih=$_POST['old_hinh'];
+			if(!empty($_FILES["hinh"]["tmp_name"])){
+			$hih = convert($tcs) . "_" . strval(time());
+			}
+			$Us = $suacs->SuaCS($id, $tcs, $hih, $ns, $qq, $ts);
+			if(!empty($_FILES["hinh"]["tmp_name"]))
+				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/". $hih);
+			$url .='/admin/?option=qlcs';
 		}
 		break;
 	case 'xoa_ca_si':
@@ -105,7 +130,6 @@ switch ($task){
 		$url.='/admin/?option=qlcs';
 		$ca_si = new CaSi();
 		$ca_si->XoaCS($id);
-		
 		break;
 	case 'them_chu_de':
 		if(isset ($_POST['tenchude'] ))
@@ -116,6 +140,14 @@ switch ($task){
 
 		}
 		break;
+	case 'sua_chu_de':
+		if(isset($_POST['suacd'])){
+			$id= $_GET['id'];
+			$suacd= new ChuDe();
+			$tencd=$_POST['tencd'];
+			$Us = $suacd->SuaCD($id, $tencd);
+			$url .='/admin/?option=qlcd';
+		}
 	case 'xoa_chu_de':
 		$id= $_GET['id'];
 		$url.='/admin/?option=qlcd';
@@ -168,20 +200,74 @@ switch ($task){
 
 	case 'them_album':	
 
-			$tenab = $_POST['tenab'];
-			$casi=$_POST['casiid'];
-			$img=convert($tenab)."_".time();
-			$ngtao=$_SESSION['idUser'];
-			$tlab=$_POST['tlid'];
-			$nam = $_POST['nam'];
-			$thab = Album::ThemAlbum($tenab,$casi,$img,$ngtao,$tlab,$nam);
-			move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/album/". $img."");			
-			if(isset($_POST['luuab'])){
-				$url.='/admin/?option=qlab';
-			}else if(isset($_POST['luu_them_ab'])){
-				$_SESSION['success'] = "Đã thêm album thành công";
-				$url.='/admin/?option=insertab';				
+		$tenab = $_POST['tenab'];
+		$casi=$_POST['casiid'];
+		$img=convert($tenab)."_".time();
+		$ngtao=$_SESSION['idUser'];
+		$tlab=$_POST['tlid'];
+		$nam = $_POST['nam'];
+		$thab = Album::ThemAlbum($tenab,$casi,$img,$ngtao,$tlab,$nam);
+		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/album/". $img."");			
+		if(isset($_POST['luuab'])){
+			$url.='/admin/?option=qlab';
+		}else if(isset($_POST['luu_them_ab'])){
+			$_SESSION['success'] = "Đã thêm album thành công";
+			$url.='/admin/?option=insertab';				
+		}
+
+		break;
+
+	case 'sua_album':
+
+		var_dump("diê");die;
+		if(isset ($_POST['btnsua'])){
+
+			$id = $_GET['id'];
+			$album = new Album($id);
+			
+			$album->TenAlbum = $_POST['tenab'];
+			$album->CaSiId = $_POST['casiid'];
+			$album->TheLoaiId=$_POST['tlid'];
+			$album->NamPhatHanh = $_POST['nam'];
+
+			$img=$_POST['old_pic'];
+			if(!empty($_FILES["hinh"]["tmp_name"])){
+				$img=convert($tenab)."_".time();
 			}
+
+			$album->Hinh = $img;
+			$album->update();
+
+			if(!empty($_FILES["hinh"]["tmp_name"]))
+				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/album/". $img."");			
+			$url.='/admin/?option=qlab';	
+		}else if(isset ($_POST['add_more_bh'])){
+			die("hêhhehehehe");
+		}
+		
+		
+		break;
+
+	case 'xoa_album':
+		$id= $_GET['id'];
+
+		$album = new Album($id);
+		$album->delete();
+
+		$url.='/admin/?option=qlab';
+		
+		break;
+	case 'xoa_video':
+		$id= $_GET['id'];
+		$url.='/admin/?option=qlvd';
+		$video = new Video();
+		$video->XoaVD($id);
+		break;
+	case 'xoa_nguoi_dung':
+		$id= $_GET['id'];
+		$url.='/admin/?option=qlus';
+		$nguoidung = new NguoiDung();
+		$nguoidung->XoaND($id);
 		break;
 	case 'logout':
 		unset($_SESSION['idUser']);
@@ -211,6 +297,17 @@ switch ($task){
 		$nguoi_dung = new NguoiDung();
 		echo $nguoi_dung->checkAlbumInWishlist($userId, $albumId);
 		break;
+
+	case 'xoa_bai_hat_album':
+		$albumId = $_GET["album"];
+		$baiHatId = $_GET["bai_hat"];
+
+		$album = new Album($albumId);
+		$album->removeBaiHat($baiHatId);
+
+		$url .= '/admin/?option=updateab&id='.$albumId;
+		break;
+
 	default:
 		break;
 }

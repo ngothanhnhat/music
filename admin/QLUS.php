@@ -42,7 +42,7 @@
             <td> <?php echo $r->PhanQuyen ?> </td>
            
            <td> <a class="btn btn-small btn-default" href="?option=updateus&id=<?php echo $r->id; ?>">Sửa </a></td>
-           <td> <a class="btn btn-small btn-danger delete-user"  href ="proccessUS.php?id=<?php echo $r->id; ?>" > Xóa</a></td>
+           <td> <a class="btn btn-small btn-danger delete-user"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_nguoi_dung&id=<?php echo $r->id; ?>" > Xóa</a></td>
            
 
         </tr>

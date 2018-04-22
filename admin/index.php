@@ -1,9 +1,12 @@
 <?php
   // include("../configs/db.php");
+   include_once("../controllers/baihat.php");
    include_once("../DatabaseProvider.php");
    
 ?>
+
 <?php
+
 include_once("../configs/global.php");
  ob_start();
  session_start();
@@ -37,6 +40,7 @@ if(!isset($_SESSION['idUser']))
 <script>
     $(document).ready( function () {
     $('#myTable').DataTable();
+    $('.dataTable').DataTable();
 } );
 </script>
     

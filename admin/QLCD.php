@@ -21,15 +21,13 @@
     $dscd = $t->DanhSachCD();
     while($r = $dscd->fetch_object())
     {
-       
-    
 ?>
     <tr>
     <td style="text-align:center;"><?php echo $i."."; ?> </td>
         <td id="chude_<?php echo $r->id; ?>"><?php echo $r->TenChuDe?></td>
         
        <td> <a class="btn btn-small btn-default cd" href="?option=updatecd&id=<?php echo $r->id; ?>">Sửa </a></td>
-       <td> <a class="btn btn-small btn-danger delete-chude"  href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_chu_de&id=<?php echo $r->id; ?>" > Xóa</a></td>
+       <td> <a class="btn btn-small btn-danger delete-chude"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_chu_de&id=<?php echo $r->id; ?>" > Xóa</a></td>
        
 
     </tr>

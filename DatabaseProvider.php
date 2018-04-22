@@ -10,6 +10,7 @@ class DatabaseProvider {
 	private $_username = DB_USERNAME;
 	private $_password = DB_PASSWORD;
 	private $_database = DB_NAME;
+	private $_charset = DB_charset;
 	/*
 	Get an instance of the Database
 	@return Instance
@@ -24,7 +25,8 @@ class DatabaseProvider {
 	private function __construct() {
 		$this->_connection = new mysqli($this->_host, $this->_username, 
 			$this->_password, $this->_database);
-	
+			mysqli_query($this->_connection, "set names 'utf8'");
+
 		// Error handling
 		if(mysqli_connect_error()) {
 			trigger_error("Failed to connect to MySQL: " . mysql_connect_error(),

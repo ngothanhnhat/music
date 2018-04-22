@@ -26,24 +26,28 @@ if($tmp == 'qlbh')
     include("insert_bh.php");
 
     else
-    if($tmp=='insertcs')
+    if($tmp=='insertcs'|| $tmp=='updatecs')
     include("insertcs.php");
 
     else
-    if($tmp=='insertcd')
+    if($tmp=='insertcd'|| $tmp=='updatecd')
     include("insertcd.php");
     else
-    if($tmp=='inserttl'){
+    if($tmp=='inserttl'||$tmp=='updatetl')
         include("inserttl.php");
-    }
-   
     else
-    if($tmp=='insertab')
+    if($tmp=='insertab' || $tmp=='updateab')
     include("insertab.php");
     else
-    if($tmp=='insertvd')
+    if($tmp=='insertvd'||$tmp=='updatevd')
     include("insertvd.php");
+    else
+    if($tmp=='insertpl'||$tmp=='updatepl')
+    include("insertpl.php");
 
+    else
+    if($tmp=='insertus'||$tmp=='updateus')
+    include("insertus.php");
     else
     if($tmp=='qltl')
     include("QLTL.php");
@@ -56,29 +60,5 @@ if($tmp == 'qlbh')
     if($tmp=='qlus')
     include("QLUS.php");
 
-    else
-    if($tmp=='insertpl')
-    include("insertpl.php");
-
-    else
-    if($tmp=='insertus')
-    include("insertus.php");
-    else
-    if($tmp=='updateus')
-    include("editus.php");
-    else
-    if($tmp=='updatepl')
-    include("editpl.php");
-    else
-    if($tmp=='updatetl')
-    include("edittl.php");
-    else
-    if($tmp=='updatecs')
-    include("editcs.php");
-   
-    
-    else
-    if($tmp=='updatecd')
-    include("editcd.php");
     
     ?>

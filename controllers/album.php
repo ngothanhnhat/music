@@ -1,27 +1,25 @@
 <?php
 class Album{
-    private $__TenAlbum;
-    private $__id;
-    public function getTenAlbum()
-    {
-        return $this->__TenAlbum;
-        
-    }
-    public function getId()
-    {
-        return $this->__id;
-        
-    }
-	 public function __construct($id) {
-        $sql="SELECT * FROM `album` WHERE album.id = $id";
-        // var_dump($sql); die;
+    public $id;
+    
+    public $TenAlbum;
+    public $CaSiId;
+    public $TheLoaiId;
+    public $NamPhatHanh;
+    public $Hinh;
+
+    public function __construct($id) {
+        $sql="SELECT * FROM `album` WHERE album.id = $id limit 1";
         $result=DatabaseProvider::execQuery($sql);
-        while($r = $result->fetch_object()){
-            // var_dump($r); die;
-            $this->__id = $r->id;
-            $this->__TenAlbum = $r->TenAlbum;
-        }
-        
+        $r = $result->fetch_object();
+
+        $this->id = $r->id;
+        $this->TenAlbum = $r->TenAlbum;
+        $this->CaSiId = $r->idCS;
+        $this->TheLoaiId = $r->TheLoaiId;
+        $this->NamPhatHanh =  $r->NamPhatHanh;
+        $this->Hinh = $r->imgalbum;
+
 	}
     
     public static function DanhSachAlbum($limit)
@@ -36,24 +34,40 @@ class Album{
     public static function ThemAlbum($tenab,$casi,$img,$ngtao,$tlab,$nam)
     {
         $sql= "INSERT INTO `album` (`TenAlbum`,`idCS`,`imgalbum`,`NguoiTao`,`TheLoaiId`,`NamPhatHanh`) VALUES ('$tenab',$casi,'$img',$ngtao,$tlab,'$nam')";
-        //echo $sql;
-        //var_dump($sql); die;
         return DatabaseProvider::execQuery($sql);
-      
     }
-    public function XoaAlbum($id)
+    public function update(){
+        $sql= "UPDATE `album` SET `TenAlbum` = '$this->TenAlbum', `TheloaiId`='$this->TheLoaiId',`idCS`='$this->CaSiId',`NamPhatHanh`='$this->NamPhatHanh' ,`imgalbum`='$this->Hinh'  WHERE id = $this->id";
+		return DatabaseProvider::execQuery($sql);
+    }
+    public function delete()
     {
-        $sql="DELETE FROM album WHERE id=$id";
+        $sql="DELETE FROM album WHERE id=$this->id";
+        return DatabaseProvider::execQuery($sql);
+    }
+    public function DSBaiHatChuaCo(){
+        $sql="SELECT b.*, casi.TenCaSi, nhacsi.TenNhacSi, theloai.TenTheLoai as TheLoai FROM `baihat` b 
+        left join casi on casi.id = b.CaSiId
+        left join nhacsi on nhacsi.id = b.NhacSiId
+        left join theloai on theloai.id = b.TheLoaiId
+        WHERE b.id not in
+            (Select idBH from baihat_album tmp where idAB = $this->id) 
+            and b.CaSiId = $this->CaSiId";
         return DatabaseProvider::execQuery($sql);
     }
     public function DSBaiHat(){
-        $sql="SELECT b.* FROM `baihat` b 
+        $sql="SELECT b.*, casi.TenCaSi, nhacsi.TenNhacSi, theloai.TenTheLoai as TheLoai FROM `baihat` b 
         right join `baihat_album` ba on ba.idBH=b.id 
-        WHERE ba.idAB= $this->__id";
-        // var_dump($sql); die;
+        left join casi on casi.id = b.CaSiId
+        left join nhacsi on nhacsi.id = b.NhacSiId
+        left join theloai on theloai.id = b.TheLoaiId
+        WHERE ba.idAB = $this->id";
         return DatabaseProvider::execQuery($sql);
     }
-   
+    public function removeBaiHat($bai_hat_id){
+        $sql="DELETE FROM baihat_album WHERE idBH=$bai_hat_id and idAB = $this->id";
+        return DatabaseProvider::execQuery($sql);
+    }
 }
 
 

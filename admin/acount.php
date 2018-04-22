@@ -1,8 +1,8 @@
 
 
 <?php
-  // include("../configs/db.php");
-   include_once("../connect.php");
+ include_once("../DatabaseProvider.php");
+ include_once("../configs/global.php");
 ?>
 
 <!DOCTYPE html>

@@ -14,7 +14,6 @@
             <th>Tên Video</th>
            
             <th>Thể Loại</th>
-            <th> Đường Dẫn</th>         
             <th>Ca Sĩ</th>
             <th></th>
             <th></th>
@@ -35,13 +34,12 @@
        
 
             <td style="text-align: center;"><?php echo $i."."; ?> </td>
-            <td id="video_<?php echo $r->id; ?>"><?php echo $r->TenVideo?></td>
+            <td id="video_<?php echo $r->id; ?>"><?php echo $r->TenVideo;?></td>
             <td> <?php echo $r->TheLoai ?> </td>
-            <td> <?php echo $r->DuongDan ?> </td>
             <td> <?php echo $r->TenCaSi ?></td>
             
            <td> <a class="btn btn-small btn-default"href="?option=updatepl&id=<?php echo $r->id; ?>" >Sửa </a></td>
-           <td> <a class="btn btn-small btn-danger delete-video"  href ="processVD.php?id=<?php echo $r->id; ?>" > Xóa</a></td>
+           <td> <a class="btn btn-small btn-danger delete-video"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_video&id=<?php echo $r->id; ?>" > Xóa</a></td>
            
 
         </tr>

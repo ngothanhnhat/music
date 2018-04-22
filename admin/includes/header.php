@@ -13,9 +13,9 @@
 
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div class="collapse navbar-collapse navbar-ex1-collapse" style="background:#c4e8fd ;position: fixed; z-index:99;width: 100%;">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Nhạc</a></li>
+            <li class="active"><a href="<?php echo BASE_URL;?>">Nhạc</a></li>
             <li><a href="#">Video</a></li>
         </ul>
         

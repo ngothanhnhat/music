@@ -5,7 +5,7 @@ class BaiHat{
 	}
 	
 	public function DanhSachBH($limit){
-		$sql="SELECT b.*, theloai.TenTheLoai as TheLoai, casi.TenCaSi, nhacsi.TenNhacSi FROM BaiHat b
+		$sql="SELECT b.*, theloai.TenTheLoai as TheLoai, casi.TenCaSi, nhacsi.TenNhacSi,casi.TieuSu FROM BaiHat b
         left join theloai on b.TheLoaiId=theloai.id
         left join casi on casi.id = b.CaSiId
         left join nhacsi on nhacsi.id = b.NhacSiId
@@ -27,6 +27,14 @@ class BaiHat{
     
 	public function XoaBH( $id){
 		$sql="DELETE FROM BaiHat WHERE id=$id";
+		 DatabaseProvider::execQuery($sql);
+		 $sql="DELETE FROM baihat_album WHERE idBH=$id";
+		 DatabaseProvider::execQuery($sql);
+		 $sql="DELETE FROM baihat_playlist WHERE idBH=$id";
+		 DatabaseProvider::execQuery($sql);
+	}
+	public function LayBaiHat($id){
+		$sql="SELECT b.*, c.TenCaSi FROM `baihat` b left join `casi` c on b.CaSiId=c.id WHERE b.id = $id limit 1";
 		return DatabaseProvider::execQuery($sql);
 	}
 	public static function LayBH($id){
@@ -60,7 +68,13 @@ class BaiHat{
 		$sql='SELECT * FROM baihat where TenBaiHat like "'.$str.'"';
 		return DatabaseProvider::execQuery($sql);
 	}
-	
+	public function LuotNghe($id)
+    {
+        $sql="UPDATE `baihat` SET `LuotNghe`= LuotNghe + 1 WHERE id= $id";
+		 DatabaseProvider::execQuery($sql);
+    }
+
+
 
 }
 

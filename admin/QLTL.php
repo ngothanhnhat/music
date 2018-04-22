@@ -29,7 +29,7 @@
         <td id="theloai_<?php echo $r->id; ?>"><?php echo $r->TenTheLoai?></td>
         
        <td> <a class="btn btn-small btn-default tl" href="?option=updatetl&id=<?php echo $r->id; ?>">Sửa </a></td>
-       <td> <a class="btn btn-small btn-danger delete-theloai"  href ="<?php echo BASE_URL;?>/xuly.php?task=xoa_the_loai&id=<?php echo $r->id; ?>" > Xóa</a></td>
+       <td> <a class="btn btn-small btn-danger delete-theloai"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_the_loai&id=<?php echo $r->id; ?>" > Xóa</a></td>
        
 
     </tr>

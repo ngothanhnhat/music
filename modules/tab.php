@@ -3,8 +3,8 @@
             <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation " class="active"><a href="#Album" aria-controls="Album hot" role="tab" data-toggle="tab">Album hot </a></li>
                     <li role="presentation"><a href="#MV" aria-controls="MV hot" role="tab" data-toggle="tab">MV hot </a></li>
-                    <li role="presentation"><a href="#CaSy" aria-controls="Ca sỹ hot" role="tab" data-toggle="tab">Ca sỹ hot </a></li>
-                    <li role="presentation"><a href="#NhacMoi" aria-controls="Nhạc Mới" role="tab" data-toggle="tab">Nhạc Mới </a></li>
+                    <li role="presentation"><a href="#Playlist" aria-controls="Playlist" role="tab" data-toggle="tab">Playlist </a></li>
+                    <li role="presentation"><a href="#CaSiHot" aria-controls="CaSiHot" role="tab" data-toggle="tab">Ca Sĩ Hot </a></li>
             </ul>
             
 
@@ -24,6 +24,7 @@
                     
                     <img style=" width: 100%;height:140px;" src="img/album/<?php echo $r->imgalbum;?>">
                         <p class="TenBH"> <a href="index.php?option=nghealbum&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenAlbum;?> </a> </p>
+                        <p class="TenCS"> <a href="index.php?option=thongtincs&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenCaSi;?> </a> </p>
                         
                     </div>
                   
@@ -116,80 +117,9 @@
                     
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="CaSy">
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh7.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh7.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh7.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh7.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh7.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh7.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh7.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh7.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh7.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh7.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh7.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh7.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                </div>
-                
-
-
-                    
-        </div>
+      
         
-        <div role="tabpanel" class="tab-pane" id="NhacMoi">
+        <div role="tabpanel" class="tab-pane" id="Playlist">
                 <div class="row">
                         <div class="col-md-3">
                                 <img style=" width: 100%;" src="img/hinh8.jpg">
@@ -265,7 +195,78 @@
                     
         </div>
 
-        
+        <div role="tabpanel" class="tab-pane" id="CaSiHot">
+                <div class="row">
+                        <div class="col-md-3">
+                                <img style=" width: 100%;" src="img/hinh7.jpg">
+                                <p class="TenBH"> Đếm ngày xa em</p>
+                                <h6 class="TenCS">only c</h6> 
+                            </div>
+                        <div class="col-md-3">
+                                    <img style=" width: 100%;" src="img/hinh7.jpg">
+                                    <p class="TenBH"> Đếm ngày xa em</p>
+                                    <h6 class="TenCS">only c</h6> 
+                                </div>
+                        <div class="col-md-3">
+                                        <img style=" width: 100%;" src="img/hinh7.jpg">
+                                        <p class="TenBH"> Đếm ngày xa em</p>
+                                        <h6 class="TenCS">only c</h6> 
+                                    </div>
+                        <div class="col-md-3">
+                                            <img style=" width: 100%;" src="img/hinh7.jpg">
+                                            <p class="TenBH"> Đếm ngày xa em</p>
+                                            <h6 class="TenCS">only c</h6> 
+                                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-3">
+                                <img style=" width: 100%;" src="img/hinh7.jpg">
+                                <p class="TenBH"> Đếm ngày xa em</p>
+                                <h6 class="TenCS">only c</h6> 
+                            </div>
+                        <div class="col-md-3">
+                                    <img style=" width: 100%;" src="img/hinh7.jpg">
+                                    <p class="TenBH"> Đếm ngày xa em</p>
+                                    <h6 class="TenCS">only c</h6> 
+                                </div>
+                        <div class="col-md-3">
+                                        <img style=" width: 100%;" src="img/hinh7.jpg">
+                                        <p class="TenBH"> Đếm ngày xa em</p>
+                                        <h6 class="TenCS">only c</h6> 
+                                    </div>
+                        <div class="col-md-3">
+                                            <img style=" width: 100%;" src="img/hinh7.jpg">
+                                            <p class="TenBH"> Đếm ngày xa em</p>
+                                            <h6 class="TenCS">only c</h6> 
+                                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-3">
+                                <img style=" width: 100%;" src="img/hinh7.jpg">
+                                <p class="TenBH"> Đếm ngày xa em</p>
+                                <h6 class="TenCS">only c</h6> 
+                            </div>
+                        <div class="col-md-3">
+                                    <img style=" width: 100%;" src="img/hinh7.jpg">
+                                    <p class="TenBH"> Đếm ngày xa em</p>
+                                    <h6 class="TenCS">only c</h6> 
+                                </div>
+                        <div class="col-md-3">
+                                        <img style=" width: 100%;" src="img/hinh7.jpg">
+                                        <p class="TenBH"> Đếm ngày xa em</p>
+                                        <h6 class="TenCS">only c</h6> 
+                                    </div>
+                        <div class="col-md-3">
+                                            <img style=" width: 100%;" src="img/hinh7.jpg">
+                                            <p class="TenBH"> Đếm ngày xa em</p>
+                                            <h6 class="TenCS">only c</h6> 
+                                        </div>
+                </div>
+                
+
+
+                    
+        </div>
             
 </div>
 
@@ -284,13 +285,14 @@
             $dsbh = $getbh->DanhSachBH(16);
             while($r = $dsbh->fetch_object())
             {
-                
                 if($i ==1)
                 echo "<div class='row'>";
         ?>
-           <div class="col-md-6">
-                <p class ="TenBH"> <a href= "index.php?option=nghe1bh&id=<?php echo $r->id;?>" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
-                    <hr>
+           <div class="col-md-6" >
+           
+                <p class ="TenBH"> <a href= "index.php?option=nghe1bh&id=<?php echo $r->id;?>" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?><span id="" class="fas fa-heart" style ="float:right;color:#999999;font-size:10px;margin-left:15px;" wgct="1"></span><span id="" class="fas fa-headphones" style ="float:right;color:#999999;font-size:10px;" wgct="1"><?php echo $r->LuotNghe?></span></p>
+                
+                <hr>
            </div>
         <?php 
            if($i ==2){
