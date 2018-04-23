@@ -155,7 +155,7 @@ if(isset($_SESSION['success'])){?>
 <div id="DSBaiHat" class="modal fade" role="dialog">
   <div class="modal-dialog" style="width: 70%;">
     <!-- Modal content-->
-    <form type="post" action="<?php //echo $action; ?>" role="form">
+    <form method="POST" action="<?php echo $action; ?>" role="form">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -186,9 +186,8 @@ if(isset($_SESSION['success'])){?>
                   <td> <?php echo $r->TenCaSi ?></td>
                   <td> <?php echo $r->TenNhacSi ?> </td>
                   <td > <?php echo $r->TheLoai ?> </td>
-                  <td><input type="checkbox" name="baihats" value="<?php echo $r->id; ?>" /></td>
+                  <td><label><input type="checkbox" name="baihats[]" value="<?php echo $r->id;?>" /><label></td>
               </tr>
-
               <?php $i++;}?>
             </tbody>  
           </table> 

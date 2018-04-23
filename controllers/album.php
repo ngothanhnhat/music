@@ -24,10 +24,10 @@ class Album{
     
     public static function DanhSachAlbum($limit)
     {
-        $sql="SELECT a.*, t.TenTheLoai as TheLoai, c.TenCaSi,n.UserName FROM `album` a
-        LEFT JOIN `theloai` t ON a.TheLoaiId=t.id
-        LEFT JOIN `casi` c ON c.id =a.idCS
-        LEFT JOIN `user` n ON a.NguoiTao=n.id order by id DESC limit $limit ";
+        $sql="SELECT al.*, tl.TenTheLoai as TheLoai, cs.TenCaSi,u.UserName FROM `album` al
+        LEFT JOIN `theloai` tl ON tl.id = al.TheLoaiId
+        LEFT JOIN `casi` cs ON cs.id =al.idCS
+        LEFT JOIN `user` u ON u.id=al.NguoiTao order by al.id DESC limit $limit";
         // var_dump($sql); die;
         return DatabaseProvider::execQuery($sql);
     }

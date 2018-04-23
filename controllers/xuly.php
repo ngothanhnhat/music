@@ -18,9 +18,6 @@ $task = $_GET["task"];
 $url = BASE_URL;
 $isRedirect = true;
 
-var_dump($task);die;
-
-
 switch ($task){
 	case 'them_bai_hat':
 		if(isset ($_POST['btnthem'] ))
@@ -218,10 +215,7 @@ switch ($task){
 		break;
 
 	case 'sua_album':
-
-		var_dump("diê");die;
 		if(isset ($_POST['btnsua'])){
-
 			$id = $_GET['id'];
 			$album = new Album($id);
 			
@@ -242,7 +236,7 @@ switch ($task){
 				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/album/". $img."");			
 			$url.='/admin/?option=qlab';	
 		}else if(isset ($_POST['add_more_bh'])){
-			die("hêhhehehehe");
+			var_dump($_POST['baihats']);die;
 		}
 		
 		

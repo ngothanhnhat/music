@@ -1,20 +1,18 @@
 <?php
   // include("../configs/db.php");
-   include_once("../controllers/baihat.php");
-   include_once("../DatabaseProvider.php");
+	include_once("../configs/global.php");
+  include_once("../DatabaseProvider.php");
+  include_once("../controllers/baihat.php");
    
 ?>
 
 <?php
-
-include_once("../configs/global.php");
- ob_start();
- session_start();
-if(!isset($_SESSION['idUser']))
-{
-    header("location: ".BASE_URL);
-}
-
+	ob_start();
+	session_start();
+	if(!isset($_SESSION['idUser']))
+	{
+	    header("location: ".BASE_URL);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,9 +28,6 @@ if(!isset($_SESSION['idUser']))
         </div>
         <div class ="col-md-10">
            <?php include_once("includes/content.php");?>
-       
-            
-           
         </div>
     </div>
 </div>

@@ -10,7 +10,6 @@
         <tr>
             <th>STT</th>
             <th>Tên Album</th>
-           
             <th>Thể Loại</th>
             <th>Năm Phát Hành</th>
             <th>Người Tạo</th>
@@ -42,7 +41,7 @@
             <td> <?php echo $r->imgalbum ?> </td>
             <td> <?php echo $r->TenCaSi ?></td>
             
-           <td> <a class="btn btn-small btn-default"href="?option=updateab&id=<?php echo $r->id; ?>" >Sửa </a></td>
+           <td><a class="btn btn-small btn-default" href="?option=updateab&id=<?php echo $r->id; ?>" >Sửa </a></td>
            <td> <a class="btn btn-small btn-danger delete-album"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_album&id=<?php echo $r->id; ?>" > Xóa</a></td>
            
 
@@ -51,13 +50,6 @@
     <?php $i++;}?>
    
     </tbody>
-    
-
-</td>
-            
-            
-            
-        </tr>
   
 </table> 
 
