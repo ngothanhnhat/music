@@ -68,6 +68,10 @@ class Album{
         $sql="DELETE FROM baihat_album WHERE idBH=$bai_hat_id and idAB = $this->id";
         return DatabaseProvider::execQuery($sql);
     }
+    public function AddBaiHat($bai_hat_id,$album_id){
+        $sql="INSERT INTO `baihat_album` (`idBH`, `idAB`) VALUES ('$bai_hat_id', '$album_id')";
+        return DatabaseProvider::execQuery($sql);
+    }
 }
 
 

@@ -22,7 +22,7 @@
 
 body {
 	background-image: url('../img/hinhnen.jpg');
-	background-repeat: no-repeat;
+	/* background-repeat: no-repeat; */
 	color: #000;
 	font-family: "Varela Round", Arial, Helvetica, sans-serif;
 	font-size: 16px;
@@ -82,22 +82,9 @@ input {
 	border-radius: 3px;
 }
 
-#login fieldset input[type="email"], #login fieldset input[type="password"] {
-	background-color: rgb(238, 238, 238);
-	color: rgb(119, 119, 119);
+#login fieldset input[type="text"], #login fieldset input[type="password"] {
+	/* background-color: rgb(238, 238, 238); */
+	/* color: rgb(119, 119, 119); */
 	padding: 4px 10px;
-	width: 328px;
-}
-
-#login fieldset input[type="submit"] {
-		background-color: #5b82ee;
-		color: rgb(255, 255, 255);
-		display: block;
-		margin: 0 auto;
-		padding: 4px 0;
-		width: 100px;
-}
-
-#login fieldset input[type="submit"]:hover {
-	background-color: #3883e6;
+	width: 310px;
 }

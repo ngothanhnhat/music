@@ -12,8 +12,16 @@ include_once("configs/global.php");
 
 	<title>Login</title>
 
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
+
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -23,17 +31,25 @@ include_once("configs/global.php");
 
 		<h2><span class="fontawesome-lock"></span>Đăng Nhập</h2>
 
-		<form action="" method="POST">
+		<form action="" method="POST" >
 
 			<fieldset>
 
-				<p><label for="text">Tên Người Dùng</label></p>
-				<p><input type="text"  name ="user" id="user" >
-
-				<p><label for="password">PassWord</label></p>
-				<p><input type="password" name ="password" id="password">
-
-				<p><input type="submit" name= "dangnhap" id ="btndangnhap" value="Đăng Nhập"></p>
+				<div class="form-group">
+					<label for="ten nguoi dung">Tên người dùng</label>
+					<div class="input-group">
+						<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+						<input  type="text" class="form-control" name ="user" id="user"  placeholder="Nhập tên người dùng...">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="mat khau">Mật khẩu</label>
+					<div class="input-group">
+						<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+						<input  type="password" name ="password" id="password"  class="form-control" placeholder="Nhập mật khẩu...">
+					</div>
+				</div>
+				<input type="submit" name= "dangnhap" id ="btndangnhap" value="Đăng Nhập" class="btn btn-info" style ="float:right" >
 		
 			</fieldset>
 
@@ -69,9 +85,17 @@ if(isset($_POST['user']) && $_POST['password'])
         $r = mysqli_fetch_array($Us);
         $_SESSION['idUser'] = $r['id'];
 		$_SESSION['User'] = $r['UserName'];
-		$url=BASE_URL;
-	
-		header('location:'.$url);
+		$_SESSION['Level'] = $r['PhanQuyen'];
+		if($_SESSION['Level'] == 1)
+		{
+			$url=BASE_URL."/admin/";
+			header('location:'.$url);
+		}
+		else{
+			$url=BASE_URL;
+			header('location:'.$url);
+		}
+		
       
     }// else //$message = "Đăng nhập ko thành công!";
     

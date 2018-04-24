@@ -294,6 +294,7 @@ switch ($task){
 
 	case 'xoa_bai_hat_album':
 		$albumId = $_GET["album"];
+		
 		$baiHatId = $_GET["bai_hat"];
 
 		$album = new Album($albumId);
