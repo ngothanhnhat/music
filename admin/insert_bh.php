@@ -12,6 +12,12 @@
     $suabh = isset($bh) && isset($bh->id);
     if($suabh){
       $action= BASE_URL.'/controllers/xuly.php?task=sua_bai_hat&id='.$bh->id;
+      if (isset($_GET["back_url"])){
+          $back_url = $_GET["back_url"];
+          $action.='&b_url='.urlencode($back_url);
+
+      }
+
     }
   }
 ?>

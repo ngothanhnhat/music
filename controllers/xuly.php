@@ -72,8 +72,13 @@ switch ($task){
 			//upload lyrics 
 			if(!empty($_FILES["lyric"]["tmp_name"]))
 				move_uploaded_file($_FILES["lyric"]["tmp_name"],"../music/lyrics/". $src.".lrc");
+            if(isset($_GET['b_url'])){
+                $url .=$_GET['b_url'];
+                //var_dump($url); die;
+            }else{
+                $url .='/admin/?option=qlbh';
+            }
 
-			$url .='/admin/?option=qlbh';
 			
 		}
 		break;
@@ -236,8 +241,17 @@ switch ($task){
 				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/album/". $img."");			
 			$url.='/admin/?option=qlab';	
 		}else if(isset ($_POST['add_more_bh'])){
-			var_dump($_POST['baihats']);die;
-		}
+			//var_dump($_POST['baihats']);die;
+			$abid=$_GET["id"];
+			$baiHatId_arr = $_POST["baihats"];
+			if (count($baiHatId_arr)> 0){
+			    foreach ($baiHatId_arr as $key=>$baiHatId){
+			        Album::AddBaiHat($baiHatId,$abid);
+                }
+            }
+            $url .= '/admin/?option=updateab&id='.$abid;
+
+        }
 		
 		
 		break;

@@ -14,6 +14,7 @@
 
     if($suaab){
       $action= BASE_URL.'/controllers/xuly.php?task=sua_album&id='.$ab->id;
+      $back_url= '/admin/?option=updateab&id='.$ab->id;
     }
   }
 ?>
@@ -139,7 +140,7 @@ if(isset($_SESSION['success'])){?>
       ?>
       <tr>
           <td style="text-align: center;"><?php echo $i."."; ?> </td>
-          <td id="baihat_<?php echo $r->id; ?>"><?php echo $r->TenBaiHat?></td>
+          <td id="baihat_<?php echo $r->id; ?>"><a href="<?php echo BASE_URL.'/admin/?option=updatebh&id='.$r->id.'&back_url='.urlencode($back_url); ?>"><?php echo $r->TenBaiHat?></a></td>
           <td> <?php echo $r->TenCaSi ?></td>
           <td> <?php echo $r->TenNhacSi ?> </td>
           <td > <?php echo $r->TheLoai ?> </td>
