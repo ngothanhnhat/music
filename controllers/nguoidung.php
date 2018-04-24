@@ -60,9 +60,9 @@ class NguoiDung{
 
     ////wishlist
     /// UserId, RefId ,Type
-    /// Type: 1-album   ; 2-Playlist; 3-music; 4-video
+    /// Type: 1-Playlist; 3-music; 4-video
 
-    public function themAlbumWishlist($userId, $albumId) {
+    public function themPlaylistWishlist($userId, $albumId) {
         $sql="INSERT INTO wishlist(UserId, RefId, `Type`) VALUES($userId, $albumId, 1) ";
         return DatabaseProvider::execQuery($sql);
         

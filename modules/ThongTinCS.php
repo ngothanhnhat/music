@@ -1,5 +1,5 @@
 <?php 
-include_once("controllers/album.php");
+include_once("controllers/playlist.php");
 include_once("controllers/baihat.php");
 if(isset($_GET['id'])){
     $id= $_GET['id'];
@@ -10,7 +10,7 @@ if(isset($_GET['id'])){
     <div id="cssmenu1">
             <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation " class="active"><a href="#BaiHat" aria-controls="BaiHat" role="tab" data-toggle="tab">Bài Hát </a></li>
-                    <li role="presentation"><a href="#Album" aria-controls="Album" role="tab" data-toggle="tab">Album </a></li>
+                    <li role="presentation"><a href="#Playlist" aria-controls="Playlist" role="tab" data-toggle="tab">Playlist </a></li>
                     <li role="presentation"><a href="#Video" aria-controls="Video" role="tab" data-toggle="tab">Video </a></li>
                     <li role="presentation"><a href="#TieuSu" aria-controls="TieuSu" role="tab" data-toggle="tab">Tiểu Sử </a></li>
             </ul>
@@ -33,7 +33,7 @@ if(isset($_GET['id'])){
         ?>
            <div class="col-md-6">
            <h3>BÀI HÁT CỦA <?php echo $r->TenCaSi;?></h3>
-                <p class ="TenBH"> <a href= "index.php?option=nghe1bh"<a href="index.php?option=nghealbum" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
+                <p class ="TenBH"> <a href= "index.php?option=nghe1bh"<a href="index.php?option=nghe_playlist" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?> </p>
                     <hr>
            </div>
         <?php 
@@ -48,7 +48,7 @@ if(isset($_GET['id'])){
 
 
 
-        <div role="tabpanel" class="tab-pane" id="Album">
+        <div role="tabpanel" class="tab-pane" id="Playlist">
         
         
         </div>

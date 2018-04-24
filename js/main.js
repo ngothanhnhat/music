@@ -1,6 +1,6 @@
 $(function(){
-    var albumUrl = new URL(window.location.href);
-    var albumId= albumUrl.searchParams.get("id");
+    var playlistUrl = new URL(window.location.href);
+    var playlistId= playlistUrl.searchParams.get("id");
 
     var user_href = $('#taikhoan').attr('href'); 
     var userUrl = new URL(user_href);
@@ -8,10 +8,10 @@ $(function(){
 
     var base_url = $('#taikhoan').attr('base-url');
 
-    var url_album_is_in_wishlist =   base_url + '/controllers/xuly.php?task=check_album_in_wishlist&album='+albumId+'&user='+userId;
+    var url_playlist_is_in_wishlist =   base_url + '/controllers/xuly.php?task=check_playlist_in_wishlist&playlist='+playlistId+'&user='+userId;
     $.ajax({
         async: false,
-        url: url_album_is_in_wishlist,
+        url: url_playlist_is_in_wishlist,
         type: "POST",
         success: function(data){
             if(data != 0){
@@ -24,7 +24,7 @@ $(function(){
 
 
     $('#wishlist').click(function(){
-        var url =   base_url + '/controllers/xuly.php?task=upd_album_wishlist&album='+albumId+'&user='+userId+'&check=';
+        var url =   base_url + '/controllers/xuly.php?task=upd_playlist_wishlist&playlist='+playlistId+'&user='+userId+'&check=';
         if($(this).hasClass('check')){
            $(this).removeClass('check').addClass('uncheck');
            url += 'uncheck';

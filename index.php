@@ -7,7 +7,7 @@ session_start();
 <?php include_once('DatabaseProvider.php');?>
 <?php include_once("configs/global.php");?>
 <?php include_once("modules/head.php");?>
-<?php include_once("controllers/album.php");?>
+<?php include_once("controllers/playlist.php");?>
 <body>
     <?php include_once("modules/header.php");?>
     <div class="container">

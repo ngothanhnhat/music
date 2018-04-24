@@ -1,7 +1,7 @@
 
     <div id="cssmenu1">
             <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation " class="active"><a href="#Album" aria-controls="Album hot" role="tab" data-toggle="tab">Album hot </a></li>
+                    <li role="presentation " class="active"><a href="#Playlist" aria-controls="Playlist hot" role="tab" data-toggle="tab">Playlist hot </a></li>
                     <li role="presentation"><a href="#MV" aria-controls="MV hot" role="tab" data-toggle="tab">MV hot </a></li>
                     <li role="presentation"><a href="#Playlist" aria-controls="Playlist" role="tab" data-toggle="tab">Playlist </a></li>
                     <li role="presentation"><a href="#CaSiHot" aria-controls="CaSiHot" role="tab" data-toggle="tab">Ca Sĩ Hot </a></li>
@@ -11,10 +11,10 @@
     </div>
     <br>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="Album">
+        <div role="tabpanel" class="tab-pane active" id="Playlist">
             <?php 
                 $i=1;
-                $ds = Album::DanhSachAlbum(8);
+                $ds = Playlist::DanhSach(8);
                 while($r = $ds->fetch_object())
                 {
                    if($i ==1)
@@ -22,8 +22,8 @@
             ?>
                     <div class="col-md-3">
                     
-                    <img style=" width: 100%;height:140px;" src="img/album/<?php echo $r->imgalbum;?>">
-                        <p class="TenBH"> <a href="index.php?option=nghealbum&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenAlbum;?> </a> </p>
+                    <img style=" width: 100%;height:140px;" src="img/playlist/<?php echo $r->Hinh;?>">
+                        <p class="TenBH"> <a href="index.php?option=nghe_playlist&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenPlaylist;?> </a> </p>
                         <p class="TenCS"> <a href="index.php?option=thongtincs&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenCaSi;?> </a> </p>
                         
                     </div>

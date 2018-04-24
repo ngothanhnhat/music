@@ -2,26 +2,26 @@
 <?php include_once('../controllers/casi.php');?>
 <?php include_once('../controllers/theloai.php');?>
 <?php include_once('../controllers/baihat.php');?>
-<?php include_once('../controllers/album.php');?>
+<?php include_once('../controllers/playlist.php');?>
 <?php 
   $suaab = false;
-  $action= BASE_URL.'/controllers/xuly.php?task=them_album';
+  $action= BASE_URL.'/controllers/xuly.php?task=them_playlist';
   if(isset($_GET['id'])){
     $id=$_GET['id'];
-    $ab= new Album($id);
+    $ab= new Playlist($id);
     
     $suaab = isset($ab) && isset($ab->id);
 
     if($suaab){
-      $action= BASE_URL.'/controllers/xuly.php?task=sua_album&id='.$ab->id;
+      $action= BASE_URL.'/controllers/xuly.php?task=sua_playlist&id='.$ab->id;
       $back_url= '/admin/?option=updateab&id='.$ab->id;
     }
   }
 ?>
 <?php if($suaab) { ?>
-  <h3>SỬA ALBUM: <?php echo $ab->TenAlbum;?></h3> 
+  <h3>SỬA PLAYLIST: <?php echo $ab->TenPlaylist;?></h3>
 <?php } else { ?>
-  <h3>THÊM ALBUM</h3>
+  <h3>THÊM PLAYLISY</h3>
 <?php } ?> 
 
 <div class="sss" style="width: 800px; height: auto; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
@@ -36,9 +36,9 @@ if(isset($_SESSION['success'])){?>
 }?>
 
   <div class="form-group">
-    <label for="input" class="col-sm-3 control-label" >Tên Album</label>
+    <label for="input" class="col-sm-3 control-label" >Tên Playlist</label>
     <div class="col-sm-5">
-      <input value="<?php if($suaab) echo $ab->TenAlbum;?>" type="text" class="form-control" id="tenab" name="tenab" placeholder=""required>
+      <input value="<?php if($suaab) echo $ab->TenPlaylist;?>" type="text" class="form-control" id="tenab" name="tenab" placeholder=""required>
 
     </div>
     <div class="col-sm-4"></div>
@@ -90,7 +90,7 @@ if(isset($_SESSION['success'])){?>
     </div>
   </div>  
   <div class="form-group">
-    <img src="<?php if($suaab && !empty($ab->Hinh)) echo BASE_URL.'/img/album/'.$ab->Hinh;?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
+    <img src="<?php if($suaab && !empty($ab->Hinh)) echo BASE_URL.'/img/playlist/'.$ab->Hinh;?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
     <label for="input" class="col-sm-3 control-label" >Hình</label>
     <?php if($suaab){
       echo '<input hidden type ="text" value="'.$ab->Hinh.'" name ="old_pic"/>';
@@ -144,7 +144,7 @@ if(isset($_SESSION['success'])){?>
           <td> <?php echo $r->TenCaSi ?></td>
           <td> <?php echo $r->TenNhacSi ?> </td>
           <td > <?php echo $r->TheLoai ?> </td>
-          <td> <a class="btn btn-small btn-danger delete-baihat-album" href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_bai_hat_album&bai_hat=<?php echo $r->id;?>&album=<?php echo $ab->id; ?>" > Xóa</a></td>
+          <td> <a class="btn btn-small btn-danger delete-baihat-playlist" href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_bai_hat_playlist&bai_hat=<?php echo $r->id;?>&playlist=<?php echo $ab->id; ?>" > Xóa</a></td>
       </tr>
 
       <?php $i++;}?>

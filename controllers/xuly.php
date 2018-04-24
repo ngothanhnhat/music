@@ -9,7 +9,7 @@ include_once('nguoidung.php');
 include_once('video.php');
 include_once('nhacsi.php');
 include_once('theloai.php');
-include_once('album.php');
+include_once('playlist.php');
 include_once('../helper.php');
 
 
@@ -174,7 +174,7 @@ switch ($task){
 		break;
 
 
-	case 'them_album':	
+	case 'them_playlist':
 
 		$tenab = $_POST['tenab'];
 		$casi=$_POST['casiid'];
@@ -183,17 +183,17 @@ switch ($task){
 		$tlab=$_POST['tlid'];
 		$nam = $_POST['nam'];
 		$thab = Album::ThemAlbum($tenab,$casi,$img,$ngtao,$tlab,$nam);
-		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/album/". $img."");			
+		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $img."");
 		if(isset($_POST['luuab'])){
 			$url.='/admin/?option=qlab';
 		}else if(isset($_POST['luu_them_ab'])){
-			$_SESSION['success'] = "Đã thêm album thành công";
+			$_SESSION['success'] = "Đã thêm playlist thành công";
 			$url.='/admin/?option=insertab';				
 		}
 
 		break;
 
-	case 'sua_album':
+	case 'sua_playlist':
 		if(isset ($_POST['btnsua'])){
 			$id = $_GET['id'];
 			$album = new Album($id);
@@ -212,7 +212,7 @@ switch ($task){
 			$album->update();
 
 			if(!empty($_FILES["hinh"]["tmp_name"]))
-				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/album/". $img."");			
+				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $img."");
 			$url.='/admin/?option=qlab';	
 		}else if(isset ($_POST['add_more_bh'])){
 			//var_dump($_POST['baihats']);die;
@@ -230,7 +230,7 @@ switch ($task){
 		
 		break;
 
-	case 'xoa_album':
+	case 'xoa_playlist':
 		$id= $_GET['id'];
 
 		$album = new Album($id);
@@ -255,9 +255,9 @@ switch ($task){
 		unset($_SESSION['idUser']);
 		unset($_SESSION['User']);
 		break;
-	case 'upd_album_wishlist':
+	case 'upd_playlist_wishlist':
 		$isRedirect = false;
-		$albumId = $_GET["album"];
+		$albumId = $_GET["playlist"];
 		$userId = $_GET["user"];
 		$check = $_GET["check"];
 
@@ -274,14 +274,14 @@ switch ($task){
 		break;
 	case 'check_album_in_wishlist':
 		$isRedirect = false;
-		$albumId = $_GET["album"];
+		$albumId = $_GET["playlist"];
 		$userId = $_GET["user"];
 		$nguoi_dung = new NguoiDung();
 		echo $nguoi_dung->checkAlbumInWishlist($userId, $albumId);
 		break;
 
 	case 'xoa_bai_hat_album':
-		$albumId = $_GET["album"];
+		$albumId = $_GET["playlist"];
 		
 		$baiHatId = $_GET["bai_hat"];
 

@@ -1,8 +1,8 @@
 <?php 
-include_once("controllers/album.php");
+include_once("controllers/playlist.php");
 if(isset($_GET['id'])){
     $id= $_GET['id'];
-    $album= new Album($id);
+    $playlist= new Playlist($id);
 }
 ?>
 <link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">

@@ -72,13 +72,13 @@ $( function() {
     
     });
 
-    $(".delete-album").click(function(e){
+    $(".delete-playlist").click(function(e){
         e.preventDefault();
         var href = $(this).attr('href'); 
         var parsedUrl = new URL(href);
         var id = parsedUrl.searchParams.get("id");
-        var TenAlbum = $("#album_"+ id).text();
-    if (confirm("Bạn có muốn xóa album " +TenAlbum+ " không?")) {
+        var TenPlaylist = $("#playlist_"+ id).text();
+    if (confirm("Bạn có muốn xóa playlist " +TenPlaylist+ " không?")) {
       window.location.href = href;
     } 
     
@@ -91,7 +91,7 @@ $( function() {
         var parsedUrl = new URL(href);
         var id = parsedUrl.searchParams.get("id");
         var TenVideo = $("#video_"+ id).text();
-    if (confirm("Bạn có muốn xóa album " +TenVideo+ " không?")) {
+    if (confirm("Bạn có muốn xóa video " +TenVideo+ " không?")) {
       window.location.href = href;
     } 
     

@@ -34,7 +34,7 @@ class MyConnect
 
     public function CountView($id)
     {
-        $sql="UPDATE `album` SET `LuotXem`= LuotXem + 1 WHERE id= $id";
+        $sql="UPDATE `playlist` SET `LuotXem`= LuotXem + 1 WHERE id= $id";
         
         mysqli_query($this->con,$sql);
     }

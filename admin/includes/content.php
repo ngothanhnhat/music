@@ -13,8 +13,8 @@ switch ($tmp){
     case 'qlcs':
         include("QLCS.php");
         break;
-    case 'qlab':
-        include("QLAB.php");
+    case 'ql_playlist':
+        include("ql_playlist.php");
         break;
     case 'qlvd':
         include("QLVD.php");
