@@ -30,8 +30,6 @@ class BaiHat{
 		 DatabaseProvider::execQuery($sql);
 		 $sql="DELETE FROM baihat_album WHERE idBH=$id";
 		 DatabaseProvider::execQuery($sql);
-		 $sql="DELETE FROM baihat_playlist WHERE idBH=$id";
-		 DatabaseProvider::execQuery($sql);
 	}
 	public function LayBaiHat($id){
 		$sql="SELECT b.*, c.TenCaSi FROM `baihat` b left join `casi` c on b.CaSiId=c.id WHERE b.id = $id limit 1";

@@ -8,7 +8,6 @@ include_once('chude.php');
 include_once('nguoidung.php');
 include_once('video.php');
 include_once('nhacsi.php');
-include_once('playlist.php');
 include_once('theloai.php');
 include_once('album.php');
 include_once('../helper.php');
@@ -174,31 +173,6 @@ switch ($task){
 		
 		break;
 
-	case 'them_playlist':	
-		if(isset ($_POST['thempl'] ))
-			{
-				
-				$pl = new PlayList();
-				$tenpl = $_POST['tenpl'];
-
-				$img=convert($tenpl)."_".time();
-				$nt=$_SESSION['idUser'];
-				$tla=$_POST['tenpltl'];
-				$thpl = $pl->ThemPL($tenpl,$img, $nt ,$tla);
-				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $img."");
-	
-				$url .='/admin/?option=qlpl';	
-
-		}
-		break;
-
-	case 'xoa_playlist':
-		$id= $_GET['id'];
-		$url.='/admin/?option=qlpl';
-		$playlist = new PlayList();
-		$playlist->XoaPL($id);
-		
-		break;
 
 	case 'them_album':	
 
