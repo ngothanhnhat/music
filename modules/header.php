@@ -31,7 +31,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li class="divider"></li> 
 
-                        <li><a href="<?php echo BASE_URL;?>acount.php?id=<?php echo $_SESSION['idUser'];?>">Trang cá nhân</a></li>
+                        <li><a href="<?php echo BASE_URL;?>/?option=account&id=<?php echo $_SESSION['idUser'];?>">Trang cá nhân</a></li>
 
                         <li class="divider"></li>
                         

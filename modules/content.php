@@ -10,6 +10,8 @@ else if($tmp == 'nghe1bh')
 
 else if($tmp == 'playvideo')
     include("playvideo.php");
+else if($tmp == 'account')
+    include("account.php");
 
 else if($tmp == 'thongtincs')
     include("ThongTinCS.php");
