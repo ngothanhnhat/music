@@ -23,9 +23,8 @@
                     <div class="col-md-3">
                     
                     <img style=" width: 100%;height:140px;" src="img/playlist/<?php echo $r->Hinh;?>">
-                        <p class="TenBH"> <a href="index.php?option=nghe_playlist&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenPlaylist;?> </a> </p>
-                        <p class="TenCS"> <a href="index.php?option=thongtincs&id=<?php echo $r->id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenCaSi;?> </a> </p>
-                        
+                        <p class="TenBH"> <a href="index.php?option=nghe_playlist&id=<?php echo $r->Id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenPlaylist;?> </a> </p>
+
                     </div>
                   
             <?php 

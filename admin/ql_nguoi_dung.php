@@ -1,12 +1,9 @@
 
 <?php include_once("../controllers/nguoidung.php");?>
-
 <h3>QUẢN LÝ NGƯỜI DÙNG</h3>
-<!-- <a class="btn btn-small btn-default" href ="?option=insert">Thêm </a> -->
 <div class="col-sm-offset-11 col-sm-1">
 <a class="btn btn-small btn-default" href ="?option=insertus">Thêm </a>
     </div>
- 
 <table class="table table-hover table-bordered" id="myTable">
     <thead>
         <tr>
@@ -15,8 +12,6 @@
             <th>PassWord</th>
             <th>Email</th>
             <th>Phân Quyền</th>
-                 
-               
             <th></th>
             <th></th>
 
@@ -50,13 +45,6 @@
     <?php $i++;}?>
    
     </tbody>
-    
-
-</td>
-            
-            
-            
-        </tr>
   
 </table> 
 

@@ -83,7 +83,7 @@ if(isset($_POST['user']) && $_POST['password'])
 	if(mysqli_num_rows($Us)==1)
     {
         $r = mysqli_fetch_array($Us);
-        $_SESSION['idUser'] = $r['id'];
+        $_SESSION['idUser'] = $r['Id'];
 		$_SESSION['User'] = $r['UserName'];
 		$_SESSION['Level'] = $r['PhanQuyen'];
 		if($_SESSION['Level'] == 1)

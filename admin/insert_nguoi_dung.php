@@ -17,7 +17,6 @@
     <div class="col-sm-5">
       <input type="text" class="form-control" required="requied" name = "user" id="user" placeholder="">
     </div>
-    <div class="col-sm-4"></div>
   </div>
 
   <div class="form-group">
@@ -25,7 +24,6 @@
     <div class="col-sm-5">
       <input type="password" class="form-control" required="requied" name="password" id="password" placeholder="">
     </div>
-    <div class="col-sm-4"></div>
   </div>
 
   <div class="form-group">
@@ -49,17 +47,3 @@
 
 
 </div>
-
-<?php
-if(isset($_POST['user']) && $_POST['password'] && $_POST['email'])
-{
-  $kq = new MyConnect();
-  
-    $Us = $kq->ThemND($_POST['user'],md5($_POST['password']),$_POST['email']);
-
- // echo $_POST['user'].md5($_POST['password']).$_POST['email'];
- header('location:http://localhost/webmusica/admin/?option=qlus');
-
-}
-
-?>

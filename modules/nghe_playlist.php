@@ -13,12 +13,12 @@ if(isset($_GET['id'])){
         <?php include("modules/baihat.php");?>     
     </div>
     <div class="col-md-8 pull-left">
-        <h3> <?php echo $album->TenAlbum;?> <i id='wishlist'  class='fas fa-heart uncheck' style='float:right; margin-right: 20px;'></i></h3>
+        <h3> <?php echo $playlist->TenPlaylist;?> <i id='wishlist'  class='fas fa-heart uncheck' style='float:right; margin-right: 20px;'></i></h3>
         <div style="padding-left:0px;">
             <div id="aplayer"></div>
         </div>
         <?php
-        $baihats = $album->DSBaiHat();
+        $baihats = $playlist->DSBaiHat();
         while($r=$baihats->fetch_object()){
         ?>
         <div class="_src" hidden 

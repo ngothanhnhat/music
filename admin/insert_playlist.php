@@ -21,10 +21,11 @@
 <?php if($suaab) { ?>
   <h3>SỬA PLAYLIST: <?php echo $playlist->TenPlaylist;?></h3>
 <?php } else { ?>
-  <h3>THÊM PLAYLISY</h3>
+  <h3>THÊM PLAYLIST</h3>
 <?php } ?> 
 
 <div class="sss" style="width: 800px; height: auto; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
+
 <form action="<?php echo $action;?>" method="POST"  class="form-horizontal" role="form" enctype="multipart/form-data">
 <?php
 if(isset($_SESSION['success'])){?>
@@ -51,7 +52,7 @@ if(isset($_SESSION['success'])){?>
               <?php
                   $tl = new TheLoai();
             
-                  $dstl = $tl->DanhSachTheLoai();
+                  $dstl = $tl->DanhSach();
                   while($r = $dstl->fetch_object())
                   {
                     
@@ -62,8 +63,8 @@ if(isset($_SESSION['success'])){?>
     </div>
   </div>
   <div class="form-group">
-    <img src="<?php echo BASE_URL; ?><?php echo ($suaab && !empty($playlist->Hinh))? '/img/playlist/'.$playlist->Hinh.'.jpg' : '/img/No_Image_Available.png'; ?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
-    <label for="input" class="col-md-3 control-label" >Hình</label>
+    <img src="<?php echo BASE_URL; ?><?php echo ($suaab && !empty($playlist->Hinh))?'/img/playlist/'.$playlist->Hinh:'/img/No_Image_Available.png'; ?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
+    <label for="hinh" class="col-md-3 control-label" >Hình</label>
     <input class="col-md-offset-3" type ="file" id="hinh" name ="hinh"/>
   </div>
  

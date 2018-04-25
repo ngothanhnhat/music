@@ -113,20 +113,24 @@ switch ($task){
 		$url.='/admin/?option=qlcd';
 		break;
 	case 'them_the_loai':
-		if(isset($_GET["tentl"]))
-		{
-			$ten = $_GET["tentl"];
-			$kq = new TheLoai();
-			$k= $kq->ThemTL($ten);
-			$url .='/admin/?option=qltl';	
+	case 'sua_the_loai':
+		if(isset($_POST["btn_sua"])) {
+			$id = $_GET['id'];
+			$the_loai = new TheLoai($id);
+		}else if(isset($_POST['btn_them'])) {
+			$the_loai = new TheLoai();
+		}else {
+			header('Location: ' . $url);
 		}
+		$the_loai->TenTheLoai = $_POST['ten_the_loai'];
+		$the_loai->save();
+		$url .='/admin/?option=qltl';
 		break;
 	case 'xoa_the_loai':
 		$id= $_GET['id'];
+		$the_loai = new TheLoai($id);
+		$the_loai->delete();
 		$url.='/admin/?option=qltl';
-		$the_loai = new TheLoai();
-		$the_loai->XoaTL($id);
-		
 		break;
 
 
@@ -169,7 +173,6 @@ switch ($task){
 		}else{
 			header('Location: '.$url);
 		}
-		
 		$playlist->TenPlaylist = $_POST['ten_playlist'];
 		$playlist->TheLoai=$_POST['the_loai'];
 		
@@ -184,11 +187,9 @@ switch ($task){
 
 	case 'xoa_playlist':
 		$id= $_GET['id'];
-
 		$playlist = new Playlist($id);
 		$playlist->delete();
-
-		$url.='/admin/?option=qlpl';
+		$url.='/admin/?option=ql_playlist';
 		
 		break;
 	case 'xoa_video':
@@ -197,11 +198,28 @@ switch ($task){
 		$video = new Video();
 		$video->XoaVD($id);
 		break;
+	case 'them_nguoi_dung':
+	case 'sua_nguoi_dung':
+		if(isset($_POST["btn_sua"])) {
+			$ID = $_GET['id'];
+			$nguoi_dung = new NguoiDung($ID);
+		}else if(isset($_POST['btn_them'])) {
+			$nguoi_dung = new NguoiDung();
+		}else {
+			header('Location: ' . $url);
+		}
+		$nguoi_dung->UserName = $_POST['ten_nguoi_dung'];
+		$nguoi_dung->PassWord = $_POST['mat_khau'];
+		$nguoi_dung->Email = $_POST['email'];
+		$nguoi_dung->PhanQuyen = $_POST['phanquyen'];
+		$nguoi_dung->save();
+		$url .='/admin/?option=qlnd';
+		break;
 	case 'xoa_nguoi_dung':
-		$id= $_GET['id'];
-		$url.='/admin/?option=qlus';
-		$nguoidung = new NguoiDung();
-		$nguoidung->XoaND($id);
+		$ID= $_GET['id'];
+		$nguoi_dung	 = new NguoiDung($ID);
+		$nguoi_dung->delete();
+		$url.='/admin/?option=qlnd';
 		break;
 	case 'logout':
 		unset($_SESSION['idUser']);

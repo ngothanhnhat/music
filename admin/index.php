@@ -13,8 +13,8 @@
 <?php
 	ob_start();
 	session_start();
-//	if(isset($_SESSION['idUser']) && ($_SESSION['Level'] == 1 ))
-//	{
+	    if(isset($_SESSION['idUser']) && ($_SESSION['Level'] == 1 ))
+	{
 	  
 ?>
 <!DOCTYPE html>
@@ -48,7 +48,7 @@
 </html>
 
 <?php 
-//    }else   header("location: ".BASE_URL);
+	}else   header("location: ".BASE_URL);
 
 ?>
 

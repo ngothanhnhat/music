@@ -16,12 +16,15 @@ switch ($tmp){
     case 'ql_playlist':
         include("ql_playlist.php");
         break;
-		case 'insert_playlist':
-		case 'upd_playlist':
-			include("insert_playlist.php");
+		case 'qltl':
+			include("ql_the_loai.php");
 			break;
+		case 'qlnd':
+			include("ql_nguoi_dung.php");
+			break;
+
     case 'qlvd':
-        include("QLVD.php");
+        include("ql_video.php");
         break;
     case 'insert_bh':
     case 'upd_bai_hat':
@@ -35,24 +38,23 @@ switch ($tmp){
     case 'upd_chu_de':
         include("insert_chu_de.php");
         break;
-    case 'inserttl':
-    case 'updatetl':
-        include("inserttl.php");
+    case 'insert_tl':
+    case 'upd_the_loai':
+        include("insert_the_loai.php");
         break;
-    case 'insertvd':
-    case 'updatevd':
-        include("insertvd.php");
+		case 'insert_playlist':
+		case 'upd_playlist':
+				include("insert_playlist.php");
+				break;
+    case 'insert_vd':
+    case 'upd_video':
+        include("insert_video.php");
         break;
-    case 'insertus':
-    case 'updateus':
-        include("insertus.php");
+    case 'insert_nd':
+    case 'upd_nguoi_dung':
+        include("insert_nguoi_dung.php");
         break;
-    case 'qltl':
-        include("QLTL.php");
-        break;
-    case 'qlus':
-        include("QLUS.php");
-        break;
+
     default:
         include ("ql_bai_hat.php");
         break;
