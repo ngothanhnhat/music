@@ -1,58 +1,67 @@
 <?php
 
-class BaiHat{
-	public function __construct() {
+class BaiHat extends Controller {
+	public static $table = 'baihat';
+	
+	protected $Id;
+	public $TenBaiHat;
+	public $CaSi;
+	public $TenCaSi;
+	public $NhacSi;
+	public $TenNhacSi;
+	public $TheLoai;
+	public $LuotNghe;
+	public $Audio;
+	public $Lyric;
+	
+	protected function __withId($id){
+		$sql="SELECT * FROM baihat WHERE id = $id limit 1";
+
+		$result=DatabaseProvider::execQuery($sql);
+		$r = $result->fetch_object();
+
+		$this->Id = $r->Id;
+		$this->TenBaiHat = $r->TenBaiHat;
+		$this->CaSi = $r->CaSi;
+		$this->NhacSi = $r->NhacSi;
+		$this->TheLoai = $r->TheLoai;
+		$this->Audio = $r->Audio;
+		$this->Lyric = $r->Lyric;
 	}
 	
-	public function DanhSachBH($limit){
+	public static function DanhSach($limit=-1){
 		$sql="SELECT b.*, theloai.TenTheLoai as TheLoai, casi.TenCaSi, nhacsi.TenNhacSi,casi.TieuSu FROM BaiHat b
-        left join theloai on b.TheLoaiId=theloai.id
-        left join casi on casi.id = b.CaSiId
-        left join nhacsi on nhacsi.id = b.NhacSiId
-        ORDER BY id DESC limit $limit ";
-		
-		return DatabaseProvider::execQuery($sql);
-	}
-	public function ThemBH($TenBH, $CSId,$NSId, $TLId, $audio, $lyric){
-		$sql= "INSERT INTO `baihat` (`TenBaiHat`, `CaSiId`, `NhacSiId`, `TheLoaiId`,  `Audio`,`Lyrics`) VALUES ('$TenBH', '$CSId', '$NSId', '$TLId', '$audio', '$lyric') ";
-		//echo $sql;
+        left join theloai on b.TheLoai=theloai.id
+        left join casi on casi.id = b.CaSi
+        left join nhacsi on nhacsi.id = b.NhacSi
+        ORDER BY id DESC ";
+
+		if($limit != -1)
+			$sql .= " limit {$limit}";
+
 		return DatabaseProvider::execQuery($sql);
 	}
 	  
-    public function SuaBH($id,$TenBH, $CSId,$NSId, $TLId, $audio, $lyric){
-        $sql= "UPDATE `baihat` SET `TenBaiHat` = '$TenBH', `CaSiId`='$CSId', `NhacSiId`='$NSId', `TheLoaiId`='$TLId' ,`Audio`='$audio' , `Lyrics`='$lyric' WHERE `baihat`.`id` = $id";
-		return DatabaseProvider::execQuery($sql);
-      
-    }
+  public function save(){
+	  if(is_null($this->Id)){
+		  $sql= "INSERT INTO baihat (TenBaiHat, CaSi, NhacSi, TheLoai, Audio, Lyric) VALUES ('$this->TenBaiHat', $this->CaSi, $this->NhacSi, $this->TheLoai, '$this->Audio', '$this->Lyric') ";
+	  }else{
+      $sql= "UPDATE baihat SET TenBaiHat = '$this->TenBaiHat', CaSi=$this->CaSi, NhacSi=$this->NhacSi, TheLoai=$this->TheLoai ,Audio='$this->Audio' , Lyric='$this->Lyric' WHERE Id = $this->Id";
+	  }
+	  
+		DatabaseProvider::execQuery($sql);
+  }
     
-	public function XoaBH( $id){
-		$sql="DELETE FROM BaiHat WHERE id=$id";
-		 DatabaseProvider::execQuery($sql);
-		 $sql="DELETE FROM baihat_album WHERE idBH=$id";
+	public function delete(){
+		$sql="DELETE FROM BaiHat WHERE id=$this->Id";
+		DatabaseProvider::execQuery($sql);
+		
+		$sql="DELETE FROM baihat_playlist WHERE BaiHat=$this->Id";
 		 DatabaseProvider::execQuery($sql);
 	}
-	public function LayBaiHat($id){
-		$sql="SELECT b.*, c.TenCaSi FROM `baihat` b left join `casi` c on b.CaSiId=c.id WHERE b.id = $id limit 1";
-		return DatabaseProvider::execQuery($sql);
-	}
-	public static function LayBH($id){
-		$baihat=new \stdClass();
-        $sql="SELECT b.*, c.TenCaSi FROM `baihat` b left join `casi` c on b.CaSiId=c.id WHERE b.id = $id limit 1";
-		$result=DatabaseProvider::execQuery($sql);
-        while($r = $result->fetch_object()){
-			$baihat->id=$r->id;
-			$baihat->BaiHat=$r->TenBaiHat;
-			$baihat->CaSi=$r->CaSiId;
-			$baihat->NhacSi=$r->NhacSiId;
-			$baihat->TheLoai=$r->TheLoaiId;
-			$baihat->Audio=$r->audio;
-			$baihat->Lyric=$r->lyrics;
-
-		}
-		return $baihat;
-    }
-	public function LayBHGiongTen($tenbh){
-		$arr=explode(" ", $tenbh);
+	
+	public function getBaiHatGiongTen(){
+		$arr=explode(" ", $this->TenBaiHat);
 
 		if(count($arr) > 2){
 			$result = array();
@@ -60,20 +69,14 @@ class BaiHat{
 		}else{
 			$result = $arr;
 		}
-		// var_dump($arr); die;
-
 		$str= "%".implode("%",$result)."%";
 		$sql='SELECT * FROM baihat where TenBaiHat like "'.$str.'"';
 		return DatabaseProvider::execQuery($sql);
 	}
-	public function LuotNghe($id)
-    {
-        $sql="UPDATE `baihat` SET `LuotNghe`= LuotNghe + 1 WHERE id= $id";
-		 DatabaseProvider::execQuery($sql);
-    }
-
-
-
+	public function LuotNghe($id){
+    $sql="UPDATE `baihat` SET `LuotNghe`= LuotNghe + 1 WHERE id= $id";
+    DatabaseProvider::execQuery($sql);
+  }
 }
 
 

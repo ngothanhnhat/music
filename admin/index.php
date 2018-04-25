@@ -1,16 +1,20 @@
 <?php
-  // include("../configs/db.php");
 	include_once("../configs/global.php");
   include_once("../DatabaseProvider.php");
+  include_once("../helper.php");
+  include_once("../controllers/controller.php");
   include_once("../controllers/baihat.php");
-   
+  include_once('../controllers/casi.php');
+  include_once('../controllers/nhacsi.php');
+	include_once('../controllers/theloai.php');
+	include_once('../controllers/baihat.php');
 ?>
 
 <?php
 	ob_start();
 	session_start();
-	if(isset($_SESSION['idUser']) && ($_SESSION['Level'] == 1 ))
-	{
+//	if(isset($_SESSION['idUser']) && ($_SESSION['Level'] == 1 ))
+//	{
 	  
 ?>
 <!DOCTYPE html>
@@ -44,7 +48,7 @@
 </html>
 
 <?php 
-    }else   header("location: ".BASE_URL);
+//    }else   header("location: ".BASE_URL);
 
 ?>
 

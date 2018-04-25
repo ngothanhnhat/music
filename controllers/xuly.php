@@ -2,6 +2,10 @@
 ob_start();
 session_start();
 include_once('../configs/global.php');
+include_once('../helper.php');
+
+include_once("../DatabaseProvider.php");
+include_once('controller.php');
 include_once('baihat.php');
 include_once('casi.php');
 include_once('chude.php');
@@ -10,8 +14,6 @@ include_once('video.php');
 include_once('nhacsi.php');
 include_once('theloai.php');
 include_once('playlist.php');
-include_once('../helper.php');
-
 
 $task = $_GET["task"];
 $url = BASE_URL;
@@ -19,142 +21,96 @@ $isRedirect = true;
 
 switch ($task){
 	case 'them_bai_hat':
-		if(isset ($_POST['btnthem'] ))
-		{
-			$bai_hat = new BaiHat();
-			$ten = $_POST['tenbh'];
-			$cs=$_POST['casiid'];
-			$ns=$_POST['nhacsiid'];
-			$tl=$_POST['tlid'];
-			$src='';
-			$lyric='';
-			if(!empty($_FILES["source"]["tmp_name"])){
-				$src= strval(time());
-			}
-			if(!empty($_FILES["lyric"]["tmp_name"])){
-				$lyric= strval(time());
-			}
-			$th = $bai_hat->ThemBH( $ten, $cs, $ns, $tl, $src, $lyric);
-			//upload audio
-			if(!empty($_FILES["source"]["tmp_name"]))
-				move_uploaded_file($_FILES["source"]["tmp_name"],"../music/audio/". $src. ".mp3");
-			//upload lyrics
-			if(!empty($_FILES["lyric"]["tmp_name"]))
-				move_uploaded_file($_FILES["lyric"]["tmp_name"],"../music/lyrics/". $src.".lrc");
-
-			$url .='/admin/?option=qlbh';
-			
-		}
-		break;
 	case 'sua_bai_hat':
-		if(isset ($_POST['btnsua'] ))
-		{
+		if(isset ($_POST['btn_them'] )){
 			$bai_hat = new BaiHat();
+			$url .='/admin/?option=qlbh';
+		}else if(isset($_POST['btn_sua'])) {
 			$id = $_GET['id'];
-			$ten = $_POST['tenbh'];
-			$cs=$_POST['casiid'];
-			$ns=$_POST['nhacsiid'];
-			$tl=$_POST['tlid'];
-			$src= $_POST['old_source'];
-			$lyric= $_POST['old_lyric'];
-			if(!empty($_FILES["source"]["tmp_name"])){
-				$src= strval(time());
-			}
-			if(!empty($_FILES["lyric"]["tmp_name"])){
-				$lyric= strval(time());
-			}
-			$th = $bai_hat->SuaBH( $id, $ten, $cs, $ns, $tl, $src, $lyric);
-			//upload audio 
-			// var_dump($_FILES); die;
-			if(!empty($_FILES["source"]["tmp_name"]))
-				move_uploaded_file($_FILES["source"]["tmp_name"],"../music/audio/". $src. ".mp3");
-			//upload lyrics 
-			if(!empty($_FILES["lyric"]["tmp_name"]))
-				move_uploaded_file($_FILES["lyric"]["tmp_name"],"../music/lyrics/". $src.".lrc");
-            if(isset($_GET['b_url'])){
-                $url .=$_GET['b_url'];
-                //var_dump($url); die;
-            }else{
-                $url .='/admin/?option=qlbh';
-            }
-
+			$bai_hat = new BaiHat($id);
 			
+			if(isset($_GET['b_url'])){
+				$url .=$_GET['b_url'];
+			}else{
+				$url .='/admin/?option=qlbh';
+			}
+		}else {
+			header('Location: '.$url);
 		}
+		$bai_hat->TenBaiHat = $_POST['ten_bai_hat'];
+		$bai_hat->CaSi = $_POST['ca_si'];
+		$bai_hat->NhacSi = $_POST['nhac_si'];
+		$bai_hat->TheLoai = $_POST['the_loai'];
+		
+		if(!empty($_FILES["audio"]["tmp_name"])){
+			$bai_hat->Audio = strval(time());
+			move_uploaded_file($_FILES["source"]["tmp_name"],"../music/audio/". $bai_hat->Audio . ".mp3");
+		}
+		if(!empty($_FILES["lyric"]["tmp_name"])){
+			$bai_hat->Lyric = strval(time());
+			move_uploaded_file($_FILES["lyric"]["tmp_name"],"../music/lyrics/". $bai_hat->Lyric.".lrc");
+		}
+		$bai_hat->save();
 		break;
 	case 'xoa_bai_hat':
 		$id= $_GET['id'];
 		$url.='/admin/?option=qlbh';
-		$bai_hat = new BaiHat();
-		$bai_hat->XoaBH($id);
-		
+		$bai_hat = new BaiHat($id);
+		$bai_hat->delete();
 		break;
+		
 	case 'them_ca_si':
-		
-		if(isset ($_POST['themcs'] ))
-		{
-		$themcs= new CaSi();
-		$tcs = $_POST['tencs'];
-		$ns=$_POST['ns'];
-		$qq=$_POST['quequan'];
-		$ts = $_POST['tieusu'];
-		$hih='';
-		if(!empty($_FILES["hinh"]["tmp_name"])){
-		$hih = convert($tcs) . "_" . strval(time());
-		}
-		$thcs = $themcs->ThemCS( $tcs, $ns, $qq, $hih ,$ts);
-		if(!empty($_FILES["hinh"]["tmp_name"]))
-		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/".$hih);
-		$url .='/admin/?option=qlcs';
-		}
-		break;
 	case 'sua_ca_si':
-		if(isset ($_POST['suacs'] ))
-		{
+		if(isset ($_POST['btn_sua'] )){
 			$id=$_GET['id'];
-			$suacs= new CaSi();
-			$tcs = $_POST['tencs'];
-			$ns=$_POST['ns'];
-			$qq=$_POST['quequan'];
-			$ts = $_POST['tieusu'];
-			$hih=$_POST['old_hinh'];
-			if(!empty($_FILES["hinh"]["tmp_name"])){
-			$hih = convert($tcs) . "_" . strval(time());
-			}
-			$Us = $suacs->SuaCS($id, $tcs, $hih, $ns, $qq, $ts);
-			if(!empty($_FILES["hinh"]["tmp_name"]))
-				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/". $hih);
-			$url .='/admin/?option=qlcs';
+			$ca_si = new CaSi($id);
 		}
+		else if(isset ($_POST['btn_them'])){
+			$ca_si = new CaSi();
+		}else {
+			header('Location: '.$url);
+		}
+		$ca_si->TenCaSi = $_POST['ten_ca_si'];
+		$ca_si->NgaySinh = $_POST['ngay_sinh'];
+		$ca_si->QueQuan = $_POST['que_quan'];
+		$ca_si->TieuSu = $_POST['tieu_su'];
+		
+		if(!empty($_FILES["hinh"]["tmp_name"])){
+			$ca_si->Hinh = convert($ca_si->TenCaSi) . "_" . strval(time());
+			move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/casi/".$ca_si->Hinh);
+		}
+		
+		$ca_si->save();
+		$url .='/admin/?option=qlcs';
+		
 		break;
 	case 'xoa_ca_si':
 		$id= $_GET['id'];
 		$url.='/admin/?option=qlcs';
-		$ca_si = new CaSi();
-		$ca_si->XoaCS($id);
+		$ca_si = new CaSi($id);
+		$ca_si->delete();
 		break;
 	case 'them_chu_de':
-		if(isset ($_POST['tenchude'] ))
-		{
-			$kq = new ChuDe();
-			$Us = $kq->ThemCD($_POST['tenchude']);
-			$url .='/admin/?option=qlcd';
-
-		}
-		break;
 	case 'sua_chu_de':
-		if(isset($_POST['suacd'])){
+		if(isset($_POST['btn_sua'])){
 			$id= $_GET['id'];
-			$suacd= new ChuDe();
-			$tencd=$_POST['tencd'];
-			$Us = $suacd->SuaCD($id, $tencd);
-			$url .='/admin/?option=qlcd';
+			$chu_de = new ChuDe($id);
+		}else if(isset($_POST['btn_them'])){
+			$chu_de = new ChuDe();
+		}else{
+			header('Location: '.$url);
 		}
+		
+		$chu_de->TenChuDe = $_POST['ten_chu_de'];
+		$chu_de->save();
+		$url .='/admin/?option=qlcd';
+		
+		break;
 	case 'xoa_chu_de':
 		$id= $_GET['id'];
+		$chu_de = new ChuDe($id);
+		$chu_de->delete();
 		$url.='/admin/?option=qlcd';
-		$chu_de = new ChuDe();
-		$chu_de->XoaCD($id);
-		
 		break;
 	case 'them_the_loai':
 		if(isset($_GET["tentl"]))
@@ -176,67 +132,63 @@ switch ($task){
 
 	case 'them_playlist':
 
-		$tenab = $_POST['tenab'];
+		$ten = $_POST['tenab'];
 		$casi=$_POST['casiid'];
-		$img=convert($tenab)."_".time();
+		$img=convert($ten)."_".time();
 		$ngtao=$_SESSION['idUser'];
 		$tlab=$_POST['tlid'];
 		$nam = $_POST['nam'];
-		$thab = Album::ThemAlbum($tenab,$casi,$img,$ngtao,$tlab,$nam);
+		$thab = Playlist::ThemPlaylist($ten,$img,$ngtao,$tlab);
 		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $img."");
-		if(isset($_POST['luuab'])){
-			$url.='/admin/?option=qlab';
-		}else if(isset($_POST['luu_them_ab'])){
-			$_SESSION['success'] = "Đã thêm playlist thành công";
-			$url.='/admin/?option=insertab';				
-		}
+		
 
 		break;
-
 	case 'sua_playlist':
-		if(isset ($_POST['btnsua'])){
+		if( isset($_POST['btn_sua'])) {
 			$id = $_GET['id'];
-			$album = new Album($id);
+			$playlist = new Playlist($id);
+			$url.='/admin/?option=ql_playlist';
+		}else  if(isset($_POST['btn_luu']) || isset($_POST['luu_them_ab'])) {
+			$playlist = new Playlist();
+			$playlist->NguoiTao = $_SESSION['idUser'];
 			
-			$album->TenAlbum = $_POST['tenab'];
-			$album->CaSiId = $_POST['casiid'];
-			$album->TheLoaiId=$_POST['tlid'];
-			$album->NamPhatHanh = $_POST['nam'];
-
-			$img=$_POST['old_pic'];
-			if(!empty($_FILES["hinh"]["tmp_name"])){
-				$img=convert($tenab)."_".time();
+			if(isset($_POST['luu_them_ab'])){
+				$_SESSION['success'] = "Đã thêm playlist thành công";
+				$url.='/admin/?option=insert_playlist';
 			}
-
-			$album->Hinh = $img;
-			$album->update();
-
-			if(!empty($_FILES["hinh"]["tmp_name"]))
-				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $img."");
-			$url.='/admin/?option=qlab';	
 		}else if(isset ($_POST['add_more_bh'])){
-			//var_dump($_POST['baihats']);die;
-			$abid=$_GET["id"];
+			$playlist_id=$_GET["id"];
 			$baiHatId_arr = $_POST["baihats"];
 			if (count($baiHatId_arr)> 0){
-			    foreach ($baiHatId_arr as $key=>$baiHatId){
-			        Album::AddBaiHat($baiHatId,$abid);
-                }
-            }
-            $url .= '/admin/?option=updateab&id='.$abid;
-
-        }
+				foreach ($baiHatId_arr as $key=>$baiHatId){
+					Playlist::AddBaiHat($baiHatId,$playlist_id);
+				}
+			}
+			$url .= '/admin/?option=upd_playlist&id='.$playlist_id;
+			header('Location: '.$url);
+		}else{
+			header('Location: '.$url);
+		}
 		
+		$playlist->TenPlaylist = $_POST['ten_playlist'];
+		$playlist->TheLoai=$_POST['the_loai'];
+		
+		if(!empty($_FILES["hinh"]["tmp_name"])){
+			$playlist->Hinh=convert($playlist->TenPlaylist)."_".time();
+			move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $playlist->Hinh.".jpg");
+		}
+		
+		$playlist->save();
 		
 		break;
 
 	case 'xoa_playlist':
 		$id= $_GET['id'];
 
-		$album = new Album($id);
-		$album->delete();
+		$playlist = new Playlist($id);
+		$playlist->delete();
 
-		$url.='/admin/?option=qlab';
+		$url.='/admin/?option=qlpl';
 		
 		break;
 	case 'xoa_video':
@@ -280,15 +232,15 @@ switch ($task){
 		echo $nguoi_dung->checkAlbumInWishlist($userId, $albumId);
 		break;
 
-	case 'xoa_bai_hat_album':
-		$albumId = $_GET["playlist"];
+	case 'xoa_bai_hat_playlist':
+		$playlist_id = $_GET["playlist"];
 		
 		$baiHatId = $_GET["bai_hat"];
 
-		$album = new Album($albumId);
-		$album->removeBaiHat($baiHatId);
+		$playlist = new Playlist($playlist_id);
+		$playlist->removeBaiHat($baiHatId);
 
-		$url .= '/admin/?option=updateab&id='.$albumId;
+		$url .= '/admin/?option=upd_playlist&id='.$playlist_id;
 		break;
 
 	default:

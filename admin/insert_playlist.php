@@ -8,18 +8,18 @@
   $action= BASE_URL.'/controllers/xuly.php?task=them_playlist';
   if(isset($_GET['id'])){
     $id=$_GET['id'];
-    $ab= new Playlist($id);
+    $playlist= new Playlist($id);
     
-    $suaab = isset($ab) && isset($ab->id);
+    $suaab = !is_null($playlist->getId());
 
     if($suaab){
-      $action= BASE_URL.'/controllers/xuly.php?task=sua_playlist&id='.$ab->id;
-      $back_url= '/admin/?option=updateab&id='.$ab->id;
+      $action= BASE_URL.'/controllers/xuly.php?task=sua_playlist&id='.$playlist->getId();
+      $back_url= '/admin/?option=upd_playlist&id='.$playlist->getId();
     }
   }
 ?>
 <?php if($suaab) { ?>
-  <h3>SỬA PLAYLIST: <?php echo $ab->TenPlaylist;?></h3>
+  <h3>SỬA PLAYLIST: <?php echo $playlist->TenPlaylist;?></h3>
 <?php } else { ?>
   <h3>THÊM PLAYLISY</h3>
 <?php } ?> 
@@ -36,37 +36,17 @@ if(isset($_SESSION['success'])){?>
 }?>
 
   <div class="form-group">
-    <label for="input" class="col-sm-3 control-label" >Tên Playlist</label>
+    <label for="ten_playlist" class="col-sm-3 control-label" >Tên Playlist</label>
     <div class="col-sm-5">
-      <input value="<?php if($suaab) echo $ab->TenPlaylist;?>" type="text" class="form-control" id="tenab" name="tenab" placeholder=""required>
+      <input value="<?php if($suaab) echo $playlist->TenPlaylist;?>" type="text" class="form-control" id="ten_playlist" name="ten_playlist" placeholder="" required>
 
     </div>
     <div class="col-sm-4"></div>
   </div>
-  
-  <div class="form-group">
-    <label for="input" class="col-sm-3 control-label">Tên Ca Sĩ</label>
+    <div class="form-group">
+    <label for="the_loai" class="col-sm-3 control-label">Tên Thể Loại</label>
     <div class="col-sm-5">
-      <select class="form-control" id="casiid" name="casiid">
-        <option value="0">[Vui lòng chọn Ca Sĩ] </option>
-
-        <?php
-            $t = new CaSi();
-            $ds = $t->DSCaSi();
-            while($r = $ds->fetch_object())
-            {
-        ?>
-        <option value="<?php echo $r->id; ?>"  <?php if($suaab && ($ab->CaSiId == $r->id)) echo "selected='selected'"; ?> ><?php echo $r->TenCaSi ?> </option>
-        <?php }?>
-      </select>
-
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="input" class="col-sm-3 control-label">Tên Thể Loại</label>
-    <div class="col-sm-5">
-        <select class="form-control" id="tlid" name="tlid">
+        <select class="form-control" id="the_loai" name="the_loai">
           <option value="0">[Vui lòng chọn Thể Loại] </option>
               <?php
                   $tl = new TheLoai();
@@ -76,37 +56,24 @@ if(isset($_SESSION['success'])){?>
                   {
                     
                 ?>
-            <option value = "<?php echo $r->id ?>"<?php  if($suaab && ($ab->TheLoaiId==$r->id)) echo"selected='selected'";?> ><?php echo $r->TenTheLoai ?></option>
+            <option value = "<?php echo $r->Id ?>"<?php  if($suaab && ($playlist->TheLoai==$r->Id)) echo"selected='selected'";?> ><?php echo $r->TenTheLoai ?></option>
             <?php }?>
         </select>
     </div>
-  </div>      
-
-  <div class="form-group">
-    <label for="input" class="col-sm-3 control-label" >Năm Phát Hành</label>
-    <div class="col-sm-5">
-      <input value="<?php if($suaab) echo $ab->NamPhatHanh;?>" type="text" class="form-control" id="nam" name="nam" placeholder=""required>
-
-    </div>
-  </div>  
-  <div class="form-group">
-    <img src="<?php if($suaab && !empty($ab->Hinh)) echo BASE_URL.'/img/playlist/'.$ab->Hinh;?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
-    <label for="input" class="col-sm-3 control-label" >Hình</label>
-    <?php if($suaab){
-      echo '<input hidden type ="text" value="'.$ab->Hinh.'" name ="old_pic"/>';
-    }?>
   </div>
   <div class="form-group">
-    <input class="col-md-5 col-md-offset-3" type ="file" id="hinh" name ="hinh"/>
+    <img src="<?php echo BASE_URL; ?><?php echo ($suaab && !empty($playlist->Hinh))? '/img/playlist/'.$playlist->Hinh.'.jpg' : '/img/No_Image_Available.png'; ?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
+    <label for="input" class="col-md-3 control-label" >Hình</label>
+    <input class="col-md-offset-3" type ="file" id="hinh" name ="hinh"/>
   </div>
  
   <div class="form-group">
     <div class="col-sm-offset-6 col-sm-6">
     <?php if($suaab) { ?>
-        <button type="submit" class="btn btn-default" id="btnsua" name="btnsua" >Sửa</button> 
+        <button type="submit" class="btn btn-default" id="btn_sua" name="btn_sua" >Sửa</button>
         <?php } else { ?>
-          <button type="submit" class="btn btn-primary" name="luu_them_ab">Lưu và thêm</button>
-          <button type="submit" class="btn btn-default" name="luuab">Lưu</button>
+          <button type="submit" class="btn btn-primary" name="btn_luu_them">Lưu và thêm</button>
+          <button type="submit" class="btn btn-default" name="btn_luu">Lưu</button>
       <?php } ?>       
     </div>
   </div>
@@ -132,19 +99,19 @@ if(isset($_SESSION['success'])){?>
     </thead>
     <tbody>
       <?php
-          $baihats = $ab->DSBaiHat();
+          $baihats = $playlist->DSBaiHat();
         
           $i=1;
           while($r = $baihats->fetch_object())
           {
       ?>
       <tr>
-          <td style="text-align: center;"><?php echo $i."."; ?> </td>
-          <td id="baihat_<?php echo $r->id; ?>"><a href="<?php echo BASE_URL.'/admin/?option=updatebh&id='.$r->id.'&back_url='.urlencode($back_url); ?>"><?php echo $r->TenBaiHat?></a></td>
-          <td> <?php echo $r->TenCaSi ?></td>
-          <td> <?php echo $r->TenNhacSi ?> </td>
-          <td > <?php echo $r->TheLoai ?> </td>
-          <td> <a class="btn btn-small btn-danger delete-baihat-playlist" href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_bai_hat_playlist&bai_hat=<?php echo $r->id;?>&playlist=<?php echo $ab->id; ?>" > Xóa</a></td>
+        <td style="text-align: center;" width="30"><?php echo $i."."; ?> </td>
+        <td id="baihat_<?php echo $r->Id; ?>"><a href="<?php echo BASE_URL.'/admin/?option=upd_bai_hat&id='.$r->Id.'&back_url='.urlencode($back_url); ?>"><?php echo $r->TenBaiHat?></a></td>
+        <td> <?php echo $r->TenCaSi; ?></td>
+        <td> <?php echo $r->TenNhacSi; ?> </td>
+        <td > <?php echo $r->TheLoai; ?> </td>
+        <td width="50"><a class="btn btn-small btn-danger delete-baihat-playlist" href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_bai_hat_playlist&bai_hat=<?php echo $r->Id;?>&playlist=<?php echo $playlist->getId(); ?>" > Xóa</a></td>
       </tr>
 
       <?php $i++;}?>
@@ -176,24 +143,24 @@ if(isset($_SESSION['success'])){?>
             </thead>
             <tbody>
               <?php
-                  $baihats = $ab->DSBaiHatChuaCo();
+                  $baihats = $playlist->DSBaiHatChuaCo();
                   $i=1;
                   while($r = $baihats->fetch_object())
                   {
               ?>
               <tr>
-                  <td style="text-align: center;"><?php echo $i."."; ?> </td>
-                  <td id="baihat_<?php echo $r->id; ?>"><?php echo $r->TenBaiHat?></td>
-                  <td> <?php echo $r->TenCaSi ?></td>
-                  <td> <?php echo $r->TenNhacSi ?> </td>
-                  <td > <?php echo $r->TheLoai ?> </td>
-                  <td><label><input type="checkbox" name="baihats[]" value="<?php echo $r->id;?>" /><label></td>
+                  <td style="text-align: center;" width="30"><?php echo $i."."; ?> </td>
+                  <td id="baihat_<?php echo $r->Id; ?>"><?php echo $r->TenBaiHat?></td>
+                  <td> <?php echo $r->TenCaSi; ?></td>
+                  <td> <?php echo $r->TenNhacSi; ?> </td>
+                  <td> <?php echo $r->TheLoai; ?> </td>
+                  <td style="text-align: center;" width="50"><label><input type="checkbox" name="baihats[]" value="<?php echo $r->Id;?>" /><label></td>
               </tr>
               <?php $i++;}?>
             </tbody>  
           </table> 
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" style="margin-top: 0;">
           <button type="submit" class="btn btn-primary" name="add_more_bh">Thêm</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
         </div>

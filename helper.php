@@ -15,10 +15,17 @@ function convert($str) {
     $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
     $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
     $str = preg_replace("/(Đ)/", 'D', $str);
-  
+    
     $str = str_replace(" ", "-", str_replace("&*#39;","",$str));
     return $str;
+}
+function shortenLongString($data, $length = 100){
+  if(strlen($data) > $length)
+  {
+    return substr($data, 0, $length)."...";
   }
+  else return $data;
+}
   ?>
   
   

@@ -1,74 +1,40 @@
 <?php
 
-class CaSi{
-	public function __construct() {
-	}
+class CaSi extends Controller {
+	public static $table = 'casi';
 	
-	public function DanhSachBH()
-	{
-		$sql="SELECT b.*, theloai.TenTheLoai as TheLoai, casi.TenCaSi, nhacsi.TenNhacSi FROM BaiHat b
-        left join theloai on b.TheLoaiId=theloai.id
-        left join casi on casi.id = b.CaSiId
-        left join nhacsi on nhacsi.id = b.NhacSiId
-        ORDER BY id DESC ";
+	protected $Id;
+	public $TenCaSi;
+	public $NgaySinh;
+	public $QueQuan;
+	public $Hinh;
+	public $TieuSu;
+	
+	protected function __withId($id){
+		$sql="SELECT * FROM casi WHERE id = $id limit 1";
 		
-		return DatabaseProvider::execQuery($sql);
-	}
-	public function ThemBH($TenBH, $CSId,$NSId, $TLId, $loibh)
-	{
-		$sql= "INSERT INTO `baihat` (`TenBaiHat`, `CaSiId`, `NhacSiId`, `TheLoaiId`,  `Loi`) VALUES ('$TenBH', '$CSId', '$NSId', '$TLId',  '$loibh') ";
-		//echo $sql;
-		return DatabaseProvider::execQuery($sql);
-	}
-	public function XoaBH( $id)
-	{
-		$sql="DELETE FROM BaiHat WHERE id=$id";
-		return DatabaseProvider::execQuery($sql);
-	}
-    public function DanhSachCS()
-    {
-        $sql="SELECT * FROM casi ORDER BY id DESC ";
-        return DatabaseProvider::execQuery($sql);
-    }
-    public function ThemCS($TenCS, $ns, $quequan,$img, $tieusu)
-    {
-        $sql= "INSERT INTO `casi` (`TenCaSi`, `NgaySinh`, `QueQuan`, `img`, `TieuSu`) VALUES ('$TenCS', '$ns', '$quequan', '$img','$tieusu')";
-        return DatabaseProvider::execQuery($sql);
-      
-    }
-       
-    public function XoaCS($id)
-    {
-        $sql="DELETE FROM casi WHERE id=$id";
-        return DatabaseProvider::execQuery($sql);
-    }
-    
-    public function SuaCS($id, $tencs, $img, $ns, $quequan,$tieusu)
-    {
-        $sql= "UPDATE `casi` SET `TenCaSi` = '$tencs',`NgaySinh`='$ns', `img`='$img' ,`QueQuan`='$quequan' , `TieuSu`='$tieusu'  WHERE `casi`.`id` = $id";
-        return DatabaseProvider::execQuery($sql);
-      
-    }
-    public function DSCaSi()
-    {
-        $sql="SELECT id,TenCaSi FROM casi";
-        return DatabaseProvider::execQuery($sql);
-    }
-    public static function LayCS($id){
-		$casi=new \stdClass();
-        $sql="SELECT * FROM `casi` WHERE id = $id";
 		$result=DatabaseProvider::execQuery($sql);
-        while($r = $result->fetch_object()){
-			$casi->id=$r->id;
-			$casi->CaSi=$r->TenCaSi;
-			$casi->NgaySinh=$r->NgaySinh;
-			$casi->QueQuan=$r->QueQuan;
-			$casi->TieuSu=$r->TieuSu;
-			$casi->img=$r->img;
+		$r = $result->fetch_object();
+		
+		$this->Id = $r->Id;
+		$this->TenCaSi = $r->TenCaSi;
+		$this->NgaySinh = $r->NgaySinh;
+		$this->QueQuan = $r->QueQuan;
+		$this->Hinh = $r->Hinh;
+		$this->TieuSu = $r->TieuSu;
+	}
+	public static function DanhSachForSelection(){
+		$sql="SELECT Id, TenCaSi FROM casi ORDER BY Id DESC ";
+		return DatabaseProvider::execQuery($sql);
+	}
+	public function save(){
+		if(is_null($this->Id)){
+			$sql= "INSERT INTO casi (TenCaSi, NgaySinh, QueQuan, Hinh, TieuSu) VALUES ('$this->TenCaSi', '$this->NgaySinh', '$this->QueQuan', '$this->Hinh','$this->TieuSu')";
+		}else{
+			$sql= "UPDATE casi SET TenCaSi = '$this->TenCaSi', NgaySinh='$this->NgaySinh', QueQuan='$this->QueQuan', Hinh='$this->Hinh' ,TieuSu='$this->TieuSu' WHERE Id = $this->Id";
 		}
-		return $casi;
-    }
-
+		DatabaseProvider::execQuery($sql);
+	}
 }
 
 
