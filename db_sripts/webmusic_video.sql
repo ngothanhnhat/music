@@ -1,0 +1,1 @@
+INSERT INTO webmusic.video (Id, TenVideo, CaSi, TheLoai, LuotXem) VALUES (2, 'Tiếng Đàn Ta Lư', 0, 'Nhạc Cách Mạng', 12);

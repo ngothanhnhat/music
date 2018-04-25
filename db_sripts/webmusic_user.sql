@@ -1,0 +1,3 @@
+INSERT INTO webmusic.user (ID, UserName, PassWord, Email, PhanQuyen) VALUES (1, 'myhieu', '4ae4ad0da25f31b7be3a984d8f42802e', 'truongthimyhieu@gmail.com', 1);
+INSERT INTO webmusic.user (ID, UserName, PassWord, Email, PhanQuyen) VALUES (4, 'Nguyen van ', '827ccb0eea8a706c4c34a16891f84e7b', 'nguyenvan@gmail.com', 0);
+INSERT INTO webmusic.user (ID, UserName, PassWord, Email, PhanQuyen) VALUES (5, 'Tran van Thien', '71bfa1110fe86a01ec23e5061c0c83b5', 'tranvanthien@gmail.com', 0);
