@@ -17,7 +17,7 @@ if(isset($_GET['id'])){
 <?php }?>
 
 <div class="sss" style="width: 800px; height: 350px; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
-	<form action="<?php echo $ac;?>" method="POST"  class="form-horizontal" role="form">
+	<form action="<?php echo $ac;?>" method="POST"  class="form-horizontal" role="form" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<label for="ten_video" class="col-sm-3 control-label" >Tên Video</label>

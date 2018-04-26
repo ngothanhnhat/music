@@ -10,7 +10,6 @@ class DatabaseProvider {
 	private $_username = DB_USERNAME;
 	private $_password = DB_PASSWORD;
 	private $_database = DB_NAME;
-	private $_charset = DB_charset;
 	/*
 	Get an instance of the Database
 	@return Instance

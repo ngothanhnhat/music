@@ -11,7 +11,8 @@ create table baihat
 	Album text collate utf8_unicode_ci not null,
 	PlaylistId int not null,
 	Audio text null,
-	Lyric text null
+	Lyric text null,
+	LyricString text
 )
 engine=InnoDB charset=utf8
 ;

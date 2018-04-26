@@ -75,16 +75,17 @@ include_once("configs/global.php");
 </script>
 <?php
 include_once("DatabaseProvider.php");
+include_once("controllers/controller.php");
 include_once("controllers/nguoidung.php");
 if(isset($_POST['user']) && $_POST['password'])
 {
-	$kq = new NguoiDung();
-	$Us = $kq->layND($_POST['user'],md5($_POST['password']));
+
+	$Us = NguoiDung::LayND($_POST['user'],crypt($_POST['password'], DB_SALT));
 	if(mysqli_num_rows($Us)==1)
     {
         $r = mysqli_fetch_array($Us);
         $_SESSION['idUser'] = $r['Id'];
-		$_SESSION['User'] = $r['UserName'];
+		$_SESSION['User'] = $r['Username'];
 		$_SESSION['Level'] = $r['PhanQuyen'];
 		if($_SESSION['Level'] == 1)
 		{

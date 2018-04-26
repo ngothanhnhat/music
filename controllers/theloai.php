@@ -13,10 +13,6 @@ class TheLoai extends Controller
 		$this->Id = $r->Id;
 		$this->TenTheLoai = $r->TenTheLoai;
 	}
-	public static function DanhSachForSelection(){
-		$sql="SELECT Id, TenTheLoai FROM theloai ORDER BY Id DESC ";
-		return DatabaseProvider::execQuery($sql);
-	}
 
 	public function save()
 	{
@@ -27,14 +23,6 @@ class TheLoai extends Controller
 		}
 		databaseProvider::execQuery($sql);
 	}
-
-
-    public function XoaTL($id)
-    {
-        $sql="DELETE FROM theloai WHERE id=$id";
-        return DatabaseProvider::execQuery($sql);
-    }
-
 
 }
 

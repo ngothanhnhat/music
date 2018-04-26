@@ -26,6 +26,22 @@ function shortenLongString($data, $length = 100){
   }
   else return $data;
 }
+function  getLyricString($filename){
+	$result='';
+	$file = fopen($filename, "r") or exit("Unable to open file!");
+	//Output a line of the file until the end is reached
+	while(!feof($file))
+	{
+		$line = mb_convert_encoding(fgets($file),'UTF-8');
+		$position = strrpos($line, ']', -1);
+		$lyric = trim(substr($line,$position+1));
+		if(!empty(trim($lyric))){
+			$result .= ctype_upper($lyric[0]) ? '<hr>'.$lyric : ' '.$lyric;
+		}
+	}
+	fclose($file);
+	return $result;
+}
   ?>
   
   

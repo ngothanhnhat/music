@@ -279,18 +279,20 @@
         
         <?php 
             include_once("controllers/baihat.php");
-            $getbh = new BaiHat();
             $i=1;
-            $dsbh = $getbh->DanhSachBH(16);
+            $dsbh = BaiHat::DanhSach(16);
             while($r = $dsbh->fetch_object())
             {
                 if($i ==1)
                 echo "<div class='row'>";
         ?>
            <div class="col-md-6" >
-           
-                <p class ="TenBH"> <a href= "index.php?option=nghe1bh&id=<?php echo $r->id;?>" style="color:#000;text-decoration:none;"> <?php echo $r->TenBaiHat;?> </a>- <?php echo $r->TenCaSi;?><span id="" class="fas fa-heart" style ="float:right;color:#999999;font-size:10px;margin-left:15px;" wgct="1"></span><span id="" class="fas fa-headphones" style ="float:right;color:#999999;font-size:10px;" wgct="1"><?php echo $r->LuotNghe?></span></p>
-                
+                <p class ="TenBH">
+									<a href= "index.php?option=nghe1bh&id=<?php echo $r->Id;?>" style="color:#000;text-decoration:none;">
+										<?php echo $r->TenBaiHat;?> </a> - <?php echo $r->TenCaSi;?>
+									<span id="" class="fas fa-heart" style ="float:right;color:#999999;font-size:12px;margin-left:41px;" wgct="1"></span>
+									<span id="" class="fas fa-headphones" style ="float:right;color:#999999;font-size:12px;" wgct="1"> <?php echo $r->LuotNghe?>
+								</p>
                 <hr>
            </div>
         <?php 
@@ -301,7 +303,6 @@
             $i++;
         }?>
       
-    </div>
     </div>
    <!-- <div class="col-md-6" style="margin-right:0px;"> -->
         
@@ -337,4 +338,5 @@
       
     </div>
     -->
+		</div>
     

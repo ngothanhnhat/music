@@ -1,72 +1,40 @@
 
-<!-- <div class="row" style="margin:5px;">
-                    
-                    <div class="col-md-9">
-                        <div class="row" >
-                        <h3> Buồn của anh </h3>
-                        <div style="height:250px;background:#e6b677;;"> 
-                            
-                            <img src="img/hinh11.jpg" width="300px" height ="200px" style= "float: left "alt="" srcset=""> 
-                            
-                            <h4 style="float: right; margin-right: 200px;">
-                            K-ICM, Đạt G, Masew
-                            </h4>
-                            <img src="img/hinh11.jpg" width="150px" height ="150px" style= "float: left; margin-left: 200px; border-radius: 50%;margin-top:10px; "alt="" srcset="">
-                           
-                            <audio src="music/I-Do.mp3" controls autoplay style="width:100%;"></audio>
-                        </div>
-                        
-                        
-                        
-                        <h4> Lời bài hát: Buồn của anh</h4>   
-                        <p> Bài hát: Buồn Của Anh - K-ICM, Đạt G, Masew </p>
-            <p>Hai tay anh ôm xương rồng rất đau .. 
-            Đôi vai anh mang nỗi buồn rất lâu .. 
-            Chân anh lang thang kiếm em ở khắp chốn 
-            Nước mắt trào, biết em giờ ở nơi đâu. 
-            Đôi khi cô đơn xiết anh từng cơn em hỡi .. 
-            
-            Bao nhiêu nước mắt để đổi bình yên bên em </p>
-                       
-                    </div>
-            </div>
-                    
-                    <div class="col-md-3"> 
-                        <h3>NGHE TIẾP</h3>
-                        <?php include("modules/baihat.php");?>     
-                </div>
-            </div>
-            
-            -->
            
-<?php 
+<?php
+
+include_once("controllers/nhacsi.php");
 include_once("controllers/baihat.php");
 if(isset($_GET['id'])){
     $id= $_GET['id'];
-    $baihat= new BaiHat();
-    $bh = $baihat->LayBaiHat($id);
-    $tenbaihat ="";
+    $baihat= new BaiHat($id);
+
 }
 ?>
 
 <link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">
 
-<?php
-while($r = $bh->fetch_object()){
-    $tenbaihat=$r->TenBaiHat; 
-   
-?>
-<h3> <?php echo $r->TenBaiHat;?> </h3>
-    <div id="_src" hidden 
-    audio-url="<?php echo BASE_URL;?>/music/audio/<?php echo $r->audio;?>.mp3" 
-    lyric-url="<?php echo BASE_URL;?>/music/lyrics/<?php echo $r->lyrics;?>.lrc"
-    casi="<?php echo $r->TenCaSi;?>">
-    </div>
-   
-<?php } ?>
 
-<div class="col-md-7" style="padding-left:0px;">
+<h3> <?php echo $baihat->TenBaiHat;?> </h3>
+<div id="_src" hidden
+audio-url="<?php echo BASE_URL;?>/music/audio/<?php echo $baihat->Audio;?>.mp3"
+lyric-url="<?php echo BASE_URL;?>/music/lyrics/<?php echo $baihat->Lyric;?>.lrc"
+casi="<?php echo $baihat->TenCaSi;?>">
+</div>
+
+<div class="col-md-7" style="padding:0; margin-bottom: 50px">
     <div id="aplayer"></div>
+</div>
+
+<div class="col-md-7" id="lyric">
+	<p>Bài hát: <span style="color: #5bc0de; font-size: 20px;"><?php echo $baihat->TenBaiHat;?></span></p>
+	<p>Nhạc sĩ: 	<span style="font-style: italic;"><?php echo $baihat->getNhacSi()->TenNhacSi;?></span></p>
+	<div id="div-lyric">
+		<?php echo $baihat->LyricString?>
+	</div>
+	<div class="more_add" id="divMoreAddLyric">
+		<a href="javascript:;" id="seeMoreLyric" title="Xem toàn bộ" class="btn_view_more">Xem toàn bộ <i class="fa fa-angle-double-down"></i></a>
+		<a href="javascript:;" hidden id="hideMoreLyric" title="Thu gọn" class="btn_view_hide">Thu gọn <i class="fa fa-angle-double-up"></i></a>
+	</div>
 </div>
 
 
@@ -77,9 +45,12 @@ while($r = $bh->fetch_object()){
         <h3> BÀI HÁT </h3>
       
         <?php 
-            $bhgiongten= $baihat->LayBHGiongTen($tenbaihat);
+            $bhgiongten= $baihat->getBaiHatGiongTen();
             while($row = $bhgiongten->fetch_object()){?>
-            <h5> <a href= "index.php?option=nghe1bh&id=<?php echo $row->id ;?>"  style="color:#000;text-decoration:none;"><?php echo $row->TenBaiHat; ?> </a>  <hr> </h5>
+            <h5>
+							<a href= "index.php?option=nghe1bh&id=<?php echo $row->Id ;?>"  style="color:#000;text-decoration:none;"><?php echo $row->TenBaiHat; ?> </a>
+							<hr>
+						</h5>
         <?php } ?>
     </div>
 </div>
@@ -102,6 +73,20 @@ $(function(){
         },
         ]
     });
+
+    // View lyric process
+		$('#seeMoreLyric').click(function () {
+		    $(this).hide();
+		    $('#hideMoreLyric').show();
+
+		    $('#div-lyric').attr("style", "height:auto;max-height:none;");
+    });
+    $('#hideMoreLyric').click(function () {
+        $(this).hide();
+        $('#seeMoreLyric').show();
+        $("#div-lyric").attr("style", "height:auto;max-height:255px;overflow:hidden;");
+    });
+
 })
     
 </script>

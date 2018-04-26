@@ -13,7 +13,15 @@ class BaiHat extends Controller {
 	public $LuotNghe;
 	public $Audio;
 	public $Lyric;
-	
+	public $LyricString;
+
+	public function getNhacSi()
+	{
+		$nhac_si = new NhacSi($this->NhacSi);
+		return $nhac_si;
+	}
+
+
 	protected function __withId($id){
 		$sql="SELECT * FROM baihat WHERE id = $id limit 1";
 
@@ -27,6 +35,7 @@ class BaiHat extends Controller {
 		$this->TheLoai = $r->TheLoai;
 		$this->Audio = $r->Audio;
 		$this->Lyric = $r->Lyric;
+		$this->LyricString = $r->LyricString;
 	}
 	
 	public static function DanhSach($limit=-1){
@@ -44,9 +53,9 @@ class BaiHat extends Controller {
 	  
   public function save(){
 	  if(is_null($this->Id)){
-		  $sql= "INSERT INTO baihat (TenBaiHat, CaSi, NhacSi, TheLoai, Audio, Lyric) VALUES ('$this->TenBaiHat', $this->CaSi, $this->NhacSi, $this->TheLoai, '$this->Audio', '$this->Lyric') ";
+		  $sql= "INSERT INTO baihat (TenBaiHat, CaSi, NhacSi, TheLoai, Audio, Lyric,LyricString) VALUES ('$this->TenBaiHat', $this->CaSi, $this->NhacSi, $this->TheLoai, '$this->Audio', '$this->Lyric', '$this->LyricString') ";
 	  }else{
-      $sql= "UPDATE baihat SET TenBaiHat = '$this->TenBaiHat', CaSi=$this->CaSi, NhacSi=$this->NhacSi, TheLoai=$this->TheLoai ,Audio='$this->Audio' , Lyric='$this->Lyric' WHERE Id = $this->Id";
+      $sql= "UPDATE baihat SET TenBaiHat = '$this->TenBaiHat', CaSi=$this->CaSi, NhacSi=$this->NhacSi, TheLoai=$this->TheLoai ,Audio='$this->Audio' , Lyric='$this->Lyric', LyricString='$this->LyricString' WHERE Id = $this->Id";
 	  }
 	  
 		DatabaseProvider::execQuery($sql);

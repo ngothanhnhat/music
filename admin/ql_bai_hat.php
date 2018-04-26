@@ -34,7 +34,7 @@
           <td> <?php echo $r->TenNhacSi; ?> </td>
           <td> <?php echo $r->TheLoai; ?> </td>
           <td> <?php echo $r->Audio; ?> </td>
-          <td> <?php echo $r->Lyric; ?> </td>
+          <td> <?php echo shortenLongString($r->LyricString,150);?> </td>
           <td width="50"><a class="btn btn-small btn-default" href="?option=upd_bai_hat&id=<?php echo $r->Id; ?>">Sửa </a></td>
           <td width="50"><a class="btn btn-small btn-danger delete-baihat" href ="<?php echo BASE_URL; ?>/controllers/xuly.php?task=xoa_bai_hat&id=<?php echo $r->Id; ?>" > Xóa</a></td>
       </tr>

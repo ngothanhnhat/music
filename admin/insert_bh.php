@@ -74,9 +74,8 @@
         <select class="form-control" id="the_loai" name="the_loai">
           <option value="0">[Vui lòng chọn Thể Loại] </option>
               <?php
-                  $tl = new TheLoai();
-            
-                  $dstl = $tl->DanhSachTheLoai();
+
+                  $dstl = TheLoai::DanhSach();
                   while($r = $dstl->fetch_object())
                   {
                   
@@ -93,7 +92,7 @@
         <?php if($suabh) {
           echo "<p style='float:left;margin-right:5px;'>".$bai_hat->Audio.".mp3</p>";
         }?>
-          <input type ="file" name ="audio" id="audio"/>
+          <input type ="file" name ="audio" id="audio" accept=".mp3,audio/*"/>
         </div>
     </div>
     <div class="form-group">
@@ -103,7 +102,7 @@
           echo "<p style='float:left;margin-right:5px;'>".$bai_hat->Lyric.".lrc</p>";
         }
         ?>
-          <input type ="file" name ="lyric" id="lyric"/>
+          <input type ="file" name ="lyric" id="lyric" accept=".lrc"/>
         </div>
     </div>
 

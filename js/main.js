@@ -8,7 +8,7 @@ $(function(){
 
     var base_url = $('#taikhoan').attr('base-url');
 
-    var url_playlist_is_in_wishlist =   base_url + '/controllers/xuly.php?task=check_playlist_in_wishlist&playlist='+playlistId+'&user='+userId;
+    var url_playlist_is_in_wishlist = base_url + '/controllers/xuly.php?task=check_playlist_in_wishlist&playlist='+playlistId+'&user='+userId;
     $.ajax({
         async: false,
         url: url_playlist_is_in_wishlist,

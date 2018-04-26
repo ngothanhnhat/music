@@ -1,7 +1,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse"style="background:#c4e8fd ;position: fixed; z-index:99;width: 100%;">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Nhạc</a></li>
+            <li class="active"><a href="<?php echo BASE_URL; ?>">Nhạc</a></li>
             <li><a href="#">Video</a></li>
         </ul>
         
@@ -20,8 +20,8 @@
         <ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
       
             <?php if(!isset($_SESSION['idUser'])){ ?>
-                <li><a href="login.php">Đăng nhập</a></li>
-                <li><a href="signup.html">Đăng ký</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/login.php">Đăng nhập</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/signup.php">Đăng ký</a></li>
 
             <?php } else{ ?>
                 <div class="btn-group" style="margin-top:10px;">
@@ -31,7 +31,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li class="divider"></li> 
 
-                        <li><a href="<?php echo BASE_URL;?>/?option=account&id=<?php echo $_SESSION['idUser'];?>">Trang cá nhân</a></li>
+                        <li><a id="taikhoan" base-url="<?php echo BASE_URL;?>" href="<?php echo BASE_URL;?>/?option=account&id=<?php echo $_SESSION['idUser'];?>">Trang cá nhân</a></li>
 
                         <li class="divider"></li>
                         

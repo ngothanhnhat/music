@@ -44,12 +44,14 @@ switch ($task){
 		
 		if(!empty($_FILES["audio"]["tmp_name"])){
 			$bai_hat->Audio = strval(time());
-			move_uploaded_file($_FILES["source"]["tmp_name"],"../music/audio/". $bai_hat->Audio . ".mp3");
+			move_uploaded_file($_FILES["audio"]["tmp_name"],"../music/audio/". $bai_hat->Audio . ".mp3");
 		}
 		if(!empty($_FILES["lyric"]["tmp_name"])){
 			$bai_hat->Lyric = strval(time());
+			$bai_hat->LyricString = getLyricString($_FILES["lyric"]["tmp_name"]);
 			move_uploaded_file($_FILES["lyric"]["tmp_name"],"../music/lyrics/". $bai_hat->Lyric.".lrc");
 		}
+
 		$bai_hat->save();
 		break;
 	case 'xoa_bai_hat':
@@ -192,6 +194,35 @@ switch ($task){
 		$url.='/admin/?option=ql_playlist';
 		
 		break;
+
+		case 'them_video':
+		case 'sua_video':
+			if(isset ($_POST['btn_them'] )){
+				$video = new Video();
+				$url .='/admin/?option=qlvd';
+			}else if(isset($_POST['btn_sua'])) {
+				$id = $_GET['id'];
+				$video = new Video($id);
+
+				if(isset($_GET['b_url'])){
+					$url .=$_GET['b_url'];
+				}else{
+					$url .='/admin/?option=qlvd';
+				}
+			}else {
+				header('Location: '.$url);
+			}
+			$video->TenVideo= $_POST['ten_video'];
+			$video->CaSi = $_POST['ca_si'];
+			$video->TheLoai = $_POST['the_loai'];
+			$video->Video=$_POST['mv'];
+			if(!empty($_FILES["mv"]["tmp_name"])){
+				$video->Video = strval(time());
+				move_uploaded_file($_FILES["mv"]["tmp_name"],"../music/video/". $video->Video . ".mp4");
+			}
+
+			$video->save();
+			break;
 	case 'xoa_video':
 		$id= $_GET['id'];
 		$url.='/admin/?option=qlvd';
@@ -227,27 +258,24 @@ switch ($task){
 		break;
 	case 'upd_playlist_wishlist':
 		$isRedirect = false;
-		$albumId = $_GET["playlist"];
+		$playlistId = $_GET["playlist"];
 		$userId = $_GET["user"];
 		$check = $_GET["check"];
-
-		$nguoi_dung = new NguoiDung();
 		
 		if($check == 'check'){
 			//Insert vào wishlist
-			$nguoi_dung->themAlbumWishlist($userId, $albumId);
+			NguoiDung::themPlaylistWishlist($userId, $playlistId);
 
 		}else{
 			//Del khoi wishlist	
-			$nguoi_dung->xoaAlbumWishlist($userId, $albumId);
+			NguoiDung::xoaPlaylistWishlist($userId, $playlistId);
 		}
 		break;
-	case 'check_album_in_wishlist':
+	case 'check_playlist_in_wishlist':
 		$isRedirect = false;
-		$albumId = $_GET["playlist"];
+		$playlistId = $_GET["playlist"];
 		$userId = $_GET["user"];
-		$nguoi_dung = new NguoiDung();
-		echo $nguoi_dung->checkAlbumInWishlist($userId, $albumId);
+		echo NguoiDung::checkPlaylistInWishlist($userId, $playlistId);
 		break;
 
 	case 'xoa_bai_hat_playlist':

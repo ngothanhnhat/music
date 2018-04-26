@@ -3,6 +3,8 @@ include_once("controllers/playlist.php");
 if(isset($_GET['id'])){
     $id= $_GET['id'];
     $playlist= new Playlist($id);
+}else{
+	header('location:'.BASE_URL);
 }
 ?>
 <link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">

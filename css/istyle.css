@@ -4,3 +4,24 @@
 .fa-heart.check{
     color: red;
 }
+#lyric {
+    border: 1px solid #009ae1;
+    padding: 20px 20px;
+}
+
+#lyric > div > hr:not(:first-of-type){
+    background-color: #344b561f;
+    margin: 0 0 12px 0;
+}
+#divMoreAddLyric{
+    padding: 15px 0 0;
+}
+#div-lyric{
+    color: #656565;
+    height:auto;
+    max-height:255px;
+    overflow:hidden;
+}
+#menuleft2 li.active{
+    background: #f6f6f6;
+}
