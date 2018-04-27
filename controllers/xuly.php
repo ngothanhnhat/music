@@ -3,7 +3,6 @@ ob_start();
 session_start();
 include_once('../configs/global.php');
 include_once('../helper.php');
-
 include_once("../DatabaseProvider.php");
 include_once('controller.php');
 include_once('baihat.php');
@@ -92,6 +91,31 @@ switch ($task){
 		$ca_si = new CaSi($id);
 		$ca_si->delete();
 		break;
+
+	case 'them_nhac_si':
+	case 'sua_nhac_si':
+		if(isset($_POST['btn_sua'])){
+			$id= $_GET['id'];
+			$nhac_si = new NhacSi($id);
+		}else if(isset($_POST['btn_them'])){
+			$nhac_si = new NhacSi();
+		}else{
+			header('Location: '.$url);
+		}
+
+		$nhac_si->TenNhacSi= $_POST['ten_nhac_si'];
+		$nhac_si->save();
+		$url .='/admin/?option=qlns';
+
+		break;
+	case 'xoa_nhac_si':
+		$id= $_GET['id'];
+		$nhac_si = new NhacSi($id);
+		$nhac_si->delete();
+		$url.='/admin/?option=qlns';
+		break;
+
+
 	case 'them_chu_de':
 	case 'sua_chu_de':
 		if(isset($_POST['btn_sua'])){
@@ -216,39 +240,50 @@ switch ($task){
 			$video->CaSi = $_POST['ca_si'];
 			$video->TheLoai = $_POST['the_loai'];
 			$video->Video=$_POST['mv'];
+
+			if(!empty($_FILES["hinh"]["tmp_name"])){
+				$video->Hinh=convert($video->Hinh)."_".time();
+				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/img_vd/". $video->Hinh.".jpg");
+			}
 			if(!empty($_FILES["mv"]["tmp_name"])){
 				$video->Video = strval(time());
-				move_uploaded_file($_FILES["mv"]["tmp_name"],"../music/video/". $video->Video . ".mp4");
+				move_uploaded_file($_FILES["mv"]["tmp_name"],"../video/". $video->Video . ".mp4");
+					}
+			if(!empty($_FILES["lyric"]["tmp_name"])){
+				$video->Lyric = strval(time());
+				$video->LyricString = getLyricString($_FILES["lyric"]["tmp_name"]);
+				move_uploaded_file($_FILES["lyric"]["tmp_name"],"../video/lyrics/". $video->Lyric.".lrc");
 			}
 
 			$video->save();
 			break;
 	case 'xoa_video':
 		$id= $_GET['id'];
+		$video	 = new Video($id);
+		$video->delete();
 		$url.='/admin/?option=qlvd';
-		$video = new Video();
-		$video->XoaVD($id);
+
 		break;
 	case 'them_nguoi_dung':
 	case 'sua_nguoi_dung':
 		if(isset($_POST["btn_sua"])) {
-			$ID = $_GET['id'];
-			$nguoi_dung = new NguoiDung($ID);
+			$Id = $_GET['id'];
+			$nguoi_dung = new NguoiDung($Id);
 		}else if(isset($_POST['btn_them'])) {
 			$nguoi_dung = new NguoiDung();
 		}else {
 			header('Location: ' . $url);
 		}
-		$nguoi_dung->UserName = $_POST['ten_nguoi_dung'];
-		$nguoi_dung->PassWord = $_POST['mat_khau'];
+		$nguoi_dung->Username = $_POST['ten_nguoi_dung'];
+		$nguoi_dung->Password = $_POST['mat_khau'];
 		$nguoi_dung->Email = $_POST['email'];
 		$nguoi_dung->PhanQuyen = $_POST['phanquyen'];
 		$nguoi_dung->save();
 		$url .='/admin/?option=qlnd';
 		break;
 	case 'xoa_nguoi_dung':
-		$ID= $_GET['id'];
-		$nguoi_dung	 = new NguoiDung($ID);
+		$Id= $_GET['id'];
+		$nguoi_dung	 = new NguoiDung($Id);
 		$nguoi_dung->delete();
 		$url.='/admin/?option=qlnd';
 		break;

@@ -1,3 +1,4 @@
+<?php include_once('../controllers/video.php');?>
 <?php
 $suavd=false;
 $ac= BASE_URL.'/controllers/xuly.php?task=them_video';
@@ -16,7 +17,7 @@ if(isset($_GET['id'])){
 	<h3> THÊM VIDEO</h3>
 <?php }?>
 
-<div class="sss" style="width: 800px; height: 350px; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
+<div class="sss" style="width: 800px; height: height: auto; border:1px solid #3883e6; border-radius: 10px;padding:20px;margin:20px;">
 	<form action="<?php echo $ac;?>" method="POST"  class="form-horizontal" role="form" enctype="multipart/form-data">
 
 		<div class="form-group">
@@ -49,9 +50,8 @@ if(isset($_GET['id'])){
 				<select class="form-control" id="the_loai" name="the_loai">
 					<option value="0">[Vui lòng chọn Thể Loại] </option>
 					<?php
-					$tl = new TheLoai();
 
-					$dstl = $tl->DanhSachForSelection();
+					$dstl = TheLoai::DanhSach();
 					while($r = $dstl->fetch_object())
 					{
 
@@ -73,6 +73,22 @@ if(isset($_GET['id'])){
 			</div>
 		</div>
 
+		<div class="form-group">
+			<label for="lyric" class="col-sm-3 control-label">Upload Lyric</label>
+			<div class="col-sm-9">
+				<?php if($suavd){
+					echo "<p style='float:left;margin-right:5px;'>".$video->Lyric.".lrc</p>";
+				}
+				?>
+				<input type ="file" name ="lyric" id="lyric" accept=".lrc"/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<img src="<?php echo  BASE_URL;?> <?php echo ($suavd && !empty($video->Hinh))?'/img/img_vd/'.$video->Hinh:'/img/No_Image_Available.png'; ?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
+			<label for="hinh" class="col-md-3 control-label" >Hình</label>
+			<input class="col-md-offset-3" type ="file" id="hinh" name ="hinh"/>
+		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-10 col-sm-2">

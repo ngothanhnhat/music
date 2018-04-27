@@ -54,15 +54,14 @@
           <option value="0">[Vui lòng chọn Nhạc Sĩ] </option>
           
           <?php
-              $c = new NhacSi();
-              
-              $dsns = $c->DanhSachNhacSi();
+
+              $dsns =NhacSi::DanhSach();
               while($r = $dsns->fetch_object())
               {
                 
               
           ?>
-          <option value="<?php echo $r->id; ?>" <?php if($suabh && ($bai_hat->NhacSi==$r->id)) echo "selected='selected'"; ?>><?php echo $r->TenNhacSi ?></option>
+          <option value="<?php echo $r->Id; ?>" <?php if($suabh && ($bai_hat->NhacSi==$r->Id)) echo "selected='selected'"; ?>><?php echo $r->TenNhacSi ?></option>
           <?php }?>
         </select>
       </div>

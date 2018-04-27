@@ -2,6 +2,7 @@
            
 <?php
 
+include_once("controllers/casi.php");
 include_once("controllers/nhacsi.php");
 include_once("controllers/baihat.php");
 if(isset($_GET['id'])){
@@ -26,7 +27,7 @@ casi="<?php echo $baihat->TenCaSi;?>">
 </div>
 
 <div class="col-md-7" id="lyric">
-	<p>Bài hát: <span style="color: #5bc0de; font-size: 20px;"><?php echo $baihat->TenBaiHat;?></span></p>
+	<p>Lời Bài hát: <span style="color: #5bc0de; font-size: 20px;"><?php echo $baihat->TenBaiHat;?></span></p>
 	<p>Nhạc sĩ: 	<span style="font-style: italic;"><?php echo $baihat->getNhacSi()->TenNhacSi;?></span></p>
 	<div id="div-lyric">
 		<?php echo $baihat->LyricString?>
@@ -63,10 +64,11 @@ $(function(){
     const ap = new APlayer({
         container: document.getElementById('aplayer'),
         lrcType: 3,
+        theme: '#04612d',
         loop: 'one',
         audio: [{
-            name: 'Ca Si ',
-            artist: tencasi,
+            name: 'Ca sĩ',
+            artist: '<?php echo $baihat->getCaSi()->TenCaSi;?>',
             url: audio,
             cover: '',
             lrc: lyric

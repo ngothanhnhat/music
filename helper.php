@@ -19,7 +19,7 @@ function convert($str) {
     $str = str_replace(" ", "-", str_replace("&*#39;","",$str));
     return $str;
 }
-function shortenLongString($data, $length = 100){
+function shortenLongString($data, $length = 30){
   if(strlen($data) > $length)
   {
     return substr($data, 0, $length)."...";

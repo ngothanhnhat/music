@@ -6,6 +6,7 @@
 }
 #lyric {
     border: 1px solid #009ae1;
+    border-top-left-radius: 30px;
     padding: 20px 20px;
 }
 
@@ -22,6 +23,16 @@
     max-height:255px;
     overflow:hidden;
 }
+
 #menuleft2 li.active{
     background: #f6f6f6;
+}.aplayer.aplayer-withlrc .aplayer-info {
+     margin-left: 90px;
+     height: 234px;
+     padding: 10px 7px 0;
+ }
+.aplayer.aplayer-withlrc .aplayer-info {
+    margin-left: 90px;
+    height: 234px;
+    padding: 10px 7px 0;
 }

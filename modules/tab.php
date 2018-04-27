@@ -12,259 +12,72 @@
     <br>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="Playlist">
-            <?php 
-                $i=1;
-                $ds = Playlist::DanhSach(8);
-                while($r = $ds->fetch_object())
-                {
-                   if($i ==1)
-                   echo "<div class='row'>";
-            ?>
-                    <div class="col-md-3">
-                    
-                    <img style=" width: 100%;height:140px;" src="img/playlist/<?php echo $r->Hinh;?>">
-                        <p class="TenBH"> <a href="index.php?option=nghe_playlist&id=<?php echo $r->Id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenPlaylist;?> </a> </p>
+					<?php
+						$i=1;
+						$ds = Playlist::DanhSach(8);
+						while($r = $ds->fetch_object())
+						{
+							if($i ==1)
+								echo "<div class='row'>";
+							?>
+							<div class="col-md-3">
 
-                    </div>
-                  
-            <?php 
-                if($i ==4)
-                {
-                    echo "</div>";
-                    $i =0;
-                }
-                $i++;
-            }?>
-          
-        </div>
+								<img style=" width: 100%;height:140px;" src="img/playlist/<?php echo $r->Hinh;?>">
+								<p class="TenBH"> <a href="index.php?option=nghe_playlist&id=<?php echo $r->Id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenPlaylist;?> </a> </p>
+
+							</div>
+
+				<?php
+				if($i ==4)
+				{
+					echo "</div>";
+					$i =0;
+				}
+				$i++;
+			}?>
+
+		</div>
 
 
 
         <div role="tabpanel" class="tab-pane" id="MV">
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh11.jpg">
-                                <p class="TenBH"><a href="index.php?option=playvideo" >Đếm ngày xa em </a></p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                            <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh11.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh11.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh11.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                        
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh11.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                            <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh11.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh11.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh11.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                        
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh11.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                            <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh11.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh11.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh11.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                        
-                </div>
-                
+					<?php include_once("controllers/video.php");?>
+					<?php
+
+					$i=1;
+
+					$vd = Video::DanhSach(8);
+					while($s = $vd->fetch_object())
+					{
+						if($i ==1)
+							echo "<div class='row'>";
+						?>
+						<div class="col-md-3">
+
+							<img style=" width: 100%;height:140px;" src="img/playlist/<?php echo $s->Hinh;?>">
+							<p class="TenBH"> <a href="index.php?option=playvideo&id=<?php echo $s->Id?>" style="color:#000;text-decoration:none;">  <?php echo $s->TenVideo;?> </a> </p>
+
+						</div>
+
+						<?php
+						if($i ==4)
+						{
+							echo "</div>";
+							$i =0;
+						}
+						$i++;
+					}?>
+
+				</div>
 
 
-                    
-        </div>
-
-      
         
         <div role="tabpanel" class="tab-pane" id="Playlist">
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh8.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh8.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh8.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh8.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                        
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh8.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh8.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh8.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh8.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                        
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh8.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh8.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh8.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh8.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                        
-                </div>
-                
 
-
-                    
         </div>
 
         <div role="tabpanel" class="tab-pane" id="CaSiHot">
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh7.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh7.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh7.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh7.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh7.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh7.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh7.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh7.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                </div>
-                <div class="row">
-                        <div class="col-md-3">
-                                <img style=" width: 100%;" src="img/hinh7.jpg">
-                                <p class="TenBH"> Đếm ngày xa em</p>
-                                <h6 class="TenCS">only c</h6> 
-                            </div>
-                        <div class="col-md-3">
-                                    <img style=" width: 100%;" src="img/hinh7.jpg">
-                                    <p class="TenBH"> Đếm ngày xa em</p>
-                                    <h6 class="TenCS">only c</h6> 
-                                </div>
-                        <div class="col-md-3">
-                                        <img style=" width: 100%;" src="img/hinh7.jpg">
-                                        <p class="TenBH"> Đếm ngày xa em</p>
-                                        <h6 class="TenCS">only c</h6> 
-                                    </div>
-                        <div class="col-md-3">
-                                            <img style=" width: 100%;" src="img/hinh7.jpg">
-                                            <p class="TenBH"> Đếm ngày xa em</p>
-                                            <h6 class="TenCS">only c</h6> 
-                                        </div>
-                </div>
-                
 
-
-                    
         </div>
             
 </div>
@@ -302,7 +115,7 @@
            }
             $i++;
         }?>
-      
+
     </div>
    <!-- <div class="col-md-6" style="margin-right:0px;"> -->
         
@@ -339,4 +152,4 @@
     </div>
     -->
 		</div>
-    
+    </div>

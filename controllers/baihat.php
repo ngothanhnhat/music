@@ -15,12 +15,17 @@ class BaiHat extends Controller {
 	public $Lyric;
 	public $LyricString;
 
+
 	public function getNhacSi()
 	{
 		$nhac_si = new NhacSi($this->NhacSi);
 		return $nhac_si;
 	}
-
+	public function getCaSi()
+	{
+		$ca_si = new CaSi($this->CaSi);
+		return $ca_si;
+	}
 
 	protected function __withId($id){
 		$sql="SELECT * FROM baihat WHERE id = $id limit 1";

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once("controllers/playlist.php");
 if(isset($_GET['id'])){
     $id= $_GET['id'];
@@ -24,8 +24,8 @@ if(isset($_GET['id'])){
         while($r=$baihats->fetch_object()){
         ?>
         <div class="_src" hidden 
-            audio-url="<?php echo BASE_URL;?>/music/audio/<?php echo $r->audio;?>.mp3" 
-            lyric-url="<?php echo BASE_URL;?>/music/lyrics/<?php echo $r->lyrics;?>.lrc"
+            audio-url="<?php echo BASE_URL;?>/music/audio/<?php echo $r->Audio;?>.mp3"
+            lyric-url="<?php echo BASE_URL;?>/music/lyrics/<?php echo $r->Lyric;?>.lrc"
             ten-bh="<?php echo $r->TenBaiHat;?>"
             >
             </div>
@@ -63,7 +63,7 @@ $(function(){
         container: document.getElementById('aplayer'),
         lrcType: 3,
         loop: 'all',
-        theme: '#07276d',
+        theme: '#04612d',
         preload: 'auto',
         mutex: true,
         listFolded: false,

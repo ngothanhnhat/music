@@ -7,6 +7,9 @@ switch ($tmp){
     case 'qlbh':
         include("ql_bai_hat.php");
         break;
+		case 'qlns':
+        include("ql_nhac_si.php");
+        break;
     case 'qlcd':
         include("ql_chu_de.php");
         break;
@@ -46,11 +49,15 @@ switch ($tmp){
 		case 'upd_playlist':
 				include("insert_playlist.php");
 				break;
+		case 'insert_ns':
+		case 'upd_nhac_si':
+				include("insert_nhac_si.php");
+				break;
     case 'insert_vd':
     case 'upd_video':
         include("insert_video.php");
         break;
-    case 'insert_nd':
+    case 'insert_us':
     case 'upd_nguoi_dung':
         include("insert_nguoi_dung.php");
         break;

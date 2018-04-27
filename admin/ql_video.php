@@ -12,9 +12,11 @@
 	<tr>
 		<th>STT</th>
 		<th>Tên Video</th>
+		<th>Hình</th>
 		<th>Thể Loại</th>
 		<th>Ca Sĩ</th>
 		<th>Video</th>
+		<th>Lyric</th>
 		<th></th>
 		<th></th>
 
@@ -32,10 +34,12 @@
 
 
 			<td style="text-align: center;" width="30"><?php echo $i."."; ?> </td>
-			<td id="video_<?php echo $r->Id; ?>"><?php echo $r->TenVideo;?></td>
+			<td id="video_<?php echo $r->Id; ?>"> <?php echo $r->TenVideo;?></td>
+			<td> <?php echo $r->Hinh; ?></td>
 			<td> <?php echo $r->TheLoai ?> </td>
 			<td> <?php echo $r->CaSi ?></td>
 			<td> <?php echo $r->Video?></td>
+			<td> <?php echo shortenLongString($r->LyricString);?></td>
 
 			<td width="50"> <a class="btn btn-small btn-default"href="?option=upd_video&id=<?php echo $r->Id; ?>" >Sửa </a></td>
 			<td width="50"> <a class="btn btn-small btn-danger delete-video"  href ="<?php echo BASE_URL;?>/controllers/xuly.php?task=xoa_video&id=<?php echo $r->Id; ?>" > Xóa</a></td>
