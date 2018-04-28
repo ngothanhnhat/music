@@ -1,6 +1,6 @@
 $(function(){
     var playlistUrl = new URL(window.location.href);
-    var playlistId= playlistUrl.searchParams.get("id");
+    var playlistId= playlistUrl.searchParams.get("plId");//Playlist Id from url
 
     var user_href = $('#taikhoan').attr('href'); 
     var userUrl = new URL(user_href);
@@ -14,7 +14,7 @@ $(function(){
         url: url_playlist_is_in_wishlist,
         type: "POST",
         success: function(data){
-            if(data != 0){
+            if(data.trim() != '0'){
                 $('#wishlist').removeClass('uncheck').addClass('check');
             }
         }

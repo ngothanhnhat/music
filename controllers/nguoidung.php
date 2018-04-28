@@ -57,6 +57,12 @@ class NguoiDung extends Controller{
 		return DatabaseProvider::execQuery($sql);
 
 	}
+public static function themVideoWishlist($userId, $videoId)
+	{
+		$sql = "INSERT INTO wishlist(UserId, RefId, `Type`) VALUES($userId, $videoId," .VIDEO_WISHLIST. ")";
+		return DatabaseProvider::execQuery($sql);
+
+	}
 
 
 	public static function xoaPlaylistWishlist($userId, $playlistId)
@@ -70,10 +76,8 @@ class NguoiDung extends Controller{
 	{
 		$sql = "SELECT count(*) as count FROM wishlist WHERE UserId = $userId and RefId = $playlstId and `Type`= " .PLAYLIST_WISHLIST;
 		$result = DatabaseProvider::execQuery($sql);
-		while ($r = $result->fetch_object()) {
-			$re = $r->count;
-		}
-		return $re;
+		$r = $result->fetch_object();
+		return $r->count;
 	}
 	public function getPlaylistWishlist(){
 		$result = array();
@@ -85,6 +89,19 @@ class NguoiDung extends Controller{
 			$playlist->Id = $r->Id;
 			$playlist->TenPlaylist = $r->TenPlaylist;
 			array_push($result, $playlist);
+		}
+		return $result;
+	}
+	public function getVideoWishlist(){
+		$result = array();
+
+		$sql="select vd.Id, vd.TenVideo from wishlist wl join video vd on vd.Id = wl.RefId where wl.Type = ".VIDEO_WISHLIST." and wl.UserId=$this->Id";
+		$result_sql = DatabaseProvider::execQuery($sql);
+		while ($r= $result_sql->fetch_object()){
+			$video = new stdClass();
+			$video->Id = $r->Id;
+			$video->TenVideo = $r->TenVideo;
+			array_push($result, $video);
 		}
 		return $result;
 	}

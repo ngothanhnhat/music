@@ -123,11 +123,29 @@ switch ($task){
 			$chu_de = new ChuDe($id);
 		}else if(isset($_POST['btn_them'])){
 			$chu_de = new ChuDe();
-		}else{
+		}else if(isset($_POST['add_more_pl'])){
+
+			$chudeid = $_GET['id'];
+			$playlist_arr=$_POST['playlist'];
+			if(count($playlist_arr) > 0)
+			{
+				foreach ($playlist_arr as $playlistId){
+					ChuDe::addPlaylist($playlistId,$chudeid);
+				}
+			}
+			$url.='/admin/?option=upd_chu_de&id='.$chudeid;
+			header('Location: '.$url);
+		}
+		else{
 			header('Location: '.$url);
 		}
 		
 		$chu_de->TenChuDe = $_POST['ten_chu_de'];
+		$chu_de->MoTa = $_POST['mo_ta'];
+		if(!empty($_FILES["hinh"]["tmp_name"])){
+			$chu_de->Hinh = convert($chu_de->TenChuDe) . "_" . strval(time());
+			move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/chude/".$chu_de->Hinh.'.jpg');
+		}
 		$chu_de->save();
 		$url .='/admin/?option=qlcd';
 		
@@ -161,24 +179,26 @@ switch ($task){
 
 
 	case 'them_playlist':
-
-		$ten = $_POST['tenab'];
-		$casi=$_POST['casiid'];
-		$img=convert($ten)."_".time();
-		$ngtao=$_SESSION['idUser'];
-		$tlab=$_POST['tlid'];
-		$nam = $_POST['nam'];
-		$thab = Playlist::ThemPlaylist($ten,$img,$ngtao,$tlab);
-		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $img."");
-		
-
-		break;
 	case 'sua_playlist':
-		if( isset($_POST['btn_sua'])) {
-			$id = $_GET['id'];
-			$playlist = new Playlist($id);
-			$url.='/admin/?option=ql_playlist';
-		}else  if(isset($_POST['btn_luu']) || isset($_POST['luu_them_ab'])) {
+	if( isset($_POST['btn_sua'])) {
+		$id = $_GET['id'];
+		$playlist = new Playlist($id);
+	}else if (isset($_POST['btn_them'])){
+		$playlist = new Playlist();
+	}else{
+		header('location: '. $url);
+	}
+	$playlist->TenPlaylist = $_POST['tenpl'];
+	$playlist->NguoiTao =$_SESSION['idUser'];
+	$playlist->TheLoai=$_POST['tlid'];
+
+	if(!empty($_FILES["hinh"]["tmp_name"])){
+		$playlist->Hinh = convert($playlist->TenPlaylist) . "_" . strval(time());
+		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/".$playlist->Hinh);
+	}
+	$url.='/admin/?option=ql_playlist';
+	$playlist->save();
+	if(isset($_POST['btn_luu']) || isset($_POST['luu_them_pl'])) {
 			$playlist = new Playlist();
 			$playlist->NguoiTao = $_SESSION['idUser'];
 			
@@ -186,19 +206,8 @@ switch ($task){
 				$_SESSION['success'] = "Đã thêm playlist thành công";
 				$url.='/admin/?option=insert_playlist';
 			}
-		}else if(isset ($_POST['add_more_bh'])){
-			$playlist_id=$_GET["id"];
-			$baiHatId_arr = $_POST["baihats"];
-			if (count($baiHatId_arr)> 0){
-				foreach ($baiHatId_arr as $key=>$baiHatId){
-					Playlist::AddBaiHat($baiHatId,$playlist_id);
-				}
-			}
-			$url .= '/admin/?option=upd_playlist&id='.$playlist_id;
-			header('Location: '.$url);
-		}else{
-			header('Location: '.$url);
 		}
+
 		$playlist->TenPlaylist = $_POST['ten_playlist'];
 		$playlist->TheLoai=$_POST['the_loai'];
 		
@@ -209,6 +218,20 @@ switch ($task){
 		
 		$playlist->save();
 		
+		break;
+	case 'add_bai_hat_to_playlist':
+		if(isset ($_POST['add_more_bh'])){
+			$playlist_id=$_GET["id"];
+			$baiHatId_arr = $_POST["baihats"];
+			if (count($baiHatId_arr)> 0){
+				foreach ($baiHatId_arr as $key=>$baiHatId){
+					Playlist::AddBaiHat($baiHatId,$playlist_id);
+				}
+			}
+			$url .= '/admin/?option=upd_playlist&id='.$playlist_id;
+		}else{
+			header('Location: '.$url);
+		}
 		break;
 
 	case 'xoa_playlist':
@@ -316,6 +339,39 @@ switch ($task){
 	case 'xoa_bai_hat_playlist':
 		$playlist_id = $_GET["playlist"];
 		
+		$baiHatId = $_GET["bai_hat"];
+
+		$playlist = new Playlist($playlist_id);
+		$playlist->removeBaiHat($baiHatId);
+
+		$url .= '/admin/?option=upd_playlist&id='.$playlist_id;
+		break;
+
+		case 'upd_video_wishlist':
+		$isRedirect = false;
+		$videoId = $_GET["video"];
+		$userId = $_GET["user"];
+		$check = $_GET["check"];
+
+		if($check == 'check'){
+			//Insert vào wishlist
+			NguoiDung::themVideoWishlist($userId, $videoId);
+
+		}else{
+			//Del khoi wishlist
+			NguoiDung::xoaVideoWishlist($userId, $videoId);
+		}
+		break;
+	case 'check_video_in_wishlist':
+		$isRedirect = false;
+		$videoId = $_GET["video"];
+		$userId = $_GET["user"];
+		echo NguoiDung::checkVideoInWishlist($userId, $videoId);
+		break;
+
+	case 'xoa_bai_hat_playlist':
+		$playlist_id = $_GET["playlist"];
+
 		$baiHatId = $_GET["bai_hat"];
 
 		$playlist = new Playlist($playlist_id);

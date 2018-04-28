@@ -1,23 +1,33 @@
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse"style="background:#c4e8fd ;position: fixed; z-index:99;width: 100%;">
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="<?php echo BASE_URL; ?>">Nhạc</a></li>
-            <li><a href="#">Video</a></li>
-        </ul>
-        
-        <form class="navbar-form navbar-left" role="search">
-            
-                <input class = "search" type="text"  placeholder="Search">
-            
-            <button class="timkiem" type="submit" >Tìm kiếm
-        
-            </button>
-        </form>
+<?php
+	require_once 'controllers/chude.php';
+	$option = isset($_GET['option']) ? $_GET['option']:'';
+	$chu_de_arr = ChuDe::DanhSach(18);
+?>
+<nav>
+	<div id="cssmenu" class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li class="<?php if($option == '') echo 'active';?>"><a href='<?php echo BASE_URL;?>'>Trang chủ</a></li>
+			<li class="<?php if($option == 'bai_hat') echo 'active';?>"><a href='#'>Bài Hát</a></li>
+			<li class="<?php if($option == 'video') echo 'active';?>"><a href='#'>Video</a></li>
+			<li class="<?php if($option == 'playlist') echo 'active';?>"><a href='#'>Playlist</a></li>
+			<li class="has-sub <?php if($option == 'chu_de') echo 'active';?>">
+				<a href='<?php echo BASE_URL.'/?option=chu_de' ;?>'>Chủ đề</a>
+				<ul>
+					<?php foreach ($chu_de_arr as $chu_de){ ?>
+						<li><a rel="follow" href="<?php echo BASE_URL.'/?option=nghe_chu_de&id='.$chu_de->getId();?>"><?php echo $chu_de->TenChuDe;?></a></li>
+					<?php } ?>
+				</ul>
+			</li>
+		</ul>
 
-
-       <!-- Split button -->
+		<form method="POST" action="<?php echo BASE_URL.'/?option=search'?>" id="custom-search-form" class="form-search form-horizontal">
+			<div class="input-append span12">
+				<input type="text" class="search-query mac-style" name="key" placeholder="Search">
+				<button type="submit" class="btn" name="btn_search"><i class="fa fa-search"></i></button>
+			</div>
+		</form>
         
-        <ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
+		<ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
       
             <?php if(!isset($_SESSION['idUser'])){ ?>
                 <li><a href="<?php echo BASE_URL; ?>/login.php">Đăng nhập</a></li>
@@ -54,52 +64,5 @@
                 <?php }?>
                 
         </ul>
-    </div><!-- /.navbar-collapse -->
+	</div><!-- /.navbar-collapse -->
 </nav>
-
-<div id='cssmenu' sytle="    position: fixed;
-    z-index: 999;
-    width: 100%;">
-        <ul>
-           <li><a href='#'>Trang chủ</a></li>
-           <li class='active has-sub'><a href='#'>Bài Hát</a>
-              <ul>
-                 <li class='has-sub'><a href='#'>Product 1</a>
-                    <ul>
-                       <li><a href='#'>Sub Product</a></li>
-                       <li><a href='#'>Sub Product</a></li>
-                    </ul>
-                 </li>
-                    <ul>
-                       <li><a href='#'>Sub Product</a></li>
-                       <li><a href='#'>Sub Product</a></li>
-                    </ul>
-                 </li>
-              </ul>
-           </li>
-           <li><a href='#'>Video</a></li>
-           <li><a href='#'>Playlist</a></li>
-           <li><a href='#'>Tuyển Tập</a></li>
-           <li><a href='#'>BXH</a></li>
-           <li><a href='#'>Chủ đề</a></li>
-           <li><a href='#'>Top 100</a></li>
-           
-           <li class='active has-sub'><a href='#'>Khác</a>
-            <ul>
-               <li ><a href='#'>Nghệ Sĩ</a></li>
-               <li><a href='#'>Sự Kiện - TV</a></li>
-               <li><a href='#'>Tin Tức Âm Nhạc</a></li>
-            </ul>
-           </li>
-           
-        
-        </ul>
-       
-    </div>
-    <ul class="nav navbar-nav navbar-right" style="margin-right:200px; margin-top:-50px;">
-        <li> <a href="#">NhacVip</a></li>
-        <li><a href="#">Nhac</a></li>
-        <li><a href="#">Upload</a></li>
-        
-        
-    </ul> 

@@ -124,7 +124,7 @@ if(isset($_SESSION['success'])){?>
 <div id="DSBaiHat" class="modal fade" role="dialog">
   <div class="modal-dialog" style="width: 70%;">
     <!-- Modal content-->
-    <form method="POST" action="<?php echo $action; ?>" role="form">
+    <form method="POST" action="<?php echo BASE_URL.'/controllers/xuly.php/?task=add_bai_hat_to_playlist&id='.$playlist->getId(); ?>" role="form">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>

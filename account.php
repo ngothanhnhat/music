@@ -70,6 +70,14 @@ if(isset($_GET['id'])){
 	<div class="col-sm-offset-8 col-sm-4">
 	</div>
 	<h4 > Video</h4>
+					<?php
+					$videos = $nguoidung->getVideoWishlist();
+					foreach ($videos as $video){
+						?>
+						<div class="col-md-2 tenpl">
+							<a href="<?php echo BASE_URL.'/index.php?option=playvideo&id='.$video->Id; ?>"><?php echo $video->TenVideo; ?></a>
+						</div>
+					<?php } ?>
 	</div>
 				</div>
 		</div>

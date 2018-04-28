@@ -1,7 +1,7 @@
 <?php
 include_once("controllers/playlist.php");
-if(isset($_GET['id'])){
-    $id= $_GET['id'];
+if(isset($_GET['plId'])){
+    $id= $_GET['plId'];
     $playlist= new Playlist($id);
 }else{
 	header('location:'.BASE_URL);

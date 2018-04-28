@@ -20,13 +20,16 @@ class Playlist extends Controller {
 		$this->Hinh = $r->Hinh;
 		$this->NguoiTao = $r->NguoiTao;
 	}
-  public static function DanhSach($limit=-1){
+  public static function DanhSach($limit=-1, $record = -1){
       $sql = "SELECT pl.*, tl.TenTheLoai as TheLoai, u.UserName FROM `playlist` pl
       LEFT JOIN `theloai` tl ON tl.id = pl.TheLoai
       LEFT JOIN `user` u ON u.id=pl.NguoiTao order by pl.id DESC";
       if($limit != -1){
           $sql .= " limit $limit";
       }
+      if($record != -1){
+      	$sql .= ', '.$record;
+			}
       return DatabaseProvider::execQuery($sql);
   }
   public function DSBaiHatChuaCo(){
@@ -59,7 +62,7 @@ class Playlist extends Controller {
 		if(is_null($this->Id)){
 			$sql= "INSERT INTO `playlist` (`TenPlaylist`,`Hinh`,`NguoiTao`,TheLoai) VALUES ('$this->TenPlaylist','$this->Hinh',$this->NguoiTao,$this->TheLoai)";
 		}else{
-			$sql= "UPDATE `playlist` SET `TenPlayList` = '$this->TenPlaylist', TheLoai='$this->TheLoai',`Hinh`='$this->Hinh', NguoiTao=$this->NguoiTao  WHERE id = $this->Id";
+			$sql= "UPDATE `playlist` SET TenPlayList = '$this->TenPlaylist', TheLoai='$this->TheLoai',Hinh='$this->Hinh', NguoiTao='$this->NguoiTao'  WHERE id = $this->Id";
 		}
 		return DatabaseProvider::execQuery($sql);
 	}

@@ -12,12 +12,10 @@ session_start();
 <?php include_once("modules/head.php");?>
 <body>
     <?php include_once("modules/header.php");?>
-    <div class="container">
-        <div class="row" >
-        <?php include_once("modules/menungang.php");?> 
-    </div>
-    <?php include_once("modules/content.php");?> 
-   
+		<div class="container">
+    	<?php include_once("modules/content.php");?>
+		</div>
+
     <script>
 
 // [1] Load lên các thành phần cần thiết
