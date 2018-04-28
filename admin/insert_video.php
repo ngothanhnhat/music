@@ -85,7 +85,7 @@ if(isset($_GET['id'])){
 		</div>
 
 		<div class="form-group">
-			<img src="<?php echo  BASE_URL;?> <?php echo ($suavd && !empty($video->Hinh))?'/img/img_vd/'.$video->Hinh:'/img/No_Image_Available.png'; ?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
+			<img src="<?php echo BASE_URL;?> <?php echo ($suavd && !empty($video->Hinh))?'/img/img_vd/'.$video->Hinh:'/img/No_Image_Available.png'; ?>" id= "image_preview" alt="" style="max-width: 150px; max-height:150px;margin:10px;">
 			<label for="hinh" class="col-md-3 control-label" >Hình</label>
 			<input class="col-md-offset-3" type ="file" id="hinh" name ="hinh"/>
 		</div>

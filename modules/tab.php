@@ -10,6 +10,7 @@
 
     </div>
     <br>
+
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="Playlist">
 					<?php
@@ -35,9 +36,24 @@
 				}
 				$i++;
 			}?>
+					<div id="Danhsach"></div>
+					<div id="xemthem"> Xem Thêm</div>
+					<script src="../js/jquery-3.2.1.min.js"></script>
+					<script>
+              var toancuc=0;
+              $(document).ready(function () {
+
+                  $("#xemthem").click(function () {
+                      //alert('heheh');
+                      toancuc = toancuc+1;
+                      $.get("phantrang.php", {trang:toancuc},function (data) {
+                          $('#Danhsach').append(data);
+                      });
+                  });
+              });
+					</script>
 
 		</div>
-
 
 
         <div role="tabpanel" class="tab-pane" id="MV">
@@ -54,7 +70,7 @@
 						?>
 						<div class="col-md-3">
 
-							<img style=" width: 100%;height:140px;" src="img/playlist/<?php echo $s->Hinh;?>">
+							<a href="index.php?option=playvideo&id=<?php echo $s->Id?>" style="color:#000;text-decoration:none;"> <img style=" width: 100%;height:140px;" src="img/img_vd/<?php echo $s->Hinh;?>.jpg" > </a>
 							<p class="TenBH"> <a href="index.php?option=playvideo&id=<?php echo $s->Id?>" style="color:#000;text-decoration:none;">  <?php echo $s->TenVideo;?> </a> </p>
 
 						</div>
@@ -117,6 +133,7 @@
         }?>
 
     </div>
+
    <!-- <div class="col-md-6" style="margin-right:0px;"> -->
         
   
@@ -148,8 +165,7 @@
            
             // $i++;
         // }?>
-      
+
     </div>
     -->
 		</div>
-    </div>

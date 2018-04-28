@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
 	<div class="row" style="margin:5px;">
 		<div class="row">
 		<div class="col-md-9">
-			<h3> <?php echo $video->TenVideo;?> </h3>
+			<h3> <?php echo $video->TenVideo;?><i id='wishlist'  class='fas fa-heart uncheck' style='float:right; margin-right: 40px;'></i> </h3>
 			<video width="800" height="500" controls autoplay>
 				<source src="<?php echo BASE_URL;?>/video/<?php echo $video->Video;?>.mp4" type="video/mp4">
 

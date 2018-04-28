@@ -12,7 +12,7 @@
 	<div class="col-md-3">
 		<h4>BXH BÀI HÁT YÊU THÍCH</h4>
 		<?php include_once("modules/bxh.php");?>
-		<h4>BXH BÀI HÁT NGHE NHIỀU NHẤT </h4>
+		<h4>BÀI HÁT NGHE NHIỀU NHẤT </h4>
 		<?php include_once("modules/bxh.php");?>
 	</div>
 </div>
