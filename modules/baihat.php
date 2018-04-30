@@ -11,7 +11,7 @@
 			if($i ==1)
 				echo "<div class='row'>";
 			?>
-			<div class="col-md-6" >
+			<div>
 				<p class ="TenBH">
 					<a href= "index.php?option=nghe1bh&id=<?php echo $r->Id;?>" style="color:#000;text-decoration:none;">
 						<?php echo $r->TenBaiHat;?> </a> - <?php echo $r->TenCaSi;?>

@@ -10,10 +10,7 @@ if(isset($_GET['plId'])){
 <link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">
 
 <div class="row">                  
-    <div class="col-md-4 pull-right" > 
-        <h3>NGHE TIẾP</h3>
-        <?php include("modules/baihat.php");?>     
-    </div>
+
     <div class="col-md-8 pull-left">
         <h3> <?php echo $playlist->TenPlaylist;?> <i id='wishlist'  class='fas fa-heart uncheck' style='float:right; margin-right: 20px;'></i></h3>
         <div style="padding-left:0px;">
@@ -34,6 +31,10 @@ if(isset($_GET['plId'])){
         ?>
     
     </div>
+	<div class="col-md-4 pull-right" >
+		<h3>NGHE TIẾP</h3>
+		<?php include("modules/baihat.php");?>
+	</div>
 </div>
 
 
