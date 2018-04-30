@@ -7,9 +7,9 @@
 	<div id="cssmenu" class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
 			<li class="<?php if($option == '') echo 'active';?>"><a href='<?php echo BASE_URL;?>'>Trang chủ</a></li>
-			<li class="<?php if($option == 'bai_hat') echo 'active';?>"><a href='#'>Bài Hát</a></li>
-			<li class="<?php if($option == 'video') echo 'active';?>"><a href='#'>Video</a></li>
-			<li class="<?php if($option == 'playlist') echo 'active';?>"><a href='#'>Playlist</a></li>
+			<li class="<?php if($option == 'bai_hat') echo 'active';?>"><a href='<?php echo BASE_URL.'/?option=bai_hat' ;?>'>Bài Hát</a></li>
+			<li class="<?php if($option == 'video') echo 'active';?>"><a href='<?php echo BASE_URL.'/?option=video' ;?>'>Video</a></li>
+			<li class="<?php if($option == 'playlist') echo 'active';?>"><a href='<?php echo BASE_URL.'/?option=playlist' ;?>'>Playlist</a></li>
 			<li class="has-sub <?php if($option == 'chu_de') echo 'active';?>">
 				<a href='<?php echo BASE_URL.'/?option=chu_de' ;?>'>Chủ đề</a>
 				<ul>

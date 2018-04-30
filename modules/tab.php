@@ -3,7 +3,7 @@
             <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation " class="active"><a href="#Playlist" aria-controls="Playlist hot" role="tab" data-toggle="tab">Playlist hot </a></li>
                     <li role="presentation"><a href="#MV" aria-controls="MV hot" role="tab" data-toggle="tab">MV hot </a></li>
-                    <li role="presentation"><a href="#Playlist" aria-controls="Playlist" role="tab" data-toggle="tab">Playlist </a></li>
+                    <li role="presentation"><a href="#nghe" aria-controls="Nghe_gi_hom_nay" role="tab" data-toggle="tab">Nghe gì hôm nay </a></li>
                     <li role="presentation"><a href="#CaSiHot" aria-controls="CaSiHot" role="tab" data-toggle="tab">Ca Sĩ Hot </a></li>
             </ul>
             
@@ -88,7 +88,7 @@
 
 
         
-        <div role="tabpanel" class="tab-pane" id="Playlist">
+        <div role="tabpanel" class="tab-pane" id="nghe">
 
         </div>
 

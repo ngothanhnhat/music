@@ -1,11 +1,25 @@
-<div class="row">
+<?php
+include_once("DatabaseProvider.php");
+include_once("controllers/controller.php");
+?>
 
-	<div class="col-md-12" style="margin-right:0px;">
 
+
+<div class="row" style="margin:5px;">
+	<div class="col-md-9">
+		<div class="row" >
+			<?php include_once("modules/slider.php");?>
+		</div>
+		<br>
+	</div>
+
+	<div class="row">
+	<div class="col-md-9">
+		<h3>BÀI HÁT</h3>
 		<?php
 		include_once("controllers/baihat.php");
 		$i=1;
-		$dsbh = BaiHat::DanhSach(16);
+		$dsbh = BaiHat::DanhSach();
 		while($r = $dsbh->fetch_object())
 		{
 			if($i ==1)
@@ -27,5 +41,5 @@
 			}
 			$i++;
 		}?>
-
+	</div>
 	</div>

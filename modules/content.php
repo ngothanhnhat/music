@@ -25,6 +25,18 @@ switch ($tmp){
 	case 'chu_de':
 		include("chu_de.php");
 		break;
+	case 'bai_hat':
+		include("trang_bai_hat.php");
+		break;
+	case 'playlist':
+		include("trang_playlist.php");
+		break;
+
+	case 'video':
+
+		include ("video.php");
+
+		break;
 	case 'search':
 		include("search.php");
 		break;

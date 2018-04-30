@@ -265,7 +265,7 @@ switch ($task){
 			$video->Video=$_POST['mv'];
 
 			if(!empty($_FILES["hinh"]["tmp_name"])){
-				$video->Hinh=convert($video->Hinh)."_".time();
+				$video->Hinh=convert($video->TenVideo)."_".time();
 				move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/img_vd/". $video->Hinh.".jpg");
 			}
 			if(!empty($_FILES["mv"]["tmp_name"])){

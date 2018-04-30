@@ -24,12 +24,17 @@ if(isset($_GET['id'])){
 <link rel="stylesheet" href="vendors/APlayer/APlayer.min.css">
 
 <div class="row">
-	<div class="col-md-4 pull-right">
-		<h3>NGHE TIẾP</h3>
-		<?php //include("modules/baihat.php");?>
+
+	<img src="<?php echo BASE_URL.'/img/chude/'.$chu_de->Hinh.'.jpg';?>" alt=""style="width: 100%; height:auto;">
+	<div class="" style="height: auto; background: #fff; border: 1px solid #1D88D3; padding: 5px; font-size: 16px; font-family: 'Open Sans', sans-serif; color: #2b542c; font-style: italic;">
+		<h3><?php echo 'CHỦ ĐỀ: '.$chu_de->TenChuDe;?></h3>
+		<p><?php echo '"'.$chu_de->MoTa.'"';?> </p>
 	</div>
-	<div class="col-md-8 pull-left">
-		<h3> <?php echo $playlist->TenPlaylist;?> <i id='wishlist'  class='fas fa-heart uncheck' style='float:right; margin-right: 20px;'></i></h3>
+
+	<div class="col-md-7 pull-left">
+
+
+		<h3> <?php echo 'PLAYLIST: '.$playlist->TenPlaylist;?> <i id='wishlist'  class='fas fa-heart uncheck' style='float:right; margin-right: 20px;'></i></h3>
 		<div style="padding-left:0px;">
 			<div id="aplayer"></div>
 		</div>
@@ -52,11 +57,16 @@ if(isset($_GET['id'])){
 				if($playlist->Id != $id_playlist){
 		?>
 			<div class="col-md-3">
-				<img src="img/hinh1.jpg" alt="" style="width: 155px; height:155px;">
+				<img src="img/playlist/<?php echo $playlist->Hinh;?>" alt="" style="width: 155px; height:155px;">
 				<p><a href="<?php echo BASE_URL.'?option=nghe_chu_de&id='.$id_chu_de.'&plId='.$playlist->Id;?>"><?php echo $playlist->TenPlaylist;  ?></a></p>
 			</div>
+
 		<?php }
 			} ?>
+	</div>
+	<div class="col-md-5 pull-right">
+		<h3>BẠN CÓ THỂ NGHE</h3>
+		<?php include("chu_de.php");?>
 	</div>
 </div>
 
