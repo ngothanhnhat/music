@@ -188,16 +188,18 @@ switch ($task){
 	}else{
 		header('location: '. $url);
 	}
-	$playlist->TenPlaylist = $_POST['tenpl'];
+	$playlist->TenPlaylist = $_POST['ten_playlist'];
 	$playlist->NguoiTao =$_SESSION['idUser'];
-	$playlist->TheLoai=$_POST['tlid'];
-
+	$playlist->TheLoai=$_POST['the_loai'];
 	if(!empty($_FILES["hinh"]["tmp_name"])){
-		$playlist->Hinh = convert($playlist->TenPlaylist) . "_" . strval(time());
+		$filename = $_FILES["hinh"]["name"];
+		$ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+		$playlist->Hinh = convert($playlist->TenPlaylist) . "_" . strval(time()).'.'.$ext;
+
 		move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/".$playlist->Hinh);
 	}
 	$url.='/admin/?option=ql_playlist';
-	$playlist->save();
 	if(isset($_POST['btn_luu']) || isset($_POST['luu_them_pl'])) {
 			$playlist = new Playlist();
 			$playlist->NguoiTao = $_SESSION['idUser'];
@@ -206,14 +208,6 @@ switch ($task){
 				$_SESSION['success'] = "Đã thêm playlist thành công";
 				$url.='/admin/?option=insert_playlist';
 			}
-		}
-
-		$playlist->TenPlaylist = $_POST['ten_playlist'];
-		$playlist->TheLoai=$_POST['the_loai'];
-		
-		if(!empty($_FILES["hinh"]["tmp_name"])){
-			$playlist->Hinh=convert($playlist->TenPlaylist)."_".time();
-			move_uploaded_file($_FILES["hinh"]["tmp_name"],"../img/playlist/". $playlist->Hinh.".jpg");
 		}
 		
 		$playlist->save();
@@ -314,70 +308,54 @@ switch ($task){
 		unset($_SESSION['idUser']);
 		unset($_SESSION['User']);
 		break;
-	case 'upd_playlist_wishlist':
+	case 'upd_wishlist':
 		$isRedirect = false;
-		$playlistId = $_GET["playlist"];
+		$ref_id = $_GET["ref_id"];
 		$userId = $_GET["user"];
 		$check = $_GET["check"];
+
+		$opt = $_GET["option"];
+
+		switch ($opt){
+			case 'nghe1bh':
+				$type = BAIHAT_WISHLIST;
+				break;
+			case 'playvideo':
+				$type = VIDEO_WISHLIST;
+				break;
+			default:
+				$type = PLAYLIST_WISHLIST;
+				break;
+		}
 		
 		if($check == 'check'){
 			//Insert vào wishlist
-			NguoiDung::themPlaylistWishlist($userId, $playlistId);
+			NguoiDung::addWishlist($userId, $ref_id, $type);
 
 		}else{
 			//Del khoi wishlist	
-			NguoiDung::xoaPlaylistWishlist($userId, $playlistId);
+			NguoiDung::delWishlist($userId, $ref_id, $type);
 		}
 		break;
-	case 'check_playlist_in_wishlist':
+	case 'check_in_wishlist':
 		$isRedirect = false;
-		$playlistId = $_GET["playlist"];
+		$ref_id = $_GET["ref_id"];
 		$userId = $_GET["user"];
-		echo NguoiDung::checkPlaylistInWishlist($userId, $playlistId);
-		break;
+		$opt = $_GET["option"];
 
-	case 'xoa_bai_hat_playlist':
-		$playlist_id = $_GET["playlist"];
-		
-		$baiHatId = $_GET["bai_hat"];
-
-		$playlist = new Playlist($playlist_id);
-		$playlist->removeBaiHat($baiHatId);
-
-		$url .= '/admin/?option=upd_playlist&id='.$playlist_id;
-		break;
-
-		case 'upd_video_wishlist':
-		$isRedirect = false;
-		$videoId = $_GET["video"];
-		$userId = $_GET["user"];
-		$check = $_GET["check"];
-
-		if($check == 'check'){
-			//Insert vào wishlist
-			NguoiDung::themVideoWishlist($userId, $videoId);
-
-		}else{
-			//Del khoi wishlist
-			NguoiDung::xoaVideoWishlist($userId, $videoId);
+		switch ($opt){
+			case 'nghe1bh':
+				$type = BAIHAT_WISHLIST;
+				break;
+			case 'playvideo':
+				$type = VIDEO_WISHLIST;
+				break;
+			default:
+				$type = PLAYLIST_WISHLIST;
+				break;
 		}
-		break;
-	case 'check_video_in_wishlist':
-		$isRedirect = false;
-		$videoId = $_GET["video"];
-		$userId = $_GET["user"];
-		echo NguoiDung::checkVideoInWishlist($userId, $videoId);
-		break;
 
-	case 'xoa_bai_hat_playlist':
-		$playlist_id = $_GET["playlist"];
-
-		$baiHatId = $_GET["bai_hat"];
-
-		$playlist = new Playlist($playlist_id);
-		$playlist->removeBaiHat($baiHatId);
-
-		$url .= '/admin/?option=upd_playlist&id='.$playlist_id;
+		echo NguoiDung::checkInWishlist($userId, $ref_id,$type);
 		break;
 
 	default:

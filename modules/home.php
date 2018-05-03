@@ -13,6 +13,6 @@
 		<h4>BXH BÀI HÁT YÊU THÍCH</h4>
 		<?php include_once("modules/bxh.php");?>
 		<h4>BÀI HÁT NGHE NHIỀU NHẤT </h4>
-		<?php include_once("modules/bxh.php");?>
+		<?php include_once("modules/bxh_luotnghe.php");?>
 	</div>
 </div>

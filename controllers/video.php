@@ -38,7 +38,10 @@ class Video extends Controller{
 		$ca_si = new CaSi($this->CaSi);
 		return $ca_si;
 	}
-
+	public function getVideoGiongTen(){
+		$sql='SELECT * FROM video where MATCH(TenVideo) AGAINST("'. $this->TenVideo.'" IN NATURAL LANGUAGE MODE) limit 10';
+		return DatabaseProvider::execQuery($sql);
+	}
 
 }
 

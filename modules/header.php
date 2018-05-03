@@ -3,6 +3,7 @@
 	$option = isset($_GET['option']) ? $_GET['option']:'';
 	$chu_de_arr = ChuDe::DanhSach(18);
 ?>
+
 <nav>
 	<div id="cssmenu" class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
@@ -27,7 +28,7 @@
 			</div>
 		</form>
         
-		<ul class="nav navbar-nav navbar-right" style="margin-right:50px;">
+		<ul id="user_menu" class="nav navbar-nav navbar-right" style="margin-right:50px;">
       
             <?php if(!isset($_SESSION['idUser'])){ ?>
                 <li><a href="<?php echo BASE_URL; ?>/login.php">Đăng nhập</a></li>

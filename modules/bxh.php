@@ -3,19 +3,16 @@
 	<div class="col-md-12" style="margin-right:0px;">
 
 	 <?php
-			 $i=1;
-			 $ds=BaiHat::DanhSach(10);
-			 while($r = $ds->fetch_object())
-			 {
 
+			 $ds=BaiHat::top_yeu_thich();
+			 foreach ($ds as $r)
+			 {
 	 ?>
 				 <div class="col-md-12">
 						 <p><?php echo $r->TenBaiHat;?> - <?php echo $r->TenCaSi;?> </p>
 					   <hr>
 				 </div>
-				 <?php
-						 $i++;
-				 }?>
+				 <?php } ?>
 
 	</div>
 </div>

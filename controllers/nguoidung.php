@@ -51,30 +51,24 @@ class NguoiDung extends Controller{
 	/// UserId, RefId ,Type
 
 
-	public static function themPlaylistWishlist($userId, $playlistId)
+	public static function addWishlist($userId, $refId, $type)
 	{
-		$sql = "INSERT INTO wishlist(UserId, RefId, `Type`) VALUES($userId, $playlistId," .PLAYLIST_WISHLIST. ")";
-		return DatabaseProvider::execQuery($sql);
-
-	}
-public static function themVideoWishlist($userId, $videoId)
-	{
-		$sql = "INSERT INTO wishlist(UserId, RefId, `Type`) VALUES($userId, $videoId," .VIDEO_WISHLIST. ")";
+		$sql = "INSERT INTO wishlist(UserId, RefId, `Type`) VALUES($userId, $refId," .$type. ")";
 		return DatabaseProvider::execQuery($sql);
 
 	}
 
 
-	public static function xoaPlaylistWishlist($userId, $playlistId)
+	public static function delWishlist($userId, $refId, $type)
 	{
 
-		$sql = "DELETE FROM wishlist WHERE UserId = $userId and RefId = $playlistId  and `Type`= " . PLAYLIST_WISHLIST;
+		$sql = "DELETE FROM wishlist WHERE UserId = $userId and RefId = $refId  and `Type`= " . $type;
 		return DatabaseProvider::execQuery($sql);
 	}
 
-	public static function checkPlaylistInWishlist($userId, $playlstId)
+	public static function checkInWishlist($userId, $ref_id, $type)
 	{
-		$sql = "SELECT count(*) as count FROM wishlist WHERE UserId = $userId and RefId = $playlstId and `Type`= " .PLAYLIST_WISHLIST;
+		$sql = "SELECT count(*) as count FROM wishlist WHERE UserId = $userId and RefId = $ref_id and `Type`= " .$type;
 		$result = DatabaseProvider::execQuery($sql);
 		$r = $result->fetch_object();
 		return $r->count;

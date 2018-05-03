@@ -67,7 +67,7 @@ if(isset($_SESSION['success'])){?>
     <label for="hinh" class="col-md-3 control-label" >Hình</label>
     <input class="col-md-offset-3" type ="file" id="hinh" name ="hinh"/>
   </div>
- 
+
   <div class="form-group">
     <div class="col-sm-offset-6 col-sm-6">
     <?php if($suaab) { ?>

@@ -155,3 +155,33 @@ a:hover{
 .search-query:focus + button {
 z-index: 3;
 }
+
+#user_menu > .open li {
+    height: auto;
+}
+
+#user_menu > .open > ul.dropdown-menu{
+    left: auto;
+}
+
+.open ul.dropdown-menu li.divider{
+    height: 1px !important;
+}
+#cssmenu{
+    z-index: 3 !important;
+}
+#menuleft2 ul{
+    z-index: 2 !important;
+}
+.more-action{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    padding-right: 5px !important;
+}
+.more-action > .action-item{
+    margin-left: 10px;
+    font-size: 17px;
+}

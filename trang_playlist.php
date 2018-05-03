@@ -13,7 +13,7 @@ include_once("controllers/controller.php");
 		<br>
 	</div>
 
-	<div class="row pagination">
+	<div class="row">
 		<div class="col-md-9">
 			<h3>PLAYLIST</h3>
 			<?php

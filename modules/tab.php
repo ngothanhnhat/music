@@ -71,7 +71,7 @@
 						<div class="col-md-3">
 
 							<a href="index.php?option=playvideo&id=<?php echo $s->Id?>" style="color:#000;text-decoration:none;"> <img style=" width: 100%;height:140px;" src="img/img_vd/<?php echo $s->Hinh;?>.jpg" > </a>
-							<p class="TenBH"> <a href="index.php?option=playvideo&pl=<?php echo $s->Id?>" style="color:#000;text-decoration:none;">  <?php echo $s->TenVideo;?> </a> </p>
+							<p class="TenBH"> <a href="index.php?option=playvideo&id=<?php echo $s->Id?>" style="color:#000;text-decoration:none;">  <?php echo $s->TenVideo;?> </a> </p>
 
 						</div>
 
@@ -119,7 +119,6 @@
                 <p class ="TenBH">
 									<a href= "index.php?option=nghe1bh&id=<?php echo $r->Id;?>" style="color:#000;text-decoration:none;">
 										<?php echo $r->TenBaiHat;?> </a> - <?php echo $r->TenCaSi;?>
-									<span id="" class="fas fa-heart" style ="float:right;color:#999999;font-size:12px;margin-left:41px;" wgct="1"></span>
 									<span id="" class="fas fa-headphones" style ="float:right;color:#999999;font-size:12px;" wgct="1"> <?php echo $r->LuotNghe?>
 								</p>
                 <hr>

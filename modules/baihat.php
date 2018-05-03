@@ -15,7 +15,6 @@
 				<p class ="TenBH">
 					<a href= "index.php?option=nghe1bh&id=<?php echo $r->Id;?>" style="color:#000;text-decoration:none;">
 						<?php echo $r->TenBaiHat;?> </a> - <?php echo $r->TenCaSi;?>
-					<span id="" class="fas fa-heart" style ="float:right;color:#999999;font-size:12px;margin-left:41px;" wgct="1"></span>
 					<span id="" class="fas fa-headphones" style ="float:right;color:#999999;font-size:12px;" wgct="1"> <?php echo $r->LuotNghe?>
 				</p>
 				<hr>

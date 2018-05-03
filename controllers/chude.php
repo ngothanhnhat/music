@@ -64,7 +64,6 @@ class ChuDe extends Controller {
 	}
 	public static function addPlaylist($IdPL, $IdCD){
 		$sql="INSERT INTO playlist_chude (IdPL, IdCD) VALUES ('$IdPL','$IdCD')";
-		var_dump($sql);die;
 		DatabaseProvider::execQuery($sql);
 	}
 

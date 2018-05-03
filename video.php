@@ -33,7 +33,7 @@ include_once("controllers/controller.php");
 			<div class="col-md-3">
 
 				<a href="index.php?option=playvideo&id=<?php echo $s->Id?>" style="color:#000;text-decoration:none;"> <img style=" width: 100%;height:140px;" src="img/img_vd/<?php echo $s->Hinh;?>.jpg" > </a>
-				<p class="TenBH"> <a href="index.php?option=playvideo&pl=<?php echo $s->Id?>" style="color:#000;text-decoration:none;">  <?php echo $s->TenVideo;?> </a> </p>
+				<p class="TenBH"> <a href="index.php?option=playvideo&id=<?php echo $s->Id?>" style="color:#000;text-decoration:none;">  <?php echo $s->TenVideo;?> </a> </p>
 
 			</div>
 

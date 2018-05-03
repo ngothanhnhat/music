@@ -18,8 +18,8 @@ if(isset($_GET['id'])){
     $id= $_GET['id'];
     $nguoidung= new NguoiDung($id);
  }?>
-<div class ="container">
-	<div class ="row">
+
+<div class ="row">
 		<div class ="col-md-3">
 			<div id='menuleft2' style="margin:50px;">
 			<ul>
@@ -62,7 +62,7 @@ if(isset($_GET['id'])){
 						foreach ($playlists as $playlist){
 					?>
 					 <div class="col-md-2 tenpl">
-						 <a href="<?php echo BASE_URL.'/index.php?option=nghe_playlist&id='.$playlist->Id; ?>"><?php echo $playlist->TenPlaylist; ?></a>
+						 <a href="<?php echo BASE_URL.'/index.php?option=nghe_playlist&plId='.$playlist->Id; ?>"><?php echo $playlist->TenPlaylist; ?></a>
 					 </div>
 						<?php } ?>
 				</div>
@@ -82,12 +82,12 @@ if(isset($_GET['id'])){
 				</div>
 		</div>
 	</div>
-</div>
 <script>
     $(function () {
-        $('#menuleft2 li').click(s{
+        $('#menuleft2 li').click(function () {
+
             console.log(this);
-        }
+        });
     });
 
 </script>
