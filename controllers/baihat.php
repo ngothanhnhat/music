@@ -80,15 +80,6 @@ class BaiHat extends Controller
 	public static function search($key)
 	{
 		$rlt = array();
-//		$arr=explode(" ", $key);
-//
-//		if(count($arr) > 2){
-//			$result = array();
-//			array_push($result, $arr[0],$arr[1]);
-//		}else{
-//			$result = $arr;
-//		}
-//		$str= "%".implode("%",$result)."%";
 		$sql = 'SELECT * FROM baihat where MATCH(TenBaiHat) AGAINST("' . $key . '" IN NATURAL LANGUAGE MODE) limit 10';
 
 		$query_result = DatabaseProvider::execQuery($sql);
@@ -109,7 +100,7 @@ class BaiHat extends Controller
 
 	public static function bxh_LuotNghe($limit)
 	{
-		$sql = "select baihat.TenBaiHat from  baihat order by LuotNghe desc limit $limit";
+		$sql = "select baihat.TenBaiHat, baihat.LuotNghe from  baihat order by LuotNghe desc limit $limit";
 		return DatabaseProvider::execQuery($sql);
 
 	}

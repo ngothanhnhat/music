@@ -42,6 +42,18 @@ class Video extends Controller{
 		$sql='SELECT * FROM video where MATCH(TenVideo) AGAINST("'. $this->TenVideo.'" IN NATURAL LANGUAGE MODE) limit 10';
 		return DatabaseProvider::execQuery($sql);
 	}
+	public static function search($key)
+	{
+		$rlt = array();
+		$sql = 'SELECT * FROM video where MATCH(TenVideo) AGAINST("' . $key . '" IN NATURAL LANGUAGE MODE) limit 10';
+
+		$query_result = DatabaseProvider::execQuery($sql);
+		while ($r = $query_result->fetch_object()) {
+			$video = new Video($r->Id);
+			array_push($rlt, $video);
+		}
+		return $rlt;
+	}
 
 }
 

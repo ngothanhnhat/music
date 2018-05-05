@@ -20,7 +20,7 @@ $chu_de = ChuDe::DanhSach();
 			<div><h2 style="font-size: 18px; padding-left: 5px;"> <a href ="<?php echo BASE_URL;?>/?option=nghe_chu_de&id=<?php echo $cd->getId(); ?>" > <?php echo $cd->TenChuDe; ?> </a></h2> </div>
 			<ul class="playlists">
 				<?php foreach ($cd->Playlist as $pl){?>
-					<li><a href="<?php echo BASE_URL.'/index.php?option=nghe_playlist&plId='.$pl->Id; ?>"> <i class="fas fa-angle-right"></i><span> <?php echo $pl->TenPlaylist; ?></span></a></li>
+					<a href="<?php echo BASE_URL.'/index.php?option=nghe_playlist&plId='.$pl->Id; ?>"> <li> <i class="fas fa-angle-right"></i><span> <?php echo $pl->TenPlaylist; ?></span></li></a>
 				<?php } ?>
 			</ul>
 		</div>

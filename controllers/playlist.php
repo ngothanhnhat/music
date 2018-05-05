@@ -57,7 +57,20 @@ class Playlist extends Controller {
         $sql="INSERT INTO `baihat_playlist` (BaiHat, Playlist) VALUES ('$bai_hat_id', '$playlist_id')";
         return DatabaseProvider::execQuery($sql);
     }
-    
+	public static function search($key)
+	{
+		$rlt = array();
+		$sql = 'SELECT * FROM playlist where MATCH(TenPlaylist) AGAINST("' . $key . '" IN NATURAL LANGUAGE MODE) limit 10';
+
+		$query_result = DatabaseProvider::execQuery($sql);
+		while ($r = $query_result->fetch_object()) {
+			$playlist = new Playlist($r->Id);
+			array_push($rlt, $playlist);
+		}
+		return $rlt;
+	}
+
+
 	public function save() {
 		if(is_null($this->Id)){
 			$sql= "INSERT INTO `playlist` (`TenPlaylist`,`Hinh`,`NguoiTao`,TheLoai) VALUES ('$this->TenPlaylist','$this->Hinh',$this->NguoiTao,$this->TheLoai)";

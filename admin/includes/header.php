@@ -15,21 +15,21 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse" style="background:#c4e8fd ;position: fixed; z-index:99;width: 100%;">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="<?php echo BASE_URL;?>">Nhạc</a></li>
-            <li><a href="#">Video</a></li>
+            <li class="active"><a href="<?php echo BASE_URL;?>">Trang chủ</a></li>
+
         </ul>
-        
-        <form class="navbar-form navbar-left" role="search">
-            
-                <input class = "search" type="text"  placeholder="Search">
-            
-            <button class="timkiem" type="submit" >Tìm kiếm
-        
-            </button>
-        </form>
 
 
-       
-        
-    </div><!-- /.navbar-collapse -->
+			<form method="POST" action="<?php echo BASE_URL.'/?option=search'?>" id="custom-search-form" class="form-search form-horizontal">
+				<div class="input-append span12">
+					<input type="text" class="search-query mac-style" name="key" placeholder="Search">
+					<button type="submit" class="btn" name="btn_search"><i class="fa fa-search"></i></button>
+				</div>
+			</form>
+
+
+
+
+
+		</div><!-- /.navbar-collapse -->
 </nav>

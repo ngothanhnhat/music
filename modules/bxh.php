@@ -9,8 +9,12 @@
 			 {
 	 ?>
 				 <div class="col-md-12">
-						 <p><?php echo $r->TenBaiHat;?> - <?php echo $r->TenCaSi;?> </p>
-					   <hr>
+					 <p class ="TenBH">
+						 <a href= "index.php?option=nghe1bh&id=<?php echo $r->getId();?>">
+							 <?php echo $r->TenBaiHat;?> </a> -<a> <?php echo $r->TenCaSi;?></a>
+
+					 </p>
+					 <hr>
 				 </div>
 				 <?php } ?>
 

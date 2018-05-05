@@ -101,6 +101,5 @@
 }
 #cssmenu2 ul li a:hover,
 #cssmenu2 ul li.active > a {
-  background: url('images/bg.png');
   color: #ffffff;
 }

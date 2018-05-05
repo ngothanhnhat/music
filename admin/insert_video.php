@@ -74,13 +74,13 @@ if(isset($_GET['id'])){
 		</div>
 
 		<div class="form-group">
-			<label for="lyric" class="col-sm-3 control-label">Upload Lyric</label>
+			<label for="lyrica" class="col-sm-3 control-label">Upload Lyric</label>
 			<div class="col-sm-9">
 				<?php if($suavd){
 					echo "<p style='float:left;margin-right:5px;'>".$video->Lyric.".lrc</p>";
 				}
 				?>
-				<input type ="file" name ="lyric" id="lyric" accept=".lrc"/>
+				<input type ="file" name ="lyric" id="lyrica" accept=".lrc"/>
 			</div>
 		</div>
 

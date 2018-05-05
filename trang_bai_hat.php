@@ -27,8 +27,8 @@ include_once("controllers/controller.php");
 			?>
 			<div class="col-md-6" >
 				<p class ="TenBH">
-					<a href= "index.php?option=nghe1bh&id=<?php echo $r->Id;?>" style="color:#000;text-decoration:none;">
-						<?php echo $r->TenBaiHat;?> </a> - <?php echo $r->TenCaSi;?>
+					<a href= "index.php?option=nghe1bh&id=<?php echo $r->Id;?>">
+						<?php echo $r->TenBaiHat;?> </a> - <a><?php echo $r->TenCaSi;?></a>
 					<span id="" class="fas fa-headphones" style ="float:right;color:#999999;font-size:12px;" wgct="1"> <?php echo $r->LuotNghe?>
 				</p>
 				<hr>

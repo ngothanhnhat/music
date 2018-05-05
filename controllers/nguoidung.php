@@ -74,27 +74,42 @@ class NguoiDung extends Controller{
 		return $r->count;
 	}
 	public function getPlaylistWishlist(){
+	$result = array();
+
+	$sql="select pl.Id, pl.TenPlaylist, pl.Hinh from wishlist wl join playlist pl on pl.Id = wl.RefId where wl.Type = ". PLAYLIST_WISHLIST." and wl.UserId=$this->Id";
+	$result_sql = DatabaseProvider::execQuery($sql);
+	while ($r= $result_sql->fetch_object()){
+		$playlist = new stdClass();
+		$playlist->Id = $r->Id;
+		$playlist->TenPlaylist = $r->TenPlaylist;
+		$playlist->Hinh = $r->Hinh;
+		array_push($result, $playlist);
+	}
+	return $result;
+}
+	public function getBaihatlistWishlist(){
 		$result = array();
 
-		$sql="select pl.Id, pl.TenPlaylist from wishlist wl join playlist pl on pl.Id = wl.RefId where wl.Type = ". PLAYLIST_WISHLIST." and wl.UserId=$this->Id";
+		$sql="select bh.Id, bh.TenBaiHat from wishlist wl join baihat bh on bh.Id = wl.RefId where wl.Type = ". BAIHAT_WISHLIST." and wl.UserId=$this->Id";
 		$result_sql = DatabaseProvider::execQuery($sql);
 		while ($r= $result_sql->fetch_object()){
-			$playlist = new stdClass();
-			$playlist->Id = $r->Id;
-			$playlist->TenPlaylist = $r->TenPlaylist;
-			array_push($result, $playlist);
+			$baihat = new stdClass();
+			$baihat->Id = $r->Id;
+			$baihat->TenBaiHat = $r->TenBaiHat;
+			array_push($result, $baihat);
 		}
 		return $result;
 	}
 	public function getVideoWishlist(){
 		$result = array();
 
-		$sql="select vd.Id, vd.TenVideo from wishlist wl join video vd on vd.Id = wl.RefId where wl.Type = ".VIDEO_WISHLIST." and wl.UserId=$this->Id";
+		$sql="select vd.Id, vd.TenVideo, vd.Hinh from wishlist wl join video vd on vd.Id = wl.RefId where wl.Type = ".VIDEO_WISHLIST." and wl.UserId=$this->Id";
 		$result_sql = DatabaseProvider::execQuery($sql);
 		while ($r= $result_sql->fetch_object()){
 			$video = new stdClass();
 			$video->Id = $r->Id;
 			$video->TenVideo = $r->TenVideo;
+			$video->Hinh = $r->Hinh;
 			array_push($result, $video);
 		}
 		return $result;

@@ -27,7 +27,7 @@ include_once("controllers/controller.php");
 				<div class="col-md-3">
 
 					<img style=" width: 100%;height:140px;" src="img/playlist/<?php echo $r->Hinh;?>">
-					<p class="TenBH"> <a href="index.php?option=nghe_playlist&plId=<?php echo $r->Id?>" style="color:#000;text-decoration:none;">  <?php echo $r->TenPlaylist;?> </a> </p>
+					<p class="TenBH"> <a href="index.php?option=nghe_playlist&plId=<?php echo $r->Id?>">  <?php echo $r->TenPlaylist;?> </a> </p>
 
 				</div>
 
